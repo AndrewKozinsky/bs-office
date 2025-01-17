@@ -5,7 +5,7 @@ import axios from 'axios';
 import multer from 'multer';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
-import { router } from "./router/index.js";
+import { router } from "./router/router.js";
 import { sql } from "./db.js";
 import RoleModel from './models/role-model.js';
 import UserModel from './models/user-model.js';
@@ -20,7 +20,7 @@ dotenv.config();
 
 // Запуск сервера
 function startServer() {
-  app.listen(port, () => {
+  app.listen(port, '0.0.0.0', () => {
     console.log(`Сервер запущен на порту ${port}`);
   });
 }
@@ -31,26 +31,29 @@ app.use(cookieParser());
 app.use(express.json());
 // Разрешения CORS работать с конкретным адресом 
 app.use(cors({
-  origin: 'https://order.service-centr.com',
-  methods: 'GET,POST,OPTIONS',
-  allowedHeaders: 'Origin,X-Requested-With,Content-Type,Accept,Authorization'
+  origin: ['http://localhost:5173', 'https://order.service-centr.com'],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Allow cookies if necessary
+  // allowedHeaders: 'Origin,X-Requested-With,Content-Type,Accept,Authorization'
 }));
 app.use('/api', router);
 app.use(errorMiddleware);
 
-// Разрешения CORS 
+//Разрешения CORS
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'https//order.service-centr.com');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
-});
+})
+
 // Функция создания таблиц 
 async function createTables() {
   await RoleModel.createRoleTable();
   await UserModel.createUserTable();
   await TokenSchema.createTokenTable();
 }
+
 // API запросы к 1C
 app.get('/api/order/:limit/:offset', async (req, res) => {
   const { limit, offset } = req.params;
@@ -71,9 +74,9 @@ app.get('/api/order/:limit/:offset', async (req, res) => {
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
-});
-app.get('/api/device/types', async (req, res) => {
+})
 
+app.get('/api/device/types', async (req, res) => {
   try {
     const { default: fetch } = await import('node-fetch');
 
@@ -90,9 +93,9 @@ app.get('/api/device/types', async (req, res) => {
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
-});
-app.get('/api/device/brands', async (req, res) => {
+})
 
+app.get('/api/device/brands', async (req, res) => {
   try {
     const { default: fetch } = await import('node-fetch');
 

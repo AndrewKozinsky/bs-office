@@ -1,28 +1,43 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
+import prettierPlugin from 'eslint-plugin-prettier'
 
-export default tseslint.config(
-  { ignores: ['dist'] },
-  {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ['**/*.{ts,tsx}'],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-    },
-    plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-    },
-    rules: {
-      ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-    },
-  },
-)
+export default tseslint.config([{
+	files: ['**/*.ts', '**/*.tsx'],
+	languageOptions: {
+		parser: tseslint.parser
+	},
+	plugins: {
+		prettier: prettierPlugin,
+	},
+	rules: {
+		'no-multiple-empty-lines': ['error', {
+			max: 1,
+			maxEOF: 1,
+			maxBOF: 0
+		}],
+		'object-curly-spacing': ['warn', 'always'],
+		indent: ['warn', 'tab'],
+		quotes: ['warn', 'single'],
+		'jsx-quotes': ['warn', 'prefer-single'],
+		semi: ['warn', 'never'],
+		/*'comma-dangle': ['warn', {
+			arrays: 'never',
+			objects: 'always',
+			imports: 'never',
+			exports: 'always',
+			functions: 'never',
+		}],*/
+		'no-multi-spaces': 'error',
+		'space-in-parens': 'error',
+		'prettier/prettier': ['error', {
+			semi: false,
+			singleQuote: true,
+			tabWidth: 4,
+			useTabs: true,
+			printWidth: 120,
+			trailingComma: 'all',
+			jsxSingleQuote: true,
+		}],
+	}
+}])
+
