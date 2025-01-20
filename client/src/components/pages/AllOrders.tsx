@@ -1,79 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import { useLocation, Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { IoSearch } from 'react-icons/io5'
 import { GoTriangleDown } from 'react-icons/go'
-
-function OrderCard({ order, toggleDetails, isOpen }) {
-	const [showDetails, setShowDetails] = useState(isOpen)
-
-	useEffect(() => {
-		setShowDetails(isOpen)
-	}, [isOpen])
-
-	const handleToggleDetails = () => {
-		toggleDetails(order.order_id)
-		setShowDetails(!showDetails)
-	}
-
-	const parseOrderNumber = (text) => {
-		const orderNumberRegex = /00НФ-0*(\d+)/
-		const match = text.match(orderNumberRegex)
-
-		if (match) {
-			return match[1]
-		} else {
-			return null
-		}
-	}
-
-	const handleClick = (event) => {
-		event.preventDefault()
-		const orderNumber = parseOrderNumber(order.order_id)
-		if (orderNumber) {
-			const searchUrl = `https://order.service-centr.com/SearchOrder?orderNumber=${orderNumber}`
-			window.open(searchUrl, '_blank')
-		} else {
-			console.error('Failed to parse order number from link:', order.order_id)
-		}
-	}
-
-	return (
-		<>
-			<div className={'order-card'} onClick={handleClick}>
-				<div className={'order-card-main'}>
-					<div className='order-details-box'>
-						<div className='order-details-main'>
-							<h3>Заказ: {order.order_id}</h3>
-							<p>Дата заказа: {order.order_date}</p>
-							<p>Тип заказа: {order.order_type}</p>
-							<p>Статус заказа: {order.order_status}</p>
-						</div>
-						<div className='order-dateils-user'>
-							<h1>Клиент: {order.retail_user.user_name}</h1>
-							<p>Номер телефона: {order.retail_user.user_phone}</p>
-							<p>Адрес: {order.retail_user.user_address}</p>
-							<p>Тип клиента: {order.retail_user.user_type}</p>
-						</div>
-						<div className='order-dateils-device'>
-							<h1>Устройство: {order.device.device_full_model}</h1>
-							<p>Внешний вид: {order.device.device_appearance}</p>
-							<p>Дефект: {order.device.device_stated_defect}</p>
-							<p>Комплектация: {order.device.device_equipment}</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</>
-	)
-}
+import { deviceRequests } from '../../requests/deviceRequests.ts'
+import { GetOrdersParams, GetOrdersRes, ordersRequests } from '../../requests/ordersRequests.ts'
+import { staffRequests } from '../../requests/staffRequests.ts'
 
 function AllOrders() {
-	const [orders, setOrders] = useState([])
+	const [orders, setOrders] = useState<GetOrdersRes>([])
 	const [currentPage, setCurrentPage] = useState(1)
 	const [ordersPerPage] = useState(15)
 	const [searchValue, setSearchValue] = useState('')
-	const [searchParams, setSearchParams] = useState({})
+	const [searchParams, setSearchParams] = useState<GetOrdersParams>({
+		fio: null,
+		master: null,
+		deviceBrand: null,
+		deviceType: null,
+	})
 	const [expandedOrderId, setExpandedOrderId] = useState(null)
 	const [staffs, setStaffs] = useState([])
 	const [deviceTypes, setDeviceTypes] = useState([])
@@ -85,6 +28,7 @@ function AllOrders() {
 	const [filteredDeviceBrands, setFilteredDeviceBrands] = useState([])
 	const [loading, setLoading] = useState(false)
 	const [selectedDeviceBrand, setSelectedDeviceBrand] = useState(null)
+
 	const [formData, setFormData] = useState({
 		master: '',
 		master_id: '',
@@ -104,9 +48,8 @@ function AllOrders() {
 		const fetchOrders = async () => {
 			try {
 				setLoading(true)
-				const response = await axios.get('/api/orders/', {
-					params: searchParams,
-				})
+				const response = await ordersRequests.getOrders(searchParams)
+
 				setOrders(response.data)
 				setCurrentPage(1)
 			} catch (error) {
@@ -127,12 +70,13 @@ function AllOrders() {
 
 	const fetchStaff = async () => {
 		try {
-			const response = await fetch('/api/staff')
-			const data = await response.json()
-			const staffsData = data.map((staff) => ({
-				user_id: staff.user_id,
-				user_name: staff.user_name,
+			const response = await staffRequests.getStaff()
+
+			const staffsData = response.data.map((employee, i) => ({
+				user_id: i,
+				user_name: employee.user_name,
 			}))
+
 			setStaffs(staffsData)
 		} catch (error) {
 			console.error('Error fetching staff:', error)
@@ -141,12 +85,9 @@ function AllOrders() {
 
 	const fetchDeviceTypes = async () => {
 		try {
-			const response = await fetch('/api/device/types')
-			if (!response.ok) {
-				throw new Error('Network response was not ok')
-			}
-			const data = await response.json()
-			setDeviceTypes(Array.isArray(data) ? data : [])
+			const response = await deviceRequests.getDeviceTypes()
+
+			setDeviceTypes(Array.isArray(response.data) ? response.data : [])
 		} catch (error) {
 			console.error('Error fetching device types:', error)
 			setDeviceTypes([])
@@ -155,12 +96,9 @@ function AllOrders() {
 
 	const fetchDeviceBrands = async () => {
 		try {
-			const response = await fetch('/api/device/brands')
-			if (!response.ok) {
-				throw new Error('Network response was not ok')
-			}
-			const data = await response.json()
-			setDeviceBrands(Array.isArray(data) ? data : [])
+			const response = await deviceRequests.getDeviceBrands()
+
+			setDeviceBrands(Array.isArray(response.data) ? response.data : [])
 		} catch (error) {
 			console.error('Error fetching device brands:', error)
 			setDeviceBrands([])
@@ -259,6 +197,7 @@ function AllOrders() {
 			...prevData,
 			deviceType: value,
 		}))
+
 		if (value.trim() !== '') {
 			searchDeviceTypes(value)
 		} else {
@@ -376,11 +315,11 @@ function AllOrders() {
 										name='deviceType'
 										value={formData.deviceType}
 										onChange={handleDeviceTypeChange}
-										onInput={(e: any) => {
-											if (e.target.value === '') {
+										onInput={(e) => {
+											/*if (e.target.value === '') {
 												setFilteredDeviceTypes([])
 												setSelectedDeviceType(null)
-											}
+											}*/
 										}}
 										placeholder='Тип аппарата'
 									/>
@@ -413,11 +352,11 @@ function AllOrders() {
 										name='deviceBrand'
 										value={formData.deviceBrand}
 										onChange={handleDeviceBrandChange}
-										onInput={(e: any) => {
-											if (e.target.value === '') {
+										onInput={(e) => {
+											/*if (e.target.value === '') {
 												setFilteredDeviceBrands([])
 												setSelectedDeviceBrand(null)
-											}
+											}*/
 										}}
 										placeholder='Бренд аппарата'
 									/>
@@ -500,3 +439,67 @@ function AllOrders() {
 }
 
 export default AllOrders
+
+function OrderCard({ order, toggleDetails, isOpen }) {
+	const [showDetails, setShowDetails] = useState(isOpen)
+
+	useEffect(() => {
+		setShowDetails(isOpen)
+	}, [isOpen])
+
+	const handleToggleDetails = () => {
+		toggleDetails(order.order_id)
+		setShowDetails(!showDetails)
+	}
+
+	const parseOrderNumber = (text) => {
+		const orderNumberRegex = /00НФ-0*(\d+)/
+		const match = text.match(orderNumberRegex)
+
+		if (match) {
+			return match[1]
+		} else {
+			return null
+		}
+	}
+
+	const handleClick = (event) => {
+		event.preventDefault()
+		const orderNumber = parseOrderNumber(order.order_id)
+		if (orderNumber) {
+			const searchUrl = `https://order.service-centr.com/SearchOrder?orderNumber=${orderNumber}`
+			window.open(searchUrl, '_blank')
+		} else {
+			console.error('Failed to parse order number from link:', order.order_id)
+		}
+	}
+
+	return (
+		<>
+			<div className={'order-card'} onClick={handleClick}>
+				<div className={'order-card-main'}>
+					<div className='order-details-box'>
+						<div className='order-details-main'>
+							<h3>Заказ: {order.order_id}</h3>
+							<p>Дата заказа: {order.order_date}</p>
+							<p>Тип заказа: {order.order_type}</p>
+							<p>Статус заказа: {order.order_status}</p>
+						</div>
+						<div className='order-dateils-user'>
+							<h1>Клиент: {order.retail_user.user_name}</h1>
+							<p>Номер телефона: {order.retail_user.user_phone}</p>
+							<p>Адрес: {order.retail_user.user_address}</p>
+							<p>Тип клиента: {order.retail_user.user_type}</p>
+						</div>
+						<div className='order-dateils-device'>
+							<h1>Устройство: {order.device.device_full_model}</h1>
+							<p>Внешний вид: {order.device.device_appearance}</p>
+							<p>Дефект: {order.device.device_stated_defect}</p>
+							<p>Комплектация: {order.device.device_equipment}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</>
+	)
+}

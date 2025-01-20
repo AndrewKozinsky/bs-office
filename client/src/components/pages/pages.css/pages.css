@@ -211,7 +211,7 @@ li a:hover {
     gap: 20px;
     padding: 20px 40px;
     background: #ffffff;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .orders-button-status {
@@ -305,7 +305,7 @@ input {
 .device_vibor:hover {
     cursor: pointer;
     border: 1px solid;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .dropdown>span {
@@ -325,7 +325,7 @@ input {
     background-color: #f9f9f9;
     min-width: 100%;
     /* Ширина равна или больше ширины родительского span */
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     z-index: 1;
     width: 230px !important;
     top: 100%;
@@ -599,7 +599,7 @@ td>a:hover {
 .Warranty-Conteiner-nav>tbody>tr:hover {
     border: 2px solid #1776CD;
 
-    box-shadow: 0px 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
 }
 
 .expanded-content {
@@ -959,7 +959,7 @@ input {
 .th-filter:hover {
     background: #1776CD;
     color: #f0f0f0;
-    box-shadow: 0px 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
     border-radius: 6px;
 }
 
@@ -1074,7 +1074,7 @@ input {
     left: 0;
     width: 100%;
     background-color: #f9f9f9;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     z-index: 1;
     max-height: 200px;
     overflow-y: auto;
@@ -1103,22 +1103,22 @@ input {
 }
 
 .order-card-main:hover {
-    box-shadow: 0px 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
 
 }
 
 .order-card-main-active {
-    border-radius: 10px 10px 0px 0px;
-    box-shadow: 0px 0px 15px 5px rgba(56, 115, 159, 0.3);
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
     background-color: #ffffff;
     border: 1px solid #1776CD;
 }
 
 .order-card-details {
     width: 100%;
-    box-shadow: 0px 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
     background-color: #ffffff;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 0 0px 10px 10px;
     align-items: center;
     border: 1px solid #1776CD;
     transition: max-height 0.3s ease-in-out;
@@ -1157,7 +1157,7 @@ input {
 }
 
 .link-button a:hover {
-    box-shadow: 0px 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
     color: #cccccc;
 }
 
@@ -1200,7 +1200,7 @@ input {
 }
 
 textarea:focus {
-    box-shadow: 0px 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
 }
 
 .parts-dropdown-add {
@@ -1240,7 +1240,7 @@ textarea:focus {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
     z-index: 1001;
 }
 
@@ -1417,7 +1417,7 @@ textarea:focus {
 }
 
 .staff td select:hover {
-    box-shadow: 0px 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
 
 }
 
@@ -1438,7 +1438,7 @@ textarea:focus {
 
 .matched-Order-user:hover {
     border: 1px solid #1776CD;
-    box-shadow: 0px 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
     background: #cecece65;
     color: #1776CD;
 }
@@ -1579,8 +1579,8 @@ textarea:focus {
         gap: 20px;
         top: 100%;
         left: 0;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        border-radius: 0px 0px 6px 6px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 0 0px 6px 6px;
         padding-left: 10px;
         text-align: left;
     }
@@ -1643,7 +1643,7 @@ textarea:focus {
         padding: 20px 40px;
         border-radius: 6px;
         color: #FFF1F1;
-        box-shadow: 0px 0px 4px 1px rgba(251, 247, 247, 0.4);
+        box-shadow: 0 0px 4px 1px rgba(251, 247, 247, 0.4);
     }
 
     .dropdown {
@@ -1681,7 +1681,7 @@ textarea:focus {
 @media (max-width: 500px) {
 
     .th-style-width {
-        min-width: 0px;
+        min-width: 0;
         width: 100%;
     }
 

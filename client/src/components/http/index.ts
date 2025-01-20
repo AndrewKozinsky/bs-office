@@ -1,6 +1,6 @@
 import axios from 'axios'
 // Связь с сервером для авторизации и роутинга
-export const API_URL = 'https://order.service-centr.com/api'
+export const API_URL = 'http://localhost:5001/api'
 
 const $api = axios.create({
 	withCredentials: true,

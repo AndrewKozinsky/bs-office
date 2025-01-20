@@ -40,12 +40,13 @@ app.use('/api', router);
 app.use(errorMiddleware);
 
 //Разрешения CORS
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https//order.service-centr.com');
+// Если всё работает, то после удалить.
+/*app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://order.service-centr.com');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
-})
+})*/
 
 // Функция создания таблиц 
 async function createTables() {
@@ -345,6 +346,7 @@ app.get('/api/orders/', async (req, res) => {
     });
 
     const apiUrl = `http://192.168.1.10/api/orders/?${params}`;
+    console.log(apiUrl)
     const response = await fetch(apiUrl);
 
     if (!response.ok) {

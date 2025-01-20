@@ -1,0 +1,278 @@
+.container-login {
+    display: flex;
+    flex-direction: column;
+    margin: 2% auto;
+    width: calc(100% - 70%);
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    height: fit-content;
+    padding: 20px 15px;
+    border: 1px solid rgba(56, 115, 159, 0.3);
+    border-radius: 6px;
+    box-shadow: 0 0 65px 5px rgba(56, 115, 159, 0.3);
+}
+
+.container-login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+}
+
+.container-login select{
+    border: 1px solid #1776CD;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: calc(100% - 50%);
+}
+.password-container {
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+
+.password-container svg {
+    position: absolute;
+    right: 28%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.password-container svg:hover{
+    color: #1776CD;
+    box-shadow: 0 0 65px 5px rgba(56, 115, 159, 0.3);
+
+}
+.invalid {
+    border: 1px solid red;
+}
+
+.container-login-title>.error-message {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.container-login-main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.container-login-main-qweru {
+    display: flex;
+    width: 100%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-login-main-qweru svg {
+    position: absolute;
+    cursor: pointer;
+    right: calc(100% - 58%);
+}
+
+.container-login input {
+    width: calc(100% - 50%);
+}
+
+.container-login-footer {
+    margin: 20px 0;
+}
+
+.additional-block {
+    display: flex;
+    width: calc(100% - 50%);
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    margin: auto;
+}
+
+.button-error {
+    background: #585858;
+}
+
+.button-error:hover {
+    background: #585858;
+    box-shadow: none;
+    cursor: no-drop;
+}
+
+@media (max-width: 1200px) {
+    .container-login input {
+        width: calc(100% - 15%);
+    }
+
+    .container-login-main-qweru svg {
+        position: absolute;
+        right: calc(100% - 88.3%);
+        padding: 5px;
+        width: 20px;
+    }
+    .password-container svg {
+        position: absolute;
+        right: 21%;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+    .additional-block {
+        display: flex;
+        width: calc(100% - 10%);
+        justify-content: center;
+        align-items: center;
+    }
+    .container-login {
+        display: flex;
+        flex-direction: column;
+        margin: 2% auto;
+        width: calc(100% - 20%);
+        justify-content: center;
+        gap: 20px;
+        align-items: center;
+        height: fit-content;
+        padding: 20px 15px;
+        border: 1px solid rgba(56, 115, 159, 0.3);
+        border-radius: 6px;
+        box-shadow: 0 0 65px 5px rgba(56, 115, 159, 0.3);
+    }
+    .container-login select{
+        width: calc(100% - 20%);
+    }
+}
+@media (max-width: 800px) {
+    .container-login input {
+        width: calc(100% - 15%);
+    }
+
+    .container-login-main-qweru svg {
+        position: absolute;
+        right: calc(100% - 88.3%);
+        padding: 5px;
+        width: 20px;
+    }
+    .password-container svg {
+        position: absolute;
+        right: 18%;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+    .additional-block {
+        display: flex;
+        width: calc(100% - 10%);
+        justify-content: center;
+        align-items: center;
+    }
+    .container-login {
+        display: flex;
+        flex-direction: column;
+        margin: 2% auto;
+        width: calc(100% - 20%);
+        justify-content: center;
+        gap: 20px;
+        align-items: center;
+        height: fit-content;
+        padding: 20px 15px;
+        border: 1px solid rgba(56, 115, 159, 0.3);
+        border-radius: 6px;
+        box-shadow: 0 0 65px 5px rgba(56, 115, 159, 0.3);
+    }
+    
+}
+@media (max-width: 680px) {
+    .container-login input {
+        width: calc(100% - 15%);
+    }
+
+    .container-login-main-qweru svg {
+        position: absolute;
+        right: calc(100% - 88.3%);
+        padding: 5px;
+        width: 20px;
+    }
+    .password-container svg {
+        position: absolute;
+        right: 12%;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+    .additional-block {
+        display: flex;
+        width: calc(100% - 10%);
+        justify-content: center;
+        align-items: center;
+    }
+    .container-login {
+        display: flex;
+        flex-direction: column;
+        margin: 2% auto;
+        width: calc(100% - 20%);
+        justify-content: center;
+        gap: 20px;
+        align-items: center;
+        height: fit-content;
+        padding: 20px 15px;
+        border: 1px solid rgba(56, 115, 159, 0.3);
+        border-radius: 6px;
+        box-shadow: 0 0 65px 5px rgba(56, 115, 159, 0.3);
+    }
+    
+}
+@media (max-width: 380px) {
+    .container-login input {
+        width: calc(100% - 15%);
+    }
+
+    .container-login-main-qweru svg {
+        position: absolute;
+        right: calc(100% - 88.3%);
+        padding: 5px;
+        width: 20px;
+    }
+    .password-container svg {
+        position: absolute;
+        right: 12%;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+    .additional-block {
+        display: flex;
+        width: calc(100% - 10%);
+        justify-content: center;
+        align-items: center;
+    }
+    .container-login {
+        display: flex;
+        flex-direction: column;
+        margin: 2% auto;
+        width: calc(100% - 20%);
+        justify-content: center;
+        gap: 20px;
+        align-items: center;
+        height: fit-content;
+        padding: 20px 15px;
+        border: 1px solid rgba(56, 115, 159, 0.3);
+        border-radius: 6px;
+        box-shadow: 0 0 65px 5px rgba(56, 115, 159, 0.3);
+    }
+    .container-login select{
+        width: calc(100% - 15%);
+    }
+}

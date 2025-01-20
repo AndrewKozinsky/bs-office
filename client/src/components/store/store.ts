@@ -1,33 +1,30 @@
 import { makeAutoObservable } from 'mobx'
-import AuthService from '..//service/AuthService'
 import axios from 'axios'
 import { API_URL } from '../http'
+import { authRequests } from '../../requests/authRequests.ts'
 
+// У БУДУЩЕМ УДАЛИТЬ
 export default class Store {
-	user = {} as any
-	isAuth = false
-	isLoading = false
-
-	constructor() {
+	// user = {}
+	// isAuth = false
+	// isLoading = false
+	/*constructor() {
 		makeAutoObservable(this)
-	}
-	setAuth(bool) {
+	}*/
+	/*setAuth(bool) {
 		this.isAuth = bool
-	}
-
-	setUser(user, roleName) {
+	}*/
+	/*setUser(user, roleName) {
 		this.user = { ...user, roleName }
-	}
-
-	setLoading(bool) {
+	}*/
+	/*setLoading(bool) {
 		this.isLoading = bool
-	}
-
+	}*/
 	// метод для входа
-	async login(login, password, role) {
+	/*async login(login, password, role) {
 		try {
-			const response = await AuthService.login(login, password, role)
-			console.log(response)
+			const response = await authRequests.login(login, password, role)
+
 			localStorage.setItem('token', response.data.accessToken)
 			document.cookie = `refreshToken=${response.data.refreshToken}; Max-Age=${30 * 24 * 60 * 60}; Path=/PersonalAccount; Secure; SameSite=None`
 			this.setAuth(true)
@@ -38,30 +35,28 @@ export default class Store {
 			console.log(e.response?.data?.message)
 			return { success: false, error: e.response?.data?.message || 'Ошибка при авторизации' }
 		}
-	}
+	}*/
 	// метод для регистрации
-	async registration(login, password, role) {
+	/*async registration(login, password, role) {
 		try {
-			const response = await AuthService.registration(login, password, role)
+			const response = await authRequests.registration(login, password, role)
 			console.log(response)
 		} catch (e) {
 			console.log(e.response?.data?.message)
 		}
-	}
-
+	}*/
 	// метод для выхода
-	async logout() {
+	/*async logout() {
 		try {
-			const response = await AuthService.logout()
+			const response = await authRequests.logout()
 			localStorage.removeItem('token')
 			this.setAuth(false)
-			this.setUser({}, 'unknown')
+			this.setUser({})
 		} catch (e) {
 			console.log(e.response?.data?.message)
 		}
-	}
-
-	async checkAuth() {
+	}*/
+	/*async checkAuth() {
 		this.setLoading(true)
 		try {
 			const response = await axios.get(`${API_URL}/refresh`, { withCredentials: true })
@@ -74,5 +69,5 @@ export default class Store {
 		} finally {
 			this.setLoading(false)
 		}
-	}
+	}*/
 }

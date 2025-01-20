@@ -2,18 +2,20 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { IoClose } from 'react-icons/io5'
-import './components.css'
 import { MdManageAccounts } from 'react-icons/md'
 import { GoTriangleDown } from 'react-icons/go'
-import { Context } from '../main.tsx'
+import { useUserStore } from '../stores/userStore.ts'
+import './components.css'
 
 function NavMenu() {
+	const user = useUserStore((s) => s.user)
+
 	const [nav, setNav] = useState(false)
 	const [expanded, setExpanded] = useState(false)
 	const menuRef = useRef(null)
-	const { store } = useContext(Context)
-	const userRole = store.user.role
-	const userName = store.user.login
+	// const { store } = useContext(Context);
+	const userRole = user.role
+	const userName = user.login
 
 	const toggleExpanded = () => {
 		setExpanded(!expanded)
@@ -159,7 +161,7 @@ function NavMenu() {
 				<li>
 					<NavLink to='/' className='ManageAccounts' onClick={closeMenu}>
 						<MdManageAccounts />
-						{store.user.login}
+						{user.login}
 					</NavLink>
 				</li>
 			</ul>
