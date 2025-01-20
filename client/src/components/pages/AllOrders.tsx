@@ -5,6 +5,7 @@ import { GoTriangleDown } from 'react-icons/go'
 import { deviceRequests } from '../../requests/deviceRequests.ts'
 import { GetOrdersParams, GetOrdersRes, ordersRequests } from '../../requests/ordersRequests.ts'
 import { staffRequests } from '../../requests/staffRequests.ts'
+import './orders.css'
 
 function AllOrders() {
 	const [orders, setOrders] = useState<GetOrdersRes>([])
@@ -207,6 +208,7 @@ function AllOrders() {
 
 	useEffect(() => {
 		const params = new URLSearchParams(location.search)
+
 		const fio = params.get('fio')
 		if (fio) {
 			setSearchValue(fio)

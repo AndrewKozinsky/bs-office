@@ -1,5 +1,5 @@
 import $api from '../components/http'
-import { CurrentUser, Employee, Order } from '../types/user.ts'
+import { CurrentUser, User, Order } from '../types/user.ts'
 
 export type GetOrdersParams = {
 	fio: string | null
@@ -13,5 +13,8 @@ export type GetOrdersRes = Order[]
 export const ordersRequests = {
 	async getOrders(params: GetOrdersParams) {
 		return $api.get<GetOrdersRes>('/orders', { params })
+	},
+	async createOrder(data: unknown) {
+		return $api.post<GetOrdersRes>('/neworder', { body: data })
 	},
 }

@@ -1,7 +1,7 @@
 import $api from '../components/http'
-import { CurrentUser, Employee } from '../types/user.ts'
+import { CurrentUser, User } from '../types/user.ts'
 
-type GetStaffRes = Employee[]
+type GetStaffRes = User[]
 
 export const staffRequests = {
 	async getStaff() {

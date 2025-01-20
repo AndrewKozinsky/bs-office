@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { repairRequests } from 'src/requests/repairRequests.js'
 import Messenger from './messenger/Messenger';
 import axios from 'axios';
 import { TbExclamationMark } from "react-icons/tb";
@@ -171,9 +172,8 @@ function WarrantyRepair() {
   };
   const fetchTypes = async () => {
     try {
-      const response = await fetch('/api/typeofrepaire');
-      const data = await response.json();
-      setTypes(data.types);
+      const response = await repairRequests.getTypeOfRepair()
+      setTypes(response.data.types);
     } catch (error) {
       console.error('Error fetching types:', error);
     }

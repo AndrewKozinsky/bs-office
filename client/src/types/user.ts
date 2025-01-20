@@ -11,7 +11,7 @@ export enum UserRole {
 	Customer = 'Клиент',
 }
 
-export type Employee = {
+export type User = {
 	user_address: string
 	user_good_address: {
 		City: string
@@ -33,9 +33,17 @@ export type Employee = {
 	user_type: string // ''
 }
 
+// Откуда пользователь узнал про нас
+export type UserDiscoverySource = { sources_id: '000000006'; sources_name: 'Гугл' }
+
 export type DeviceType = {
 	device_type_id: string // '000000001'
 	device_type_name: string // 'SSD накопитель'
+}
+
+export type Device = {
+	device_model_id: '000005165'
+	device_model_name: 'P30'
 }
 
 export type DeviceBrand = {
@@ -161,3 +169,14 @@ export type Order = {
 	}
 	works: null
 }
+
+export type TypesOfRepair = [
+	'Авторизованный ремонт',
+	'Наша гарантия',
+	'Обслуживание картриджей',
+	'Поставка товаров',
+	'Проверка качества',
+	'Простой ремонт',
+	'Сложный ремонт',
+	'Хоз работы',
+]

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './orders.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { usersRequests } from 'src/requests/usersRequests.js'
 import Messenger from './messenger/Messenger';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -239,8 +240,8 @@ const Calls = () => {
   };
   const searchUsers = async (fullName) => {
     try {
-      const response = await fetch(`/api/users/search/${encodeURIComponent(fullName)}`);
-      const data = await response.json();
+      const response = await usersRequests.getUsers(fullName)
+      const data = response.data
       const filteredUsers = data.filter(user => user.user_phone);
       setMatchedOrder([]); // Очищаем результаты поиска заказов
       setMatchedUsers(filteredUsers);

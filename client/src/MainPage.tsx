@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Header from './components/Header'
 // import WarrantyRepair from './components/pages/WarrantyRepair.jsx';
-// import OrderStatus from './components/pages/OrderStatus.jsx';
+import OrderStatus from './components/pages/OrderStatus'
 // import Orders from './components/pages/Orders.jsx';
 // import Employees from './components/pages/Employees.jsx';
 // import ChangeOrder from './components/pages/ChangeOrder.jsx';
@@ -38,8 +38,17 @@ const MainPage = () => {
 						)
 					}
 				/>
+				<Route
+					path='/OrderStatus'
+					element={
+						userRole === 'Администратор' || userRole === 'Мастер' || userRole === 'Менеджер' ? (
+							<OrderStatus />
+						) : (
+							<Navigate to='/PersonalAccount' />
+						)
+					}
+				/>
 				{/*<Route path="/WarrantyRepair" element={userRole === 'Администратор' || userRole === 'Менеджер' || userRole === 'Мастер' ? <WarrantyRepair /> : <Navigate to="/PersonalAccount" />} />*/}
-				{/*<Route path="/OrderStatus" element={userRole === 'Администратор' || userRole === 'Мастер' || userRole === 'Менеджер' ? <OrderStatus /> : <Navigate to="/PersonalAccount" />} />*/}
 				{/*<Route path="/Orders" element={userRole === 'Администратор' || userRole === 'Мастер' || userRole === 'Менеджер' ? <Orders /> : <Navigate to="/PersonalAccount" />} />*/}
 				{/*<Route path="/Maxvi" element={userRole === 'Администратор' || userRole === 'Мастер' || userRole === 'Менеджер' ? <Maxvi /> : <Navigate to="/PersonalAccount" />} />*/}
 				{/*<Route path="/Employees" element={userRole === 'Администратор' ? <Employees /> : <Navigate to="/PersonalAccount" />} />*/}
