@@ -7,6 +7,7 @@ import { GoTriangleDown } from 'react-icons/go'
 import { useUserStore } from '../stores/userStore.ts'
 import { UserRole } from '../types/user.ts'
 import './components.css'
+import { pagesRoute } from './pages/pagesRoute.ts'
 
 function NavMenu() {
 	const user = useUserStore((s) => s.user)
@@ -34,10 +35,15 @@ function NavMenu() {
 	}
 
 	const renderOrderUserLinks = (role) => {
-		if (role === 'Клиент' || role === 'Мастер' || role === UserRole.Admin || role === 'Менеджер') {
+		if (
+			role === UserRole.Customer ||
+			role === UserRole.Master ||
+			role === UserRole.Admin ||
+			role === UserRole.Manager
+		) {
 			return (
 				<div>
-					<NavLink to='/AllOrders' onClick={closeMenu}>
+					<NavLink to={pagesRoute.allOrders} onClick={closeMenu}>
 						Все заказы
 					</NavLink>
 				</div>
@@ -47,11 +53,11 @@ function NavMenu() {
 		}
 	}
 
-	const renderOrderLinks = (role) => {
-		if (role === 'Менеджер' || role === UserRole.Admin) {
+	const renderOrderLinks = (role: any) => {
+		if (role === UserRole.Manager || role === UserRole.Admin) {
 			return (
 				<div>
-					<NavLink to='/OrderStatus' onClick={closeMenu}>
+					<NavLink to={pagesRoute.orderStatus} onClick={closeMenu}>
 						Новый Заказ
 					</NavLink>
 				</div>
@@ -108,10 +114,10 @@ function NavMenu() {
 						<div className={`dropdown-content ${expanded ? 'show' : ''}`}>
 							{renderOrderUserLinks(userRole)}
 							{renderOrderLinks(userRole)}
-							<NavLink to='/WarrantyRepair' onClick={closeMenu}>
+							<NavLink to={pagesRoute.warrantyRepair} onClick={closeMenu}>
 								Гарантия
 							</NavLink>
-							<NavLink to='/Maxvi' onClick={closeMenu}>
+							<NavLink to={pagesRoute.maxvi} onClick={closeMenu}>
 								Гарантия Maxvi
 							</NavLink>
 						</div>
@@ -119,21 +125,21 @@ function NavMenu() {
 				</li>
 				{userRole === UserRole.Admin || userRole === UserRole.Manager ? (
 					<li>
-						<NavLink to='/Calls' onClick={closeMenu}>
+						<NavLink to={pagesRoute.calls} onClick={closeMenu}>
 							Звонки
 						</NavLink>
 					</li>
 				) : null}
 				{userRole === UserRole.Admin ? (
 					<li>
-						<NavLink to='/adminka' onClick={closeMenu}>
+						<NavLink to={pagesRoute.adminka} onClick={closeMenu}>
 							{' '}
 							Админка{' '}
 						</NavLink>
 					</li>
 				) : null}
 				<li>
-					<NavLink to='/PhoneBook' onClick={closeMenu}>
+					<NavLink to={pagesRoute.phoneBook} onClick={closeMenu}>
 						Телефонный справочник
 					</NavLink>
 				</li>
@@ -142,7 +148,7 @@ function NavMenu() {
 				userRole === UserRole.Issuance ||
 				userRole === UserRole.Admin ? (
 					<li className='nav-menu-mob'>
-						<NavLink to='/Acceptance' onClick={closeMenu}>
+						<NavLink to={pagesRoute.acceptance} onClick={closeMenu}>
 							Выдача
 						</NavLink>
 					</li>
@@ -152,7 +158,7 @@ function NavMenu() {
 				userRole === UserRole.Sending ||
 				userRole === UserRole.Admin ? (
 					<li className='nav-menu-mob'>
-						<NavLink to='/Shipment' onClick={closeMenu}>
+						<NavLink to={pagesRoute.shipment} onClick={closeMenu}>
 							Отправка
 						</NavLink>
 					</li>

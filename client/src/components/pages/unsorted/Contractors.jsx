@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Header from 'src/components/Header.js';
-import Messenger from './messenger/Messenger';
+import Header from 'src/components/Header.tsx';
+import Messenger from 'src/components/pages/unsorted/messenger/Messenger.jsx';
 import { FiChevronLeft, FiChevronRight, FiSkipBack, FiSkipForward } from "react-icons/fi";
 
 function Contractors() {

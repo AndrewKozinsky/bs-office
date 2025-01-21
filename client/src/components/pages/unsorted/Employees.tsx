@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import Header from '../Header.tsx'
-import Messenger from './messenger/Messenger'
+import Header from '../../Header.tsx'
+import Messenger from './unsorted/messenger/Messenger'
 import axios from 'axios'
 
 function Employees() {

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import './pages.css/SeacrOrder.css';
-import { useUserStore } from 'src/stores/userStore.js'
-import QRcodeScaner from './QRcodeScaner';
+import 'src/components/pages/unsorted/pages.css/SeacrOrder.css';
+import { useUserStore } from 'src/stores/userStore.ts'
+import QRcodeScaner from 'src/components/pages/unsorted/QRcodeScaner.jsx';
 
 function Shipment() {
     const user = useUserStore(s => s.user)

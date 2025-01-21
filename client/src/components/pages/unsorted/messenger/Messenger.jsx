@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { PiMessengerLogoLight } from "react-icons/pi";
 import { LuSendToBack } from "react-icons/lu";
 import { IoMdSend } from "react-icons/io";
-import './Messenger.css';
+import 'src/components/pages/unsorted/messenger/Messenger.css';
 
 function Messenger() {
     const [Mess, setMess] = useState(false)

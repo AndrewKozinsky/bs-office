@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { repairRequests } from '../../requests/repairRequests.ts'
-import Messenger from './messenger/Messenger'
+import { repairRequests } from '../../../requests/repairRequests.ts'
+import Messenger from './unsorted/messenger/Messenger'
 import { TbExclamationMark } from 'react-icons/tb'
 
 function WarrantyRepair() {

@@ -1,0 +1,16 @@
+export const pagesRoute = {
+	allOrders: '/all-orders',
+	personalAccount: '/personal-account',
+	orderStatus: '/order-status',
+	maxvi: '/maxvi',
+	warrantyRepair: '/WarrantyRepair',
+	orders: '/Orders',
+	employees: '/employees',
+	changeOrder: '/ChangeOrder',
+	calls: '/Calls',
+	phoneBook: '/phone-book',
+	searchOrder: '/SearchOrder',
+	adminka: '/adminka',
+	acceptance: '/Acceptance',
+	shipment: '/Shipment',
+}

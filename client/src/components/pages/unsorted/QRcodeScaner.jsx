@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Html5Qrcode } from 'html5-qrcode';
-import './pages.css/QrScaner.css';
+import 'src/components/pages/unsorted/pages.css/QrScaner.css';
 
 function QRcodeScaner({ updateSearchWithQRCode }) {
     const [isEnabled, setEnable] = useState(false);

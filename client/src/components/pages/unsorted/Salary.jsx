@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Header from 'src/components/Header.js';
-import { warrantyRequests } from 'src/requests/warrantyRequests.js'
+import Header from 'src/components/Header.tsx';
+import { warrantyRequests } from 'src/requests/warrantyRequests.ts'
 
 function WarrantyRepair() {
     const [searchValue, setSearchValue] = useState('');

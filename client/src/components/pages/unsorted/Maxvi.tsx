@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { warrantyRequests } from '../../requests/warrantyRequests.ts'
-import Messenger from './messenger/Messenger'
+import { warrantyRequests } from '../../../requests/warrantyRequests.ts'
+import Messenger from './unsorted/messenger/Messenger'
 
 function Maxvi() {
 	const [isLoading, setIsLoading] = useState(false)

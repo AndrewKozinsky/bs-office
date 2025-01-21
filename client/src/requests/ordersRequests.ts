@@ -1,4 +1,5 @@
 import $api from '../components/http'
+import { pagesRoute } from '../components/pages/pagesRoute.ts'
 import { CurrentUser, User, Order } from '../types/user.ts'
 
 export type GetOrdersParams = {
@@ -12,7 +13,7 @@ export type GetOrdersRes = Order[]
 
 export const ordersRequests = {
 	async getOrders(params: GetOrdersParams) {
-		return $api.get<GetOrdersRes>('/orders', { params })
+		return $api.get<GetOrdersRes>(pagesRoute.orders, { params })
 	},
 	async createOrder(data: unknown) {
 		return $api.post<GetOrdersRes>('/neworder', { body: data })
