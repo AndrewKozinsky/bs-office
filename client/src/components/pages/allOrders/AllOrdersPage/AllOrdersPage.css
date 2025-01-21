@@ -1,0 +1,128 @@
+.order-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order-card-main {
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.order-card-main:hover {
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
+
+}
+
+.order-card-main-active {
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
+    background-color: #ffffff;
+    border: 1px solid #1776CD;
+}
+
+.order-details-box {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+@media (max-width: 1300px) {
+    .order-details-box {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.order-details-main {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 20%;
+}
+
+@media (max-width: 1300px) {
+    .order-details-main {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+.order-details-main-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.order-details-main-container-sell {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.order-details-main-container-zapchasti {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #656565;
+    padding: 10px 0;
+    border-radius: 6px;
+}
+
+.order-details-main-container-zapchasti > .dropdown > select,
+input {
+    max-width: 400px;
+}
+
+.order-details-main-container-zapchasti > .dropdown > h5 {
+    background: #1776CD;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+}
+
+.order-dateils-user {
+    width: 100%;
+    max-width: 40%;
+}
+
+@media (max-width: 1300px) {
+    .order-dateils-user {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+.order-dateils-device {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.order-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-box h2 {
+    text-align: center;
+}

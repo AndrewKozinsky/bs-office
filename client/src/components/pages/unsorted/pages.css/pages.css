@@ -599,7 +599,7 @@ td>a:hover {
 .Warranty-Conteiner-nav>tbody>tr:hover {
     border: 2px solid #1776CD;
 
-    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
 }
 
 .expanded-content {
@@ -959,7 +959,7 @@ input {
 .th-filter:hover {
     background: #1776CD;
     color: #f0f0f0;
-    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
     border-radius: 6px;
 }
 
@@ -1103,22 +1103,22 @@ input {
 }
 
 .order-card-main:hover {
-    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
 
 }
 
 .order-card-main-active {
     border-radius: 10px 10px 0 0;
-    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
     background-color: #ffffff;
     border: 1px solid #1776CD;
 }
 
 .order-card-details {
     width: 100%;
-    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
     background-color: #ffffff;
-    border-radius: 0 0px 10px 10px;
+    border-radius: 0 0 10px 10px;
     align-items: center;
     border: 1px solid #1776CD;
     transition: max-height 0.3s ease-in-out;
@@ -1157,7 +1157,7 @@ input {
 }
 
 .link-button a:hover {
-    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
     color: #cccccc;
 }
 
@@ -1200,7 +1200,7 @@ input {
 }
 
 textarea:focus {
-    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
 }
 
 .parts-dropdown-add {
@@ -1240,7 +1240,7 @@ textarea:focus {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1001;
 }
 
@@ -1417,7 +1417,7 @@ textarea:focus {
 }
 
 .staff td select:hover {
-    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
 
 }
 
@@ -1438,7 +1438,7 @@ textarea:focus {
 
 .matched-Order-user:hover {
     border: 1px solid #1776CD;
-    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
     background: #cecece65;
     color: #1776CD;
 }
@@ -1580,7 +1580,7 @@ textarea:focus {
         top: 100%;
         left: 0;
         box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-        border-radius: 0 0px 6px 6px;
+        border-radius: 0 0 6px 6px;
         padding-left: 10px;
         text-align: left;
     }
