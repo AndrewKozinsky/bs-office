@@ -1,16 +1,16 @@
 import React, { useContext, useState } from 'react';
 import './pages.css/SeacrOrder.css';
+import { useUserStore } from 'src/stores/userStore.js'
 import QRcodeScaner from './QRcodeScaner';
-import { Context } from '../../main';
 
 function Acceptance() {
-    const { store } = useContext(Context);
+    const user = useUserStore(s => s.user)
     const [orderStatus, setOrderStatus] = useState('');
     const [fadeOut, setFadeOut] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    const userRole = store.user.role || null;
-    const UserName = store.user.login || null;
+    const userRole = user.role || null;
+    const UserName = user.login || null;
     const destination = null;
 
     const acceptanceFetch = async (orderNumber, userRole, UserName, destination) => {

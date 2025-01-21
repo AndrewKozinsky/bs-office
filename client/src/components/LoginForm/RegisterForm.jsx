@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { authFeatures } from 'src/features/authFeatures.js'
 import { Context } from '../../main';
 import { observer } from 'mobx-react-lite';
 import './login.css';
@@ -7,12 +8,11 @@ function LoginForm() {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('');
-    const { store } = useContext(Context);
     const [message, setMessage] = useState('');
 
     const handleRegistration = async () => {
         try {
-            await store.registration(login, password, role);
+            await authFeatures.registration({ login, password, role })
             handleMessage('Пользователь успешно создан');
             clearForm();
         } catch (error) {

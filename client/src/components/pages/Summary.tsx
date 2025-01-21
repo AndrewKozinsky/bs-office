@@ -1,8 +1,19 @@
 import React from 'react'
-import './orders.css'
 import { QRCodeCanvas } from 'qrcode.react'
+import './orders.css'
 
-const Summary = ({ formData, onEditClick, handleSubmit, qrCodeLink, orderId }) => {
+type SummaryProps = {
+	formData: any
+	onEditClick: any
+	handleSubmit: any
+	qrCodeLink: any
+	orderId: any
+	saveButton: any
+}
+
+const Summary = (props: SummaryProps) => {
+	const { formData, onEditClick, handleSubmit, qrCodeLink, orderId, saveButton } = props
+
 	return (
 		<div className='forma-input-end'>
 			<h2> Просмотр данных</h2>

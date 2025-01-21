@@ -9,6 +9,9 @@ export enum UserRole {
 	Master = 'Мастер',
 	Manager = 'Менеджер',
 	Customer = 'Клиент',
+	Issuance = 'Выдача',
+	Acceptance = 'Приёмка',
+	Sending = 'Отправка',
 }
 
 export type User = {

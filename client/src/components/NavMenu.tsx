@@ -5,6 +5,7 @@ import { IoClose } from 'react-icons/io5'
 import { MdManageAccounts } from 'react-icons/md'
 import { GoTriangleDown } from 'react-icons/go'
 import { useUserStore } from '../stores/userStore.ts'
+import { UserRole } from '../types/user.ts'
 import './components.css'
 
 function NavMenu() {
@@ -13,7 +14,6 @@ function NavMenu() {
 	const [nav, setNav] = useState(false)
 	const [expanded, setExpanded] = useState(false)
 	const menuRef = useRef(null)
-	// const { store } = useContext(Context);
 	const userRole = user.role
 	const userName = user.login
 
@@ -34,7 +34,7 @@ function NavMenu() {
 	}
 
 	const renderOrderUserLinks = (role) => {
-		if (role === 'Клиент' || role === 'Мастер' || role === 'Администратор' || role === 'Менеджер') {
+		if (role === 'Клиент' || role === 'Мастер' || role === UserRole.Admin || role === 'Менеджер') {
 			return (
 				<div>
 					<NavLink to='/AllOrders' onClick={closeMenu}>
@@ -48,7 +48,7 @@ function NavMenu() {
 	}
 
 	const renderOrderLinks = (role) => {
-		if (role === 'Менеджер' || role === 'Администратор') {
+		if (role === 'Менеджер' || role === UserRole.Admin) {
 			return (
 				<div>
 					<NavLink to='/OrderStatus' onClick={closeMenu}>
@@ -117,14 +117,14 @@ function NavMenu() {
 						</div>
 					</div>
 				</li>
-				{userRole === 'Админ' || userRole === 'Администратор' || userRole === 'Менеджер' ? (
+				{userRole === UserRole.Admin || userRole === UserRole.Manager ? (
 					<li>
 						<NavLink to='/Calls' onClick={closeMenu}>
 							Звонки
 						</NavLink>
 					</li>
 				) : null}
-				{userRole === 'Администратор' ? (
+				{userRole === UserRole.Admin ? (
 					<li>
 						<NavLink to='/adminka' onClick={closeMenu}>
 							{' '}
@@ -137,21 +137,20 @@ function NavMenu() {
 						Телефонный справочник
 					</NavLink>
 				</li>
-				{userRole === 'Выдача' ||
-				userRole === 'Приёмка' ||
+				{userRole === UserRole.Acceptance ||
 				userRole === 'Отправка' ||
-				userRole === 'Выдача' ||
-				userRole === 'Администратор' ? (
+				userRole === UserRole.Issuance ||
+				userRole === UserRole.Admin ? (
 					<li className='nav-menu-mob'>
 						<NavLink to='/Acceptance' onClick={closeMenu}>
 							Выдача
 						</NavLink>
 					</li>
 				) : null}
-				{userRole === 'Выдача' ||
-				userRole === 'Приёмка' ||
-				userRole === 'Отправка' ||
-				userRole === 'Администратор' ? (
+				{userRole === UserRole.Issuance ||
+				userRole === UserRole.Acceptance ||
+				userRole === UserRole.Sending ||
+				userRole === UserRole.Admin ? (
 					<li className='nav-menu-mob'>
 						<NavLink to='/Shipment' onClick={closeMenu}>
 							Отправка

@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './pages.css/SeacrOrder.css';
+import { useUserStore } from 'src/stores/userStore.js'
 import QRcodeScaner from './QRcodeScaner';
 import { useLocation } from 'react-router-dom';
 import { Context } from '../../main';
 
 function SearcOrder() {
+    const user = useUserStore(s => s.user)
+    
     const [number, setNumber] = useState('');
     const [records, setRecords] = useState(null);
     const [receptionNumbers, setReceptionNumbers] = useState([]); // Для хранения массива номеров приёма
@@ -19,10 +22,10 @@ function SearcOrder() {
     const [diagnosticsResult, setDiagnosticsResult] = useState('');
     const [recommendations, setRecommendations] = useState('');
     const location = useLocation();
-    const { store } = useContext(Context);
+
     const [selectedReceptionNumber, setSelectedReceptionNumber] = useState('');
-    const userRole = store.user.role;
-    const UserName = store.user.login;
+    const userRole = user.role;
+    const UserName = user.login;
 
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);

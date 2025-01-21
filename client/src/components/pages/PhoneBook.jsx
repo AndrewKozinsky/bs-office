@@ -48,7 +48,7 @@ const PhoneBook = () => {
         const currentRecords = filteredRecords.slice(indexOfFirstRecord, indexOfLastRecord);
 
         if (!currentRecords || currentRecords.length === 0) {
-            return <tr><td colSpan="10">Нет данных для отображения</td></tr>;
+            return <tr><td colSpan={10}>Нет данных для отображения</td></tr>;
         }
 
         return currentRecords.map((cal, index) => {

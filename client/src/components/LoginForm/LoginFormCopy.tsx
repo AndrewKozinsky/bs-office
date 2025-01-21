@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { authFeatures } from '../../features/authFeatures.ts'
 import { Context } from '../../main'
 import { observer } from 'mobx-react-lite'
 import { IoEyeSharp } from 'react-icons/io5'
@@ -12,8 +13,6 @@ function LoginForm() {
 	const [error, setError] = useState('')
 	const [isFormValid, setIsFormValid] = useState(false)
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false) // Новое состояние
-
-	const { store } = useContext(Context)
 
 	const isFormValidCheck = () => {
 		return login.trim() !== '' && password.trim() !== ''
@@ -30,18 +29,7 @@ function LoginForm() {
 	const handleLogin = async (e) => {
 		e.preventDefault()
 
-		try {
-			const response = await store.login(login, password, role)
-			if (response.error) {
-				setError(response.error)
-			} else {
-				setError('')
-			}
-		} catch (error) {
-			setLogin('')
-			setPassword('')
-			setError(error.message)
-		}
+		await authFeatures.login({ login, password, role })
 	}
 
 	const togglePasswordVisibility = () => {

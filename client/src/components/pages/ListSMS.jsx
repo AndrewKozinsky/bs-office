@@ -180,7 +180,7 @@ function ListSMS() {
                                     <tr>
                                         <th>Тип</th>
                                         <th>Текст</th>
-                                        <th colSpan="3">Действия</th>
+                                        <th colSpan={3}>Действия</th>
                                     </tr>
                                 </thead>
                                 <tbody className='table-container-mobail-tbody'>
@@ -246,7 +246,7 @@ function ListSMS() {
                                                 onChange={handleInputChange}
                                             />
                                         </td>
-                                        <td colSpan="2" className="printer-btn">
+                                        <td colSpan={2} className="printer-btn">
                                             <button onClick={handleAddSMS}>Добавить</button>
                                         </td>
                                     </tr>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Header from 'src/components/Header.js';
+import { warrantyRequests } from 'src/requests/warrantyRequests.js'
 
 function WarrantyRepair() {
     const [searchValue, setSearchValue] = useState('');
@@ -52,11 +53,8 @@ function WarrantyRepair() {
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch(`/api/WarrantyOrdermaxvi/${encodeURIComponent(searchValue)}`);
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const data = await response.json();
+            const response = await warrantyRequests.getWarranty(searchValue)
+            const data = response.json();
             setDeviceData(data.device);
             setEditedData(data);
             validateForm(); // Проверяем форму после загрузки данных

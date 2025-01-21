@@ -185,7 +185,7 @@ function ListPrinter() {
                                         <th>Тип принтера</th>
                                         <th>Местоположение</th>
                                         <th>URL</th>
-                                        <th colSpan="3">Действия</th>
+                                        <th colSpan={3}>Действия</th>
                                     </tr>
                                 </thead>
                                 <tbody className='table-container-mobail-tbody'>
@@ -202,7 +202,7 @@ function ListPrinter() {
                                         <td><input type="text" className='printer-url' placeholder='Назначение' name="printer_type" value={newPrinter.printer_type} onChange={handleInputChange} /></td>
                                         <td><input type="text" className='printer-url' placeholder='Расположение' name="printer_location" value={newPrinter.printer_location} onChange={handleInputChange} /></td>
                                         <td><input type="text" className='printer-url' placeholder='URL ссылка' name="printer_url" value={newPrinter.printer_url} onChange={handleInputChange} /></td>
-                                        <td colSpan="2" class="printer-btn"><button onClick={handleAddPrinter}>Добавить</button></td>
+                                        <td colSpan={2} class="printer-btn"><button onClick={handleAddPrinter}>Добавить</button></td>
                                     </tr>
                                 </tbody>
                             </table>

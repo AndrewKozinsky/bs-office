@@ -145,10 +145,10 @@ function UserList() {
                                     <tr>
                                         <th>ID</th>
                                         <th id='UserName'>Имя</th>
-                                        <th colspan="2">Действие</th>
+                                        <th colspan={2}>Действие</th>
                                     </tr>
                                     <tr >
-                                        <th colspan="2"></th>
+                                        <th colspan={2}></th>
                                         <th id="userRole"><h1>Изменить роль</h1> <h1>1C ID</h1></th>
 
 

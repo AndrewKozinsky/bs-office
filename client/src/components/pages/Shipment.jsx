@@ -1,17 +1,18 @@
 import React, { useContext, useState } from 'react';
 import './pages.css/SeacrOrder.css';
+import { useUserStore } from 'src/stores/userStore.js'
 import QRcodeScaner from './QRcodeScaner';
-import { Context } from '../../main';
 
 function Shipment() {
-    const { store } = useContext(Context);
+    const user = useUserStore(s => s.user)
+
     const [posishion, setPosishion] = useState('');
     const [qrData, setQRData] = useState(null);
     const [orderStatus, setOrderStatus] = useState('');
     const [fadeOut, setFadeOut] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const userRole = store.user.role;
-    const userName = store.user.login;
+    const userRole = user.role;
+    const userName = user.login;
     const [isButtonDisabled, setButtonDisabled] = useState(true);
 
     const Form = () => {

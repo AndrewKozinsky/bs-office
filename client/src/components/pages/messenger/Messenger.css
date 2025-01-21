@@ -61,7 +61,7 @@
     color: #1776CD;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1100px) {
     .messenger-container {
         position: fixed;
         top: 70%;
