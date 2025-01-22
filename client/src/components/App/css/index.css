@@ -102,12 +102,6 @@ input {
 	cursor: pointer;
 }
 
-input:focus {
-	border: 1px #1776CD;
-	box-shadow: 0 0 7px #1776CD;
-	/* добавляем тень при фокусировке */
-}
-
 input::-ms-clear {
 	display: none;
 }

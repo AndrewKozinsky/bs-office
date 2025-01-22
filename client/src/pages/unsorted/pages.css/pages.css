@@ -4,17 +4,6 @@
     height: 60px;
     width: calc(100% - 10%);
     margin: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background-color: #fff;
-    /* Цвет фона для меню */
-}
-
-.nav-menu-mob {
-    display: none;
 }
 
 .navi {
@@ -115,16 +104,6 @@ audio {
     /* Добавляем относительное позиционирование */
 }
 
-.row-cols-calendar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.row-cols-calendar-svg {
-    width: 20px;
-}
-
 .row-cols label {
     display: flex;
     width: 100%;
@@ -164,16 +143,10 @@ li a:hover {
 
 .active {
     color: #1776CD;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-}
-
-.page-item-pag-active {
-    font-size: 25px;
-    color: #1776CD;
-
 }
 
 .burger-menu-mav {
@@ -218,8 +191,8 @@ li a:hover {
 
 .orders-box {
     display: flex;
+    flex-direction: column;
     gap: 40px;
-    align-items: center;
 }
 
 .orders-box h1 {
@@ -229,9 +202,17 @@ li a:hover {
     gap: 10px;
 }
 
-
-
-
+.orders-container {
+    display: flex;
+    border: 1px solid;
+    min-width: 970px;
+    border-radius: 6px;
+    width: 1100px;
+    gap: 20px;
+    padding: 20px 40px;
+    background: #ffffff;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
 
 .orders-button-status {
     width: 270px;
@@ -603,7 +584,7 @@ td>a:hover {
 .Warranty-Conteiner-nav>tbody>tr:hover {
     border: 2px solid #1776CD;
 
-    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
 }
 
 .expanded-content {
@@ -760,12 +741,12 @@ td>a:hover {
 }
 
 .truncate p {
-    display: -webkit-box;
     -webkit-line-clamp: 2;
+    display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
+
 .container-user-register-header {
     display: flex;
     align-items: center;
@@ -847,6 +828,18 @@ td>a:hover {
     text-align: center;
 }
 
+.order-details-main-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.order-details-main-container-sell {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
 .section-seller,
 .section {
     width: 35%;
@@ -887,6 +880,34 @@ td>a:hover {
 .empty-field {
     border-color: red;
     width: 55% !important;
+}
+
+.order-details-main-container-zapchasti {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #656565;
+    padding: 10px 0;
+    border-radius: 6px;
+}
+
+.order-details-main-container-zapchasti>.dropdown>select,
+input {
+    max-width: 400px;
+}
+
+.order-details-main-container-zapchasti>.dropdown>h5 {
+    background: #1776CD;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
 }
 
 .seath-container {
@@ -949,90 +970,42 @@ td>a:hover {
     border-radius: 4px;
 }
 
-.search-input {
+.order-box {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.order-box h2 {
+    text-align: center;
+}
+  
+  .search-input {
     width: 100%;
-    height: 36px;
+    padding-right: 40px; 
+    height: 36px; 
     font-size: 16px;
     border-radius: 6px;
     outline: none;
-}
-
-.search-icon {
+  }
+  
+  .search-icon {
     position: absolute;
     top: 58%;
-    right: 10px;
+    right: 10px; 
     transform: translateY(-50%);
     cursor: pointer;
-}
-
-.search-icon svg {
+  }
+  
+  .search-icon svg {
     width: 30px;
     height: 20px;
-    fill: #666;
-}
-
-.search-icon:hover svg {
-    fill: #1776CD;
-}
-
-.search-icon-delete {
-    position: absolute;
-    top: 58%;
-    right: -30px;
-    transform: translateY(-50%);
-    cursor: pointer;
-}
-
-.search-icon-delete svg {
-    width: 30px;
-    height: 20px;
-    fill: #666;
-}
-
-.search-icon-delete:hover svg {
-    fill: #1776CD;
-}
-
-.orders-box-nav {
-    position: relative;
-}
-
-.orders-content {
-    position: absolute;
-    top: 22%;
-    left: 5%;
-    width: 100%;
-    max-width: 500px;
-    max-height: 0;
-    opacity: 0;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    /* Обеспечивает, что элемент будет сверху других */
-    background: #fff;
-    /* Опционально: для лучшей видимости */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Опционально: для стиля */
-}
-
-.orders-content.visible {
-    max-height: 1000px;
-    opacity: 1;
-    padding: 10px;
-}
-
-.orders-content label {
-    width: 100%;
-}
-
-.orders-container {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
+    fill: #666; /* Цвет иконки можно изменить по желанию */
+  }
+  
+  .search-icon:hover svg {
+    fill: #1776CD; 
+  }
 .order-nav {
     display: flex;
     justify-content: center;
@@ -1042,8 +1015,9 @@ td>a:hover {
 
 .order-filter {
     display: flex;
+    flex-direction: column;
     gap: 20px;
-    width: 100%;
+    width: 30%;
     margin: 20px 0;
 }
 
@@ -1051,43 +1025,25 @@ td>a:hover {
     width: 100%;
     max-width: 100%;
 }
-
-
 .device-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 100%;
-}
-
-.printer-url {
-    width: 100%;
-}
-
-.printer-btn {
-    display: flex;
-    max-width: 500px;
-    gap: 10px;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-    border: transparent !important;
-}
-
-.input-container {
+  }
+  
+  .input-container {
     position: relative;
     width: 100%;
-}
-
-.input-container input {
+  }
+  
+  .input-container input {
     width: 100%;
-    padding-right: 40px;
-    /* Увеличьте, если нужно больше места для иконки */
+    padding-right: 40px; /* Увеличьте, если нужно больше места для иконки */
     box-sizing: border-box;
-}
-
-.matched-deviceType,
-.matched-deviceBrand {
+  }
+  
+  .matched-deviceType, .matched-deviceBrand {
     position: absolute;
     top: 100%;
     left: 0;
@@ -1099,24 +1055,29 @@ td>a:hover {
     overflow-y: auto;
     border: 1px solid #ddd;
     box-sizing: border-box;
-}
-
-.device_vibor {
+  }
+  
+  .device_vibor {
     padding: 10px;
     cursor: pointer;
-}
-
-.device_vibor:hover {
+  }
+  
+  .device_vibor:hover {
     background-color: #e9e9e9;
+  }
+
+.order-card-main-active {
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
+    background-color: #ffffff;
+    border: 1px solid #1776CD;
 }
-
-
 
 .order-card-details {
     width: 100%;
-    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
     background-color: #ffffff;
-    border-radius: 0 0px 10px 10px;
+    border-radius: 0 0 10px 10px;
     align-items: center;
     border: 1px solid #1776CD;
     transition: max-height 0.3s ease-in-out;
@@ -1129,13 +1090,16 @@ td>a:hover {
     gap: 40px;
     justify-content: space-between;
 }
-
-.order-details-user {
+.order-dateils-device{
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-
+.order-details-user{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 .link-button {
     display: flex;
     align-items: center;
@@ -1152,12 +1116,8 @@ td>a:hover {
 }
 
 .link-button a:hover {
-    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
     color: #cccccc;
-}
-
-.link-button-calls {
-    padding: 10px 5px;
 }
 
 .dropdown>select {
@@ -1192,13 +1152,14 @@ td>a:hover {
 }
 
 .container-search-sms textarea {
+    width: 50%;
     border-radius: 6px;
     border: 1px solid #1776CD;
     padding: 10px 15px;
 }
 
 textarea:focus {
-    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
 }
 
 .parts-dropdown-add {
@@ -1238,13 +1199,14 @@ textarea:focus {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1001;
 }
 
 
 .staff {
     overflow: hidden;
+    margin: 40px 0;
     transition: max-height 0.3s ease-in-out;
 }
 
@@ -1274,21 +1236,28 @@ textarea:focus {
 
 
 
-.tdRed {
+.orders-content {
+    max-height: 0;
+    opacity: 0;
+}
+.orders-content  label{
+    width: 100%;
+}
+.orders-content.visible {
+    max-height: 1000px;
+    padding: 10px;
+    opacity: 1;
+}
+
+.orders-container {
     display: flex;
-    justify-content: center;
-    text-align: center;
-    background: rgba(192, 35, 35, 0.334);
-    border-radius: 6px;
-    cursor: default;
-    pointer-events: none;
-    padding: 5px 4px;
-
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-.tdRed:hover {
-    box-shadow: 0 0px 25px 0 rgba(192, 35, 35, 0.334);
-}
 
 .rdrMonth {
     width: 100% !important;
@@ -1338,7 +1307,7 @@ textarea:focus {
 }
 
 .staff th {
-    /* border: 1px solid #000000; */
+    border: 1px solid #000000;
     padding: 8px;
     text-align: left;
 }
@@ -1360,11 +1329,6 @@ textarea:focus {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    border: none;
-}
-
-#action td {
-    border: none;
 }
 
 #User1CID {
@@ -1374,7 +1338,6 @@ textarea:focus {
 
 #User1CID>input {
     width: 100%;
-    max-width: 100%;
 }
 
 #userRole {
@@ -1397,10 +1360,6 @@ textarea:focus {
     text-align: center;
 }
 
-.staff tr {
-    border: 1px solid;
-}
-
 .staff tr:nth-child(even) {
     background-color: #f2f2f2;
 }
@@ -1417,7 +1376,7 @@ textarea:focus {
 }
 
 .staff td select:hover {
-    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
 
 }
 
@@ -1438,7 +1397,7 @@ textarea:focus {
 
 .matched-Order-user:hover {
     border: 1px solid #1776CD;
-    box-shadow: 0 0px 15px 5px rgba(56, 115, 159, 0.3);
+    box-shadow: 0 0 15px 5px rgba(56, 115, 159, 0.3);
     background: #cecece65;
     color: #1776CD;
 }
@@ -1465,40 +1424,10 @@ textarea:focus {
     position: relative;
 }
 
-.container-search-sms-block {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-}
-
-.container-search-sms-block>.input-column {
-    width: 50%;
-}
-
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.page-item-pag {
-    cursor: pointer;
-    width: 20px;
-}
-
-.page-item-pag:hover {
-    color: #1776CD;
-}
-
-.pagination-button-aut {
-    cursor: initial;
-    background: #41414162;
-}
-
-.pagination-button-aut:hover {
-    box-shadow: none;
-    background: #41414162;
-    color: rgb(224, 224, 224);
 }
 
 .modal-body {
@@ -1539,34 +1468,12 @@ textarea:focus {
     margin-top: 10px;
 }
 
-.call-mobail-logo-blue {
-    color: #1776CD;
-}
-
-.call-mobail-logo-blue:hover {
-    color: #003a70;
-    cursor: pointer;
-}
-
-.hide-on-mobile {
-    display: none;
-}
-
-.date-time {
-    display: none;
-}
-
 .close {
     background: none;
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
 }
-
-.time {
-    display: none;
-}
-
 
 @media (max-width: 1100px) {
     .burger-menu-mav {
@@ -1632,7 +1539,7 @@ textarea:focus {
         top: 100%;
         left: 0;
         box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-        border-radius: 0 0px 6px 6px;
+        border-radius: 0 0 6px 6px;
         padding-left: 10px;
         text-align: left;
     }
@@ -1709,10 +1616,6 @@ textarea:focus {
         text-align: left;
     }
 
-    .call-time {
-        display: none;
-    }
-
     .orders {
         display: flex;
         align-items: center;
@@ -1732,13 +1635,9 @@ textarea:focus {
         cursor: pointer;
         /* Добавляем курсор указывающей руки для элемента span */
     }
-
-    /* .calls-mobail-adab{
-        width: 0 !important; 
-    } */
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 500px) {
 
     .th-style-width {
         min-width: 0;
@@ -1766,24 +1665,11 @@ textarea:focus {
         position: relative;
     }
 
-    .calls-outNumber {
-        display: none;
-    }
-
     form {
         display: flex;
         position: relative;
         flex-direction: column;
         gap: 5px !important;
-    }
-
-    .mobail-calls-tr {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap !important;
-        margin-bottom: 0;
-        border-top: 1px solid;
-        justify-content: space-between;
     }
 
     .rdrMonth {
@@ -1799,31 +1685,13 @@ textarea:focus {
         width: 400px;
     }
 
-    .link-button-calls {
-        padding: 0;
-    }
-
     tr {
         width: 100%;
         margin: auto;
     }
 
-    .calls-mobail-adab {
-        display: block;
-        white-space: normal;
-        /* Позволяет тексту переноситься на следующую строку */
-        word-break: break-word;
-        /* Разрывает слова, если они не помещаются в строку */
-        overflow-wrap: break-word;
-        /* Позволяет длинным словам переноситься на новую строку */
-        line-height: 1.4;
-        /* Увеличивает межстрочный интервал для лучшей читаемости */
-        max-height: 3em;
-        /* Ограничивает максимальную высоту двумя строками */
-        overflow: hidden;
-        /* Скрывает текст, который не помещается */
-        text-overflow: ellipsis;
-        /* Добавляет троеточие в конце обрезанного текста */
+    .td-orders {
+        width: 100%;
     }
 
     .modal-footer {
@@ -1839,118 +1707,29 @@ textarea:focus {
         gap: 10px;
     }
 
+    .order-filter {
+        width: 100%;
+    }
 
     .block-searh-button {
         display: flex;
         align-items: center;
         gap: 40px;
-        width: 100%;
         justify-content: center;
     }
-
     #userRole>select {
         width: 100%;
     }
-
     #userID {
         width: 100%;
         text-align: center;
     }
-
-
-
-    .calls-mobail {
-        display: none;
-    }
-
-    .phone-book>.table>thead {
-        left: -9999px !important;
-        position: absolute !important;
-        visibility: hidden !important;
-    }
-
-
-    thead {
-        left: 0 !important;
-        position: initial !important;
-        visibility: initial !important;
-        padding: 0;
-        margin: 0;
-        display: flex;
-    }
-
-    .table thead tr {
-        margin: 0;
-    }
-
     .staff td {
         border: 1px solid #000000;
         padding: 8px;
         text-align: center;
     }
-
     .staff tr:nth-child(even) {
         background-color: transparent;
-    }
-
-    .date-time {
-        display: block;
-    }
-
-    .hide-on-mobile {
-        display: none;
-    }
-
-    .mobail-calls-tr .calls-mobail-adab.mobail-fio[colspan="2"] {
-        display: table-cell;
-    }
-
-    .mobail-calls-tr .calls-mobail-adab,
-    .mobail-calls-tr .th-style-width.td-orders.calls-mobail-adab {
-        display: table-cell;
-    }
-
-    .table-container-mobail {
-        display: none;
-    }
-
-    .table-container-mobail-tbody tr {
-        margin-bottom: 10px;
-    }
-
-    .nav-menu-mob {
-        display: block;
-    }
-
-    .page-item-pag {
-        display: none;
-    }
-
-    .page-item-pag-active {
-        display: block;
-    }
-
-    .row-cols-calendar {
-        gap: 0;
-    }
-
-    .order-filter {
-        width: 100%;
-    }
-
-    .visible {
-        width: 90% !important;
-    }
-
-    .orders-content {
-        position: absolute;
-        top: 21%;
-    }
-
-    .orders-box {
-        display: flex;
-        gap: 20px;
-        flex-direction: column;
-        align-items: center;
     }
 }

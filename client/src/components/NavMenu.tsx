@@ -7,7 +7,7 @@ import { GoTriangleDown } from 'react-icons/go'
 import { useUserStore } from '../stores/userStore.ts'
 import { UserRole } from '../types/user.ts'
 import './components.css'
-import { pagesRoute } from './pages/pagesRoute.ts'
+import { pagesRoute } from '../pages/pagesRoute.ts'
 
 function NavMenu() {
 	const user = useUserStore((s) => s.user)

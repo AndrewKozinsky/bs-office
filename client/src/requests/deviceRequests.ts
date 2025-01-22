@@ -1,13 +1,13 @@
 import $api from '../components/http'
 import { Device, DeviceBrand, DeviceType, User } from '../types/user.ts'
 
-type GetDeviceTypeRes = DeviceType[]
-type GetDeviceBrandsRes = DeviceBrand[]
+export type GetDeviceTypesRes = DeviceType[]
+export type GetDeviceBrandsRes = DeviceBrand[]
 type GetDeviceModelRes = Device
 
 export const deviceRequests = {
 	async getDeviceTypes() {
-		return $api.get<GetDeviceTypeRes>('/device/types')
+		return $api.get<GetDeviceTypesRes>('/device/types')
 	},
 	async getDeviceBrands() {
 		return $api.get<GetDeviceBrandsRes>('/device/brands')

@@ -321,46 +321,50 @@ app.get('/api/shipment/:data/:userRole/:UserName/:destination', async (req, res)
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
-});
+})
 app.get('/api/orders/', async (req, res) => {
-  let { fio, brand, deviceType, master, orderStatus, serialNumber, imei } = req.query;
-
-  // Если значения пусты, заменяем их на null
-  fio = fio || null;
-  brand = brand || null;
-  deviceType = deviceType || null;
-  master = master || null;
-  orderStatus = orderStatus || null;
-  serialNumber = serialNumber || null;
-  imei = imei || null;
-
   try {
-    const params = new URLSearchParams({
-      fio,
-      brand,
-      deviceType,
-      master,
-      orderStatus,
-      serialNumber,
-      imei
-    });
+    const params = new URLSearchParams(removeFalsyProperties(req.query))
 
-    const apiUrl = `http://192.168.1.10/api/orders/?${params}`;
-    console.log(apiUrl)
-    const response = await fetch(apiUrl);
+    const apiUrl = `http://192.168.1.10/api/orders/?${params}` // http://192.168.1.10/api/orders/?master=000000138
+
+    const response = await fetch(apiUrl)
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    const responseData = await response.json();
-
-    res.json(responseData);
+    const responseData = await response.json()
+    console.log(responseData)
+    res.json(responseData)
   } catch (error) {
+    // console.log('err')
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
-});
+})
+
+app.get('/api/status/', async (req, res) => {
+  try {
+    const params = new URLSearchParams(removeFalsyProperties(req.query))
+
+    const apiUrl = `http://192.168.1.10/api/status`
+
+    const response = await fetch(apiUrl)
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const responseData = await response.json()
+    res.json(responseData)
+  } catch (error) {
+    // console.log('err')
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+})
+
 app.get('/api/users/search/:l_name', async (req, res) => {
   const { l_name } = req.params;
 
@@ -1001,3 +1005,13 @@ const start = async () => {
 };
 
 start();
+
+
+function removeFalsyProperties(obj) {
+  for (let key in obj) {
+    if (!obj[key]) {
+      delete obj[key];
+    }
+  }
+  return obj;
+}

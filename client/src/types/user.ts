@@ -173,6 +173,8 @@ export type Order = {
 	works: null
 }
 
+export type OrderStatusName = string
+
 export type TypesOfRepair = [
 	'Авторизованный ремонт',
 	'Наша гарантия',
