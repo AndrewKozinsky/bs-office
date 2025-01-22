@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import LoadingAnimation from '../../commonComponents/LoadingAnimation/LoadingAnimation.tsx'
+import LoadingAnimation from '../../common/commonComponents/LoadingAnimation/LoadingAnimation.tsx'
 import { warrantyRequests } from '../../requests/warrantyRequests.ts'
 import Messenger from './unsorted/messenger/Messenger'
 

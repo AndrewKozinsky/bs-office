@@ -46,7 +46,6 @@ const fetchDeviceBrands = async () => {
 const fetchOrderStatuses = async () => {
 	try {
 		const response = await ordersRequests.getStatusesNames()
-		console.log(response)
 
 		useAllOrdersStore.setState({ orderStatuses: response.data })
 	} catch (error) {

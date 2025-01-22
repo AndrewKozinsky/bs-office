@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { AllOrdersStore, SelectOption, useAllOrdersStore } from '../../allPagesStore/allPagesStore.ts'
+import { SelectOption } from '../../../../types/commonTypes.ts'
+import { AllOrdersStore, useAllOrdersStore } from '../../allPagesStore/allPagesStore.ts'
 
 export function useCreateSelectOptionsData() {
 	const masters = useAllOrdersStore((s) => s.masters)

@@ -1,5 +1,7 @@
 import React from 'react'
 import { Form, Input, Select } from 'antd'
+import { searchByLabelInSelectInput } from '../../../common/formUtils.ts'
+import { SelectOption } from '../../../types/commonTypes.ts'
 import { useAllOrdersStore } from '../allPagesStore/allPagesStore.ts'
 import { useGetChangeSearchInput, useGetChangeSelectInput } from './fn/changeInput.ts'
 import { useCreateSelectOptionsData } from './fn/createSelectOptions.ts'
@@ -30,41 +32,45 @@ function OrderFilter() {
 	const handleOrderStatusChange = useGetChangeSelectInput('orderStatuses')
 
 	return (
-		<Form name='basic' initialValues={{ remember: true }} layout='vertical' size='middle'>
-			<Form.Item<FieldType> label='Универсальный поиск' name='orderNumber' rules={[{ required: false }]}>
+		<Form initialValues={{ remember: true }} layout='vertical' size='middle'>
+			<Form.Item label='Универсальный поиск' rules={[{ required: false }]}>
 				<Input onInput={changeSearchInput} autoFocus />
 			</Form.Item>
-			<Form.Item<FieldType> name='masters' label='Мастера' rules={[{ required: false }]}>
+			<Form.Item label='Мастера' rules={[{ required: false }]}>
 				<Select
 					onChange={handleMasterChange}
 					showSearch
+					filterOption={searchByLabelInSelectInput}
 					options={mastersOptions}
 					disabled={!mastersOptions}
 					loading={!mastersOptions}
 				/>
 			</Form.Item>
-			<Form.Item<FieldType> name='deviceBrands' label='Марка устройства' rules={[{ required: false }]}>
+			<Form.Item label='Марка устройства' rules={[{ required: false }]}>
 				<Select
 					onChange={handleDeviceTypesChange}
 					showSearch
+					filterOption={searchByLabelInSelectInput}
 					options={deviceBrandsOptions}
 					disabled={!deviceBrandsOptions}
 					loading={!deviceBrandsOptions}
 				/>
 			</Form.Item>
-			<Form.Item<FieldType> name='deviceTypes' label='Тип устройства' rules={[{ required: false }]}>
+			<Form.Item label='Тип устройства' rules={[{ required: false }]}>
 				<Select
 					onChange={handleDeviceBrandsChange}
 					showSearch
+					filterOption={searchByLabelInSelectInput}
 					options={deviceTypesOptions}
 					disabled={!deviceTypesOptions}
 					loading={!deviceTypesOptions}
 				/>
 			</Form.Item>
-			<Form.Item<FieldType> name='orderStatuses' label='Статут заказа' rules={[{ required: false }]}>
+			<Form.Item label='Статут заказа' rules={[{ required: false }]}>
 				<Select
 					onChange={handleOrderStatusChange}
 					showSearch
+					filterOption={searchByLabelInSelectInput}
 					options={orderStatusesOptions}
 					disabled={!orderStatusesOptions}
 					loading={!orderStatusesOptions}
