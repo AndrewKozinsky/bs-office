@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { IoClose } from 'react-icons/io5'
 import { MdManageAccounts } from 'react-icons/md'
 import { GoTriangleDown } from 'react-icons/go'
-import { useUserStore } from '../stores/userStore.ts'
-import { UserRole } from '../types/user.ts'
-import './components.css'
-import { pagesRoute } from '../pages/pagesRoute.ts'
+import { useUserStore } from '../../../stores/userStore.ts'
+import { UserRole } from '../../../types/user.ts'
+import { pagesRoute } from '../../pagesRoute.ts'
+import './NavMenu.scss'
 
 function NavMenu() {
 	const user = useUserStore((s) => s.user)
@@ -81,7 +81,7 @@ function NavMenu() {
 
 	return (
 		<div className='menu-nav'>
-			<div className='menu--nav'>
+			<div>
 				<div className='burger-menu-mav' onClick={toggleNav}>
 					{nav ? <IoClose size={25} /> : <GiHamburgerMenu size={25} />}
 				</div>

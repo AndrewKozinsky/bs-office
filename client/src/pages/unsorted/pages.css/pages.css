@@ -149,10 +149,6 @@ li a:hover {
     line-height: normal;
 }
 
-.burger-menu-mav {
-    display: none;
-}
-
 /* AppMedia */
 .container {
     display: none;
@@ -319,21 +315,6 @@ input {
     width: 20px;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 100%;
-    /* Ширина равна или больше ширины родительского span */
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    width: 230px !important;
-    top: 100%;
-    /* Позиционируем список под span */
-    left: 0;
-    /* Выравниваем список по левому краю */
-}
-
 .rotate {
     transform: rotate(180deg);
     transition: transform 0.3s ease;
@@ -349,16 +330,6 @@ input {
     align-items: center;
     justify-content: center;
     text-align: center;
-}
-
-.dropdown-content a {
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
 }
 
 .ManageAccounts {
@@ -1090,7 +1061,7 @@ input {
     gap: 40px;
     justify-content: space-between;
 }
-.order-dateils-device{
+.order-details-device{
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -1476,25 +1447,6 @@ textarea:focus {
 }
 
 @media (max-width: 1100px) {
-    .burger-menu-mav {
-        display: block;
-        position: absolute;
-        top: 15px;
-        right: 10px;
-        cursor: pointer;
-        z-index: 9990;
-
-    }
-
-    .burger-menu-mav>svg {
-        background: #1776CD;
-        color: #FFFFFF;
-        border-radius: 6px;
-        size: 40px;
-        width: 40px;
-        height: 30px;
-    }
-
     .logo {
         display: block;
         position: absolute;
@@ -1511,7 +1463,6 @@ textarea:focus {
         z-index: 999;
         top: 0;
         position: sticky;
-        padding-left: 5px;
         margin-bottom: 20px;
     }
 

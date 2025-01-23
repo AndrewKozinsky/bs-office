@@ -1,31 +1,31 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import Header from './components/Header'
-import { pagesRoute } from './pages/pagesRoute.ts'
-import WarrantyRepair from './pages/unsorted/WarrantyRepair.tsx'
-import OrderStatus from './pages/unsorted/OrderStatus.tsx'
-import Orders from './pages/unsorted/Orders.tsx'
-import Employees from './pages/unsorted/Employees.tsx'
-import ChangeOrder from './pages/unsorted/ChangeOrder.tsx'
-import Calls from './pages/unsorted/Calls.tsx'
+import PageHeader from './pageHeader/PageHeader/PageHeader.tsx'
+import { pagesRoute } from './pagesRoute.ts'
+import WarrantyRepair from './unsorted/WarrantyRepair.tsx'
+import OrderStatus from './unsorted/OrderStatus.tsx'
+import Orders from './unsorted/Orders.tsx'
+import Employees from './unsorted/Employees.tsx'
+import ChangeOrder from './unsorted/ChangeOrder.tsx'
+import Calls from './unsorted/Calls.tsx'
 // import SearchOrder from './components/pages/SearchOrder.jsx';
-import PersonalAccount from './pages/unsorted/PersonalAccount.tsx'
-import { useUserStore } from './stores/userStore.ts'
-import { UserRole } from './types/user.ts'
+import PersonalAccount from './unsorted/PersonalAccount.tsx'
+import { useUserStore } from '../stores/userStore.ts'
+import { UserRole } from '../types/user.ts'
 // import Acceptance from './components/pages/Acceptance.jsx';
 // import PhoneBook from './components/pages/PhoneBook.jsx';
-import Maxvi from './pages/unsorted/Maxvi.tsx'
+import Maxvi from './unsorted/Maxvi.tsx'
 // import Adminka from './components/pages/Adminka.jsx'
 // import Shipment from './components/pages/Shipment.jsx';
-import AllOrdersPage from './pages/allOrders/AllOrdersPage/AllOrdersPage.tsx'
+import AllOrdersPage from './allOrders/AllOrdersPage/AllOrdersPage.tsx'
 
-const MainPage = () => {
+const PagesContainer = () => {
 	const user = useUserStore((s) => s.user)
 	const userRole = user.role
 
 	return (
 		<>
-			<Header />
+			<PageHeader />
 			{/* <AppMedia /> */}
 			<div className='container-box'>
 				<Routes>
@@ -117,4 +117,4 @@ const MainPage = () => {
 	)
 }
 
-export default MainPage
+export default PagesContainer

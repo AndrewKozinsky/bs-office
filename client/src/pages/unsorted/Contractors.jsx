@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from 'src/components/Header.tsx';
+import PageHeader from 'src/pages/pageHeader/PageHeader/PageHeader.tsx';
 import Messenger from 'src/pages/unsorted/messenger/Messenger.jsx';
 import { FiChevronLeft, FiChevronRight, FiSkipBack, FiSkipForward } from "react-icons/fi";
 
@@ -70,7 +70,7 @@ function Contractors() {
 
     return (
         <div>
-            <Header />
+            <PageHeader />
             <div className="container-box">
                 <div className="box">
                     <div className="box-main">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Header from '../../components/Header.tsx'
+import PageHeader from '../pageHeader/PageHeader/PageHeader.tsx'
 import Messenger from './unsorted/messenger/Messenger'
 import axios from 'axios'
 
@@ -27,7 +27,7 @@ function Employees() {
 
 	return (
 		<div>
-			<Header />
+			<PageHeader />
 			<div className='container-box'>
 				<div>
 					<h2>Список пользователей:</h2>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from 'src/components/Header.tsx';
+import PageHeader from 'src/pages/pageHeader/PageHeader/PageHeader.tsx';
 import { warrantyRequests } from 'src/requests/warrantyRequests.ts'
 
 function WarrantyRepair() {

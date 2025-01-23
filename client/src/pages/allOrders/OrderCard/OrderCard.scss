@@ -1,65 +1,54 @@
-.order-card-main {
+.order-card {
     display: flex;
-    cursor: pointer;
     flex-direction: column;
-    gap: 10px;
-    width: 100%;
+    cursor: pointer;
+    justify-content: space-between;
+    gap: 12px;
     outline: 1px solid rgba(0, 0, 0, 0.1);
-    background-color: #fff;
     border-radius: 10px;
-    padding: 30px;
+    padding: 12px;
 }
 
-.order-card-main:hover {
+.order-card:hover {
     outline: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.order-details-box {
-    display: flex;
-    gap: 30px;
-    justify-content: space-between;
-}
+@media (min-width: 1100px) {
+    .order-card {
+        flex-direction: row;
+        gap: 20px;
+        padding: 20px;
+    }
 
-@media (max-width: 1300px) {
-    .order-details-box {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        justify-content: space-between;
-        align-items: center;
+    .order-card-part {
+        width: 33%;
     }
 }
 
-.order-details-main {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    max-width: 20%;
+.order-card__section-header {
+    font-size: 1.14rem;
+    color: rgba(0, 0, 0, 0.5);
 }
 
-@media (max-width: 1300px) {
-    .order-details-main {
-        max-width: 100%;
-        width: 100%;
-    }
+.order-card__header {
+    font-size: 1.34rem;
+    margin-top: 5px;
 }
 
-.order-dateils-user {
-    width: 100%;
-    max-width: 40%;
-}
-
-@media (max-width: 1300px) {
-    .order-dateils-user {
-        max-width: 100%;
-        width: 100%;
-    }
-}
-
-.order-dateils-device {
+.order-card__info {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 100%;
+    margin-top: 10px;
 }
+
+.order-card__prop {
+    font-size: 1rem;
+}
+
+.order-card__prop-key {
+    display: block;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+
