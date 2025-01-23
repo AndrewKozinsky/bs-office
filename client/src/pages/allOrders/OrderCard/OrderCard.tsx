@@ -18,14 +18,14 @@ function OrderCard(props: OrderCardProps) {
 				<p className='order-card__header'>{order.order_id}</p>
 				<div className='order-card__info'>
 					<p className='order-card__prop'>
-						<span className='order-card__prop-key'>Дата заказа:</span> {order.order_date}
+						<span className='order-card__prop-key'>Дата</span> {order.order_date}
 					</p>
 					<p className='order-card__prop'>
-						<span className='order-card__prop-key'>Тип заказа:</span>
+						<span className='order-card__prop-key'>Тип</span>
 						{order.order_type}
 					</p>
 					<p className='order-card__prop'>
-						<span className='order-card__prop-key'>Статус заказа:</span>
+						<span className='order-card__prop-key'>Статус</span>
 						{order.order_status}
 					</p>
 				</div>
@@ -44,13 +44,13 @@ function OrderCard(props: OrderCardProps) {
 				<p className='order-card__header'>{order.device.device_full_model}</p>
 				<div className='order-card__info'>
 					<p className='order-card__prop'>
-						<span className='order-card__prop-key'>Внешний вид:</span> {order.device.device_appearance}
+						<span className='order-card__prop-key'>Внешний вид</span> {order.device.device_appearance}
 					</p>
 					<p className='order-card__prop'>
-						<span className='order-card__prop-key'>Дефект:</span> {order.device.device_stated_defect}
+						<span className='order-card__prop-key'>Дефект</span> {order.device.device_stated_defect}
 					</p>
 					<p className='order-card__prop'>
-						<span className='order-card__prop-key'>Комплектация:</span> {order.device.device_equipment}
+						<span className='order-card__prop-key'>Комплектация</span> {order.device.device_equipment}
 					</p>
 				</div>
 			</div>

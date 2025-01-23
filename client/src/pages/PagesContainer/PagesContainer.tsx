@@ -1,23 +1,24 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import PageHeader from './pageHeader/PageHeader/PageHeader.tsx'
-import { pagesRoute } from './pagesRoute.ts'
-import WarrantyRepair from './unsorted/WarrantyRepair.tsx'
-import OrderStatus from './unsorted/OrderStatus.tsx'
-import Orders from './unsorted/Orders.tsx'
-import Employees from './unsorted/Employees.tsx'
-import ChangeOrder from './unsorted/ChangeOrder.tsx'
-import Calls from './unsorted/Calls.tsx'
+import PageHeader from '../pageHeader/PageHeader/PageHeader.tsx'
+import { pagesRoute } from '../pagesRoute.ts'
+import WarrantyRepair from '../unsorted/WarrantyRepair.tsx'
+import OrderStatus from '../unsorted/OrderStatus.tsx'
+import Orders from '../unsorted/Orders.tsx'
+import Employees from '../unsorted/Employees.tsx'
+import ChangeOrder from '../unsorted/ChangeOrder.tsx'
+import Calls from '../unsorted/Calls.tsx'
 // import SearchOrder from './components/pages/SearchOrder.jsx';
-import PersonalAccount from './unsorted/PersonalAccount.tsx'
-import { useUserStore } from '../stores/userStore.ts'
-import { UserRole } from '../types/user.ts'
+import PersonalAccount from '../unsorted/PersonalAccount.tsx'
+import { useUserStore } from '../../stores/userStore.ts'
+import { UserRole } from '../../types/user.ts'
 // import Acceptance from './components/pages/Acceptance.jsx';
 // import PhoneBook from './components/pages/PhoneBook.jsx';
-import Maxvi from './unsorted/Maxvi.tsx'
+import Maxvi from '../unsorted/Maxvi.tsx'
 // import Adminka from './components/pages/Adminka.jsx'
 // import Shipment from './components/pages/Shipment.jsx';
-import AllOrdersPage from './allOrders/AllOrdersPage/AllOrdersPage.tsx'
+import AllOrdersPage from '../allOrders/AllOrdersPage/AllOrdersPage.tsx'
+import './PagesContainer.scss'
 
 const PagesContainer = () => {
 	const user = useUserStore((s) => s.user)

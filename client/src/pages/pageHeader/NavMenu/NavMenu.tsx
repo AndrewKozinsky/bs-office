@@ -7,14 +7,9 @@ function NavMenu() {
 
 	const menuItems = useGetMenuItems()
 
-	const onClick: MenuProps['onClick'] = (e) => {
-		console.log('click ', e)
-		setCurrent(e.key)
-	}
-
 	return (
 		<div>
-			<Menu onClick={onClick} selectedKeys={[current]} mode='horizontal' items={menuItems} />
+			<Menu selectedKeys={[current]} mode='horizontal' items={menuItems} />
 		</div>
 	)
 }

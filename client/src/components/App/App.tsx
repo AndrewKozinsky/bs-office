@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Spin } from 'antd'
 import { authFeatures } from '../../features/authFeatures.ts'
-import PagesContainer from '../../pages/PagesContainer.tsx'
+import PagesContainer from '../../pages/PagesContainer/PagesContainer.tsx'
 import { useUserStore } from '../../stores/userStore.ts'
 import LoginForm from '../LoginForm/LoginForm.tsx'
 import './css/index.scss'

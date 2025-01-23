@@ -26,11 +26,11 @@ export function useGetMenuItems() {
 						},
 						{
 							label: <NavLink to={pagesRoute.warrantyRepair}>Гарантия</NavLink>,
-							key: 'calls',
+							key: 'warantly',
 						},
 						{
 							label: <NavLink to={pagesRoute.maxvi}>Гарантия Maxvi</NavLink>,
-							key: 'calls',
+							key: 'maxvi',
 						},
 					],
 				},
@@ -53,11 +53,7 @@ export function useGetMenuItems() {
 
 			if (role === UserRole.Admin) {
 				items.push({
-					label: (
-						<NavLink to={pagesRoute.adminka} target='_blank' rel='noopener noreferrer'>
-							Админка
-						</NavLink>
-					),
+					label: <NavLink to={pagesRoute.adminka}>Админка</NavLink>,
 					key: 'admin',
 				})
 			}
