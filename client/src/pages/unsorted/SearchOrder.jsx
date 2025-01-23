@@ -21,7 +21,7 @@ function SearcOrder() {
     const [workDescription, setWorkDescription] = useState('');
     const [diagnosticsResult, setDiagnosticsResult] = useState('');
     const [recommendations, setRecommendations] = useState('');
-    const location = useLocation();
+    const location = useLocation()
 
     const [selectedReceptionNumber, setSelectedReceptionNumber] = useState('');
     const userRole = user.role;

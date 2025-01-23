@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import LoadingAnimation from '../../common/commonComponents/LoadingAnimation/LoadingAnimation.tsx'
+import LoadingAnimation from '../../common/components/LoadingAnimation/LoadingAnimation.tsx'
 import { repairRequests } from '../../requests/repairRequests.ts'
 import Messenger from './unsorted/messenger/Messenger'
 import { TbExclamationMark } from 'react-icons/tb'

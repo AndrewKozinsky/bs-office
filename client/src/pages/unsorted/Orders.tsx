@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import LoadingAnimation from '../../common/commonComponents/LoadingAnimation/LoadingAnimation.tsx'
+import LoadingAnimation from '../../common/components/LoadingAnimation/LoadingAnimation.tsx'
 import QRcodeScaner from './QRcodeScaner'
 
 function Orders() {

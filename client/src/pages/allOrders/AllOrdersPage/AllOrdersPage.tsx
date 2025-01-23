@@ -1,5 +1,5 @@
 import React from 'react'
-import LoadingAnimation from '../../../common/commonComponents/LoadingAnimation/LoadingAnimation.tsx'
+import LoadingAnimation from '../../../common/components/LoadingAnimation/LoadingAnimation.tsx'
 import { useAllOrdersStore } from '../allPagesStore/allPagesStore.ts'
 import OrdersFilter from '../OrderFilter/OrderFilter.tsx'
 import OrdersList from '../OrdersList/OrdersList.tsx'

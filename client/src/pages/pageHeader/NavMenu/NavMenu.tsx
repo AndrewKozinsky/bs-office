@@ -1,15 +1,15 @@
-import { Menu, MenuProps } from 'antd'
-import React, { useState } from 'react'
+import { Menu } from 'antd'
+import React from 'react'
+import { useGetMenuCurrentItemName } from './fn/getMenuCurrentItemName.ts'
 import { useGetMenuItems } from './fn/getMenuItems.tsx'
 
 function NavMenu() {
-	const [current, setCurrent] = useState('mail')
-
 	const menuItems = useGetMenuItems()
+	const currentMenuItemName = useGetMenuCurrentItemName()
 
 	return (
 		<div>
-			<Menu selectedKeys={[current]} mode='horizontal' items={menuItems} />
+			<Menu selectedKeys={[currentMenuItemName]} mode='horizontal' items={menuItems} />
 		</div>
 	)
 }

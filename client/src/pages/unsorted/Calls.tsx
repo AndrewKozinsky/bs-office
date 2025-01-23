@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import './orders.css'
 import { Link, useNavigate } from 'react-router-dom'
-import LoadingAnimation from '../../common/commonComponents/LoadingAnimation/LoadingAnimation.tsx'
+import LoadingAnimation from '../../common/components/LoadingAnimation/LoadingAnimation.tsx'
 import Messenger from './unsorted/messenger/Messenger'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'

@@ -1,6 +1,6 @@
 import React from 'react'
-import LoadingAnimation from '../../../common/commonComponents/LoadingAnimation/LoadingAnimation.tsx'
-import PagePagination from '../../../common/commonComponents/PagePagination/PagePagination.tsx'
+import LoadingAnimation from '../../../common/components/LoadingAnimation/LoadingAnimation.tsx'
+import PagePagination from '../../../common/components/PagePagination/PagePagination.tsx'
 import { setCurrentPage } from '../AllOrdersPage/fn/pagination.ts'
 import { useAllOrdersStore } from '../allPagesStore/allPagesStore.ts'
 import OrderCard from '../OrderCard/OrderCard.tsx'

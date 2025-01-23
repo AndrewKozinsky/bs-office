@@ -14,7 +14,7 @@ font-size: 62.5%;
 	list-style: none;
 
 	&:focus {
-		outline: 2px solid $blueColor-2;
+		//outline: 2px solid $blueColor-2;
 	}
 }
 
@@ -32,4 +32,8 @@ body {
 
 .mini-space {
 	font-size: 0.4em;
+}
+
+a {
+	cursor: pointer;
 }
