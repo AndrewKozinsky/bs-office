@@ -1,15 +1,17 @@
 import { Button, Form, FormProps, Input, Radio, Select, Typography } from 'antd'
 import React from 'react'
-import { clientTypesRadiosArrData, howKnowRadiosArrData, repairTypesRadiosArrData } from './fn/data.ts'
+import { useNewOrderStore } from '../newOrderStore/allPagesStore.ts'
+import {
+	clientTypesRadiosArrData,
+	howKnowRadiosArrData,
+	repairTypesRadiosArrData,
+	useCreateMastersSelectOptionsData,
+} from './fn/data.ts'
+import { useFetchMasters } from './fn/fetchData.ts'
 import './NewOrderForm.scss'
+import { FieldType, useGetFailedToSubmitNewOrderForm, useGetSubmitNewOrderForm } from './fn/form.ts'
 
 const { Title } = Typography
-
-type FieldType = {
-	username?: string
-	password?: string
-	remember?: string
-}
 
 const style: React.CSSProperties = {
 	display: 'flex',
@@ -18,20 +20,24 @@ const style: React.CSSProperties = {
 }
 
 function NewOrderForm() {
-	const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-		console.log('Success:', values)
-	}
+	const [form] = Form.useForm()
+	useFetchMasters()
 
-	const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
+	const failedSubmitNewOrderForm = useGetFailedToSubmitNewOrderForm(form)
+	const submitNewOrderForm = useGetSubmitNewOrderForm()
+
+	/*const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
 		console.log('Failed:', errorInfo)
-	}
+	}*/
 
 	return (
 		<Form
+			form={form}
 			layout='vertical'
 			name='basic'
-			onFinish={onFinish}
-			onFinishFailed={onFinishFailed}
+			onFinish={submitNewOrderForm}
+			// onFinishFailed={}
+			onChange={failedSubmitNewOrderForm}
 			className='new-order-form'
 		>
 			<div className='new-order-form__content'>
@@ -55,11 +61,7 @@ function NewOrderForm() {
 					<MasterSelect />
 				</div>
 			</div>
-			<Form.Item label={null}>
-				<Button type='primary' htmlType='submit'>
-					Submit
-				</Button>
-			</Form.Item>
+			<SubmitFormButton />
 		</Form>
 	)
 }
@@ -68,7 +70,7 @@ export default NewOrderForm
 
 function RepairTypeRadio() {
 	return (
-		<Form.Item<FieldType> name='username' rules={[{ required: true, message: 'Please input your username!' }]}>
+		<Form.Item<FieldType> name='repairType' rules={[{ required: true, message: 'Отметьте тип ремонта' }]}>
 			<Radio.Group style={style} options={repairTypesRadiosArrData} />
 		</Form.Item>
 	)
@@ -78,7 +80,7 @@ function ClientNameInput() {
 	return (
 		<Form.Item<FieldType>
 			label='ФИО'
-			name='username'
+			name='clientName'
 			rules={[{ required: true, message: 'Please input your username!' }]}
 		>
 			<Input />
@@ -90,7 +92,7 @@ function ClientPhoneInput() {
 	return (
 		<Form.Item<FieldType>
 			label='Телефон'
-			name='username'
+			name='clientPhone'
 			rules={[{ required: true, message: 'Please input your username!' }]}
 		>
 			<Input />
@@ -102,7 +104,7 @@ function ClientTypeRadio() {
 	return (
 		<Form.Item<FieldType>
 			label='Статус'
-			name='username'
+			name='clientStatus'
 			rules={[{ required: true, message: 'Please input your username!' }]}
 		>
 			<Radio.Group style={style} options={clientTypesRadiosArrData} />
@@ -112,11 +114,7 @@ function ClientTypeRadio() {
 
 function HowKnowRadio() {
 	return (
-		<Form.Item<FieldType>
-			label='Как узнали о нас'
-			name='username'
-			rules={[{ required: true, message: 'Please input your username!' }]}
-		>
+		<Form.Item<FieldType> label='Как узнали о нас' name='howToKnowAboutUs'>
 			<Radio.Group style={style} options={howKnowRadiosArrData} />
 		</Form.Item>
 	)
@@ -127,65 +125,53 @@ function DeviceInputs() {
 		<>
 			<Form.Item<FieldType>
 				label='Тип аппарата'
-				name='username'
+				name='deviceType'
 				rules={[{ required: true, message: 'Please input your username!' }]}
 			>
 				<Input />
 			</Form.Item>
 			<Form.Item<FieldType>
 				label='Фирма'
-				name='username'
+				name='deviceBrand'
 				rules={[{ required: true, message: 'Please input your username!' }]}
 			>
 				<Input />
 			</Form.Item>
 			<Form.Item<FieldType>
 				label='Модель'
-				name='username'
+				name='deviceModel'
 				rules={[{ required: true, message: 'Please input your username!' }]}
 			>
 				<Input />
 			</Form.Item>
 			<Form.Item<FieldType>
 				label='Серийный модуль'
-				name='username'
+				name='deviceSerial'
 				rules={[{ required: true, message: 'Please input your username!' }]}
 			>
 				<Input />
 			</Form.Item>
 			<Form.Item<FieldType>
 				label='imei'
-				name='username'
+				name='deviceImai'
 				rules={[{ required: true, message: 'Please input your username!' }]}
 			>
 				<Input />
 			</Form.Item>
-			<Form.Item<FieldType>
-				label='Внешний вид'
-				name='username'
-				rules={[{ required: true, message: 'Please input your username!' }]}
-			>
+			<Form.Item<FieldType> label='Внешний вид' name='deviceAppearance'>
 				<Input.TextArea rows={2} />
 			</Form.Item>
 			<Form.Item<FieldType>
 				label='Комплектация'
-				name='username'
+				name='deviceEquipment'
 				rules={[{ required: true, message: 'Please input your username!' }]}
 			>
 				<Input.TextArea rows={2} />
 			</Form.Item>
-			<Form.Item<FieldType>
-				label='Дефект'
-				name='username'
-				rules={[{ required: true, message: 'Please input your username!' }]}
-			>
+			<Form.Item<FieldType> label='Дефект' name='deviceDefect'>
 				<Input.TextArea rows={2} />
 			</Form.Item>
-			<Form.Item<FieldType>
-				label='Комментарий'
-				name='username'
-				rules={[{ required: true, message: 'Please input your username!' }]}
-			>
+			<Form.Item<FieldType> label='Комментарий' name='deviceComment'>
 				<Input.TextArea rows={2} />
 			</Form.Item>
 		</>
@@ -193,15 +179,25 @@ function DeviceInputs() {
 }
 
 function MasterSelect() {
+	useCreateMastersSelectOptionsData()
+
+	const mastersOptions = useNewOrderStore((s) => s.mastersSelectOptions)
+
 	return (
-		<Form.Item<FieldType> name='username' rules={[{ required: true, message: 'Please input your username!' }]}>
-			<Radio.Group
-				style={style}
-				options={[
-					{ value: 'Мастер 1', label: 'Мастер 1' },
-					{ value: 'Мастер 2', label: 'Мастер 2' },
-				]}
-			/>
+		<Form.Item<FieldType> name='master' rules={[{ required: true, message: 'Please input your username!' }]}>
+			<Radio.Group style={style} options={mastersOptions} />
+		</Form.Item>
+	)
+}
+
+function SubmitFormButton() {
+	const isFormValid = useNewOrderStore((s) => s.isFormValid)
+
+	return (
+		<Form.Item label={null}>
+			<Button type='primary' htmlType='submit' disabled={!isFormValid}>
+				Создать заказ
+			</Button>
 		</Form.Item>
 	)
 }

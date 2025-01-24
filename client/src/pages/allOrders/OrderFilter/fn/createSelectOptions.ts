@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { SelectOption } from '../../../../types/commonTypes.ts'
+import { addEmptyValueToOptions } from '../../../../common/formUtils.ts'
 import { AllOrdersStore, useAllOrdersStore } from '../../allPagesStore/allPagesStore.ts'
 
 export function useCreateSelectOptionsData() {
@@ -66,7 +66,6 @@ export function useCreateSelectOptionsData() {
 		function () {
 			if (!orderStatuses) return
 
-			// deviceBrandsSelectOptions
 			const options: AllOrdersStore['orderStatusesSelectOptions'] = orderStatuses.map((status) => {
 				return {
 					label: status,
@@ -80,8 +79,4 @@ export function useCreateSelectOptionsData() {
 		},
 		[orderStatuses],
 	)
-}
-
-function addEmptyValueToOptions(options: SelectOption[]) {
-	options.unshift({ label: 'Не выбрано', value: '' })
 }

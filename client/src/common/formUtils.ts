@@ -16,3 +16,7 @@ export function searchByLabelInSelectInput(searchString: string, option: SelectO
 	// Search by label (case-insensitive)
 	return option.label.toLowerCase().includes(searchString.toLowerCase())
 }
+
+export function addEmptyValueToOptions(options: SelectOption[]) {
+	options.unshift({ label: 'Не выбрано', value: '' })
+}

@@ -1,17 +1,23 @@
 import { create } from 'zustand'
-import { GetDeviceBrandsRes, GetDeviceTypesRes } from '../../../requests/deviceRequests.ts'
-import { GetStatusesRes } from '../../../requests/ordersRequests.ts'
 import { GetStaffRes } from '../../../requests/staffRequests.ts'
 import { SelectOption } from '../../../types/commonTypes.ts'
-import { Order } from '../../../types/user.ts'
 
-export type AllOrdersStore = {
+export type NewOrderStore = {
 	// Данные по мастерам
 	masters: null | GetStaffRes
+
+	// Данные для вывода пунктов выпадающих списков
+	mastersSelectOptions: null | SelectOption[]
+
+	isFormValid: boolean
 }
 
-export const useAllOrdersStore = create<AllOrdersStore>()((set) => {
+export const useNewOrderStore = create<NewOrderStore>()((set) => {
 	return {
 		masters: null,
+
+		mastersSelectOptions: null,
+
+		isFormValid: false,
 	}
 })

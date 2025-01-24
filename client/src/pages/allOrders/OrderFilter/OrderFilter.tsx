@@ -1,7 +1,6 @@
 import React from 'react'
 import { Form, Input, Select } from 'antd'
 import { searchByLabelInSelectInput } from '../../../common/formUtils.ts'
-import { SelectOption } from '../../../types/commonTypes.ts'
 import { useAllOrdersStore } from '../allPagesStore/allPagesStore.ts'
 import { useGetChangeSearchInput, useGetChangeSelectInput } from './fn/changeInput.ts'
 import { useCreateSelectOptionsData } from './fn/createSelectOptions.ts'
