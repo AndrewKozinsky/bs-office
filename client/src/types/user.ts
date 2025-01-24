@@ -1,3 +1,5 @@
+import React from 'react'
+
 export type CurrentUser = {
 	id: number // 1
 	login: string // 'andreyAdmin'
@@ -176,12 +178,14 @@ export type Order = {
 export type OrderStatusName = string
 
 export type TypesOfRepair = [
-	'Авторизованный ремонт',
-	'Наша гарантия',
-	'Обслуживание картриджей',
-	'Поставка товаров',
-	'Проверка качества',
 	'Простой ремонт',
 	'Сложный ремонт',
-	'Хоз работы',
+	'Авторизованный ремонт',
+	'Наша гарантия',
+	'Поставка товаров',
+	'Проверка качества',
+	'Обслуживание картриджей',
+	'Хоз. работы',
 ]
+
+export type ClientTypes = ['Физ. лицо', 'Юр. лицо', 'ИП', 'Гос. орган']

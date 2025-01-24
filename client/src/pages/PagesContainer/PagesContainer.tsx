@@ -1,9 +1,10 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import PageHeader from '../pageHeader/PageHeader/PageHeader.tsx'
+import NewOrderPage from '../newOrder/NewOrderPage/NewOrderPage.tsx'
+import PageHead from '../pageHeader/PageHead/PageHead.tsx'
 import { pagesRoute } from '../pagesRoute.ts'
 import WarrantyRepair from '../unsorted/WarrantyRepair.tsx'
-import OrderStatus from '../unsorted/OrderStatus.tsx'
+import OrderStatusOld from '../unsorted/OrderStatusOld.tsx'
 import Orders from '../unsorted/Orders.tsx'
 import Employees from '../unsorted/Employees.tsx'
 import ChangeOrder from '../unsorted/ChangeOrder.tsx'
@@ -26,40 +27,42 @@ const PagesContainer = () => {
 
 	return (
 		<>
-			<PageHeader />
+			<PageHead />
 			{/* <AppMedia /> */}
 			<div className='container-box'>
 				<Routes>
 					{/*<Route path='/' element={<PersonalAccount />} />*/}
 					<Route
-						path={pagesRoute.allOrders}
+						path={pagesRoute.allOrders.path}
 						element={
 							userRole === UserRole.Admin ||
 							userRole === UserRole.Master ||
 							userRole === UserRole.Manager ? (
 									<AllOrdersPage />
 								) : (
-									<Navigate to={pagesRoute.personalAccount} />
+									<Navigate to={pagesRoute.personalAccount.path} />
 								)
 						}
 					/>
-					{/*<Route
-					path={pagesRoute.orderStatus}
-					element={
-						userRole === UserRole.Admin || userRole === UserRole.Master || userRole === UserRole.Manager ? (
-							<OrderStatus />
-						) : (
-							<Navigate to={pagesRoute.personalAccount} />
-						)
-					}
-				/>*/}
+					<Route
+						path={pagesRoute.newOrder.path}
+						element={
+							userRole === UserRole.Admin ||
+							userRole === UserRole.Master ||
+							userRole === UserRole.Manager ? (
+								<NewOrderPage />
+							) : (
+								<Navigate to={pagesRoute.personalAccount.path} />
+							)
+						}
+					/>
 					{/*<Route
 					path={pagesRoute.warrantyRepair}
 					element={
 						userRole === UserRole.Admin || userRole === UserRole.Manager || userRole === UserRole.Master ? (
 							<WarrantyRepair />
 						) : (
-							<Navigate to={pagesRoute.personalAccount} />
+							<Navigate to={pagesRoute.personalAccount.path} />
 						)
 					}
 				/>*/}
@@ -69,7 +72,7 @@ const PagesContainer = () => {
 						userRole === UserRole.Admin || userRole === UserRole.Master || userRole === UserRole.Manager ? (
 							<Maxvi />
 						) : (
-							<Navigate to={pagesRoute.personalAccount} />
+							<Navigate to={pagesRoute.personalAccount.path} />
 						)
 					}
 				/>*/}
@@ -79,13 +82,13 @@ const PagesContainer = () => {
 						userRole === UserRole.Admin || userRole === UserRole.Master || userRole === UserRole.Manager ? (
 							<Orders />
 						) : (
-							<Navigate to={pagesRoute.personalAccount} />
+							<Navigate to={pagesRoute.personalAccount.path} />
 						)
 					}
 				/>*/}
 					{/*<Route
 					path={pagesRoute.employees}
-					element={userRole === UserRole.Admin ? <Employees /> : <Navigate to={pagesRoute.personalAccount} />}
+					element={userRole === UserRole.Admin ? <Employees /> : <Navigate to={pagesRoute.personalAccount.path} />}
 				/>*/}
 					{/*<Route
 					path={pagesRoute.changeOrder}
@@ -93,7 +96,7 @@ const PagesContainer = () => {
 						userRole === UserRole.Admin || userRole === UserRole.Master ? (
 							<ChangeOrder />
 						) : (
-							<Navigate to={pagesRoute.personalAccount} />
+							<Navigate to={pagesRoute.personalAccount.path} />
 						)
 					}
 				/>*/}
@@ -103,7 +106,7 @@ const PagesContainer = () => {
 						userRole === UserRole.Admin || userRole === UserRole.Master || userRole === UserRole.Manager ? (
 							<Calls />
 						) : (
-							<Navigate to={pagesRoute.personalAccount} />
+							<Navigate to={pagesRoute.personalAccount.path} />
 						)
 					}
 				/>*/}

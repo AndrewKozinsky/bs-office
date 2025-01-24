@@ -22,16 +22,18 @@ export function useGetMenuItems() {
 
 					children: [
 						{
-							label: <NavLink to={pagesRoute.allOrders}>Все заказы</NavLink>,
-							key: pagesRoute.allOrders,
+							label: <NavLink to={pagesRoute.allOrders.path}>{pagesRoute.allOrders.name}</NavLink>,
+							key: pagesRoute.allOrders.path,
 						},
 						{
-							label: <NavLink to={pagesRoute.warrantyRepair}>Гарантия</NavLink>,
-							key: pagesRoute.warrantyRepair,
+							label: (
+								<NavLink to={pagesRoute.warrantyRepair.path}>{pagesRoute.warrantyRepair.name}</NavLink>
+							),
+							key: pagesRoute.warrantyRepair.path,
 						},
 						{
-							label: <NavLink to={pagesRoute.maxvi}>Гарантия Maxvi</NavLink>,
-							key: pagesRoute.maxvi,
+							label: <NavLink to={pagesRoute.maxvi.path}>{pagesRoute.maxvi.name}</NavLink>,
+							key: pagesRoute.maxvi.path,
 						},
 					],
 				},
@@ -40,28 +42,28 @@ export function useGetMenuItems() {
 			if (role === UserRole.Manager || role === UserRole.Admin) {
 				// @ts-ignore
 				items[0].children.unshift({
-					label: <NavLink to={pagesRoute.orderStatus}>Новый Заказ</NavLink>,
-					key: pagesRoute.orderStatus,
+					label: <NavLink to={pagesRoute.newOrder.path}>{pagesRoute.newOrder.name}</NavLink>,
+					key: pagesRoute.newOrder,
 				})
 			}
 
 			if (role === UserRole.Admin || role === UserRole.Manager) {
 				items.push({
-					label: <NavLink to={pagesRoute.calls}>Звонки</NavLink>,
-					key: pagesRoute.calls,
+					label: <NavLink to={pagesRoute.calls.path}>{pagesRoute.calls.name}</NavLink>,
+					key: pagesRoute.calls.path,
 				})
 			}
 
 			if (role === UserRole.Admin) {
 				items.push({
-					label: <NavLink to={pagesRoute.adminka}>Админка</NavLink>,
-					key: pagesRoute.adminka,
+					label: <NavLink to={pagesRoute.adminka.path}>{pagesRoute.adminka.name}</NavLink>,
+					key: pagesRoute.adminka.path,
 				})
 			}
 
 			items.push({
-				label: <NavLink to={pagesRoute.phoneBook}>Телефонный справочник</NavLink>,
-				key: pagesRoute.phoneBook,
+				label: <NavLink to={pagesRoute.phoneBook.path}>{pagesRoute.phoneBook.name}</NavLink>,
+				key: pagesRoute.phoneBook.path,
 			})
 
 			if (
@@ -71,8 +73,8 @@ export function useGetMenuItems() {
 				role === UserRole.Admin
 			) {
 				items.push({
-					label: <NavLink to={pagesRoute.acceptance}>Выдача</NavLink>,
-					key: pagesRoute.acceptance,
+					label: <NavLink to={pagesRoute.acceptance.path}>{pagesRoute.acceptance.name}</NavLink>,
+					key: pagesRoute.acceptance.path,
 				})
 			}
 
@@ -83,8 +85,8 @@ export function useGetMenuItems() {
 				role === UserRole.Admin
 			) {
 				items.push({
-					label: <NavLink to={pagesRoute.shipment}>Отправка</NavLink>,
-					key: pagesRoute.shipment,
+					label: <NavLink to={pagesRoute.shipment.path}>{pagesRoute.shipment.name}</NavLink>,
+					key: pagesRoute.shipment.path,
 				})
 			}
 

@@ -1,0 +1,9 @@
+.new-order-form {
+    max-width: 130rem;
+}
+
+.new-order-form__content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+}

@@ -1,5 +1,7 @@
 import React from 'react'
 import LoadingAnimation from '../../../common/components/LoadingAnimation/LoadingAnimation.tsx'
+import PageContainer from '../../PageContainer/PageContainer.tsx'
+import { pagesRoute } from '../../pagesRoute.ts'
 import { useAllOrdersStore } from '../allPagesStore/allPagesStore.ts'
 import OrdersFilter from '../OrderFilter/OrderFilter.tsx'
 import OrdersList from '../OrdersList/OrdersList.tsx'
@@ -14,12 +16,14 @@ function AllOrdersPage() {
 	const loadingOrders = useAllOrdersStore((s) => s.loadingOrders)
 
 	return (
-		<div className='order-box'>
-			<div className='order-box__left'>
-				<OrdersFilter />
+		<PageContainer header={pagesRoute.allOrders.name}>
+			<div className='order-box'>
+				<div className='order-box__left'>
+					<OrdersFilter />
+				</div>
+				<div className='order-box__right'>{loadingOrders ? <LoadingAnimation /> : <OrdersList />}</div>
 			</div>
-			<div className='order-box__right'>{loadingOrders ? <LoadingAnimation /> : <OrdersList />}</div>
-		</div>
+		</PageContainer>
 	)
 }
 

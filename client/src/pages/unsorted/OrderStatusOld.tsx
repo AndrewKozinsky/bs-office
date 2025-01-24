@@ -6,11 +6,10 @@ import { staffRequests } from '../../requests/staffRequests.ts'
 import { usersRequests } from '../../requests/usersRequests.ts'
 import { useUserStore } from '../../stores/userStore.ts'
 import Summary from './Summary.tsx'
-import Messenger from './unsorted/messenger/Messenger'
 import { AddressSuggestions } from 'react-dadata'
 import './orders.css'
 
-const OrderStatus = () => {
+const OrderStatusOld = () => {
 	const [step, setStep] = useState(1)
 	const [userType, setUserType] = useState('')
 	// const [value, setValue] = useState()
@@ -882,9 +881,9 @@ const OrderStatus = () => {
 					)}
 				</div>
 			</div>
-			<Messenger />
+			{/*<Messenger />*/}
 		</div>
 	)
 }
 
-export default OrderStatus
+export default OrderStatusOld
