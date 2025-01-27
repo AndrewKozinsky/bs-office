@@ -113,7 +113,8 @@ app.get('/api/device/brands', async (req, res) => {
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
-});
+})
+
 app.get('/api/staff', async (req, res) => {
 
   try {
@@ -132,9 +133,9 @@ app.get('/api/staff', async (req, res) => {
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
-});
-app.get('/api/typeofrepaire', async (req, res) => {
+})
 
+app.get('/api/typeofrepaire', async (req, res) => {
   try {
     const { default: fetch } = await import('node-fetch');
 
@@ -214,7 +215,8 @@ app.get('/api/byt/order/:number', async (req, res) => {
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
-});
+})
+
 app.get('/api/byt/order/:searchNumber/:encodedUserRole/:UserName', async (req, res) => {
   const { searchNumber, encodedUserRole, UserName } = req.params;
 
@@ -232,7 +234,8 @@ app.get('/api/byt/order/:searchNumber/:encodedUserRole/:UserName', async (req, r
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
-});
+})
+
 app.get('/api/1c/users', async (req, res) => {
   try {
     const { default: fetch } = await import('node-fetch');
@@ -384,7 +387,8 @@ app.get('/api/users/search/:l_name', async (req, res) => {
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
-});
+})
+
 app.get('/api/device/model/:deviceModel', async (req, res) => {
   const { deviceModel } = req.params;
 
@@ -465,7 +469,8 @@ app.get(`/api/WarrantyOrdermaxvi/:numberMaxvi`, async (req, res) => {
     console.error('Error sending data:', error);
     res.status(500).send(error.message || 'Internal Server Error');
   }
-});
+})
+
 app.post('/api/neworder', async (req, res) => {
   try {
     const cleanData = req.body;
@@ -976,7 +981,8 @@ app.post(`/api/Finish`, async (req, res) => {
     console.error('Error sending data:', error);
     res.status(500).send(error.message || 'Internal Server Error');
   }
-});
+})
+
 app.post('/api/parser/warrantyorder', upload.single('file'), async (req, res) => {
   try {
     if (!req.file || !req.file.buffer) {
@@ -990,7 +996,29 @@ app.post('/api/parser/warrantyorder', upload.single('file'), async (req, res) =>
     console.error('Error processing file:', error);
     res.status(500).send('Internal Server Error');
   }
-});
+})
+
+app.get('/api/address-suggestions', async (req, res) => {
+  try {
+    const params = new URLSearchParams(removeFalsyProperties(req.query))
+
+    const apiUrl = `http://192.168.1.10/api/address_suggestions/?${params}` // http://192.168.1.10/api/address-suggestions/?search=Оренбург
+
+    const response = await fetch(apiUrl)
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const responseData = await response.json()
+    console.log(responseData)
+    res.json(responseData)
+  } catch (error) {
+    // console.log('err')
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+})
 
 const start = async () => {
   try {

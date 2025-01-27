@@ -1,15 +1,18 @@
-import { Button, Form, FormProps, Input, Radio, Select, Typography } from 'antd'
 import React from 'react'
+import { Button, Form, FormProps, Input, Radio, Select, Typography } from 'antd'
+import { AddressSuggestions } from 'react-dadata'
 import { useNewOrderStore } from '../newOrderStore/allPagesStore.ts'
 import {
 	clientTypesRadiosArrData,
 	howKnowRadiosArrData,
 	repairTypesRadiosArrData,
-	useCreateMastersSelectOptionsData,
+	useCreateAddressSuggestionsSelectOptionsData,
+	useCreateMastersRadiosData,
 } from './fn/data.ts'
-import { useFetchMasters } from './fn/fetchData.ts'
+import { useFetchAddresses, useFetchMasters } from './fn/fetchData.ts'
+import { onAddressSearchChange } from './fn/formInputs.ts'
+import { FieldType, useIsNewOrderFormValid, useGetSubmitNewOrderForm } from './fn/formSubmit.ts'
 import './NewOrderForm.scss'
-import { FieldType, useGetFailedToSubmitNewOrderForm, useGetSubmitNewOrderForm } from './fn/form.ts'
 
 const { Title } = Typography
 
@@ -21,14 +24,9 @@ const style: React.CSSProperties = {
 
 function NewOrderForm() {
 	const [form] = Form.useForm()
-	useFetchMasters()
 
-	const failedSubmitNewOrderForm = useGetFailedToSubmitNewOrderForm(form)
+	const failedSubmitNewOrderForm = useIsNewOrderFormValid(form)
 	const submitNewOrderForm = useGetSubmitNewOrderForm()
-
-	/*const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-		console.log('Failed:', errorInfo)
-	}*/
 
 	return (
 		<Form
@@ -36,7 +34,6 @@ function NewOrderForm() {
 			layout='vertical'
 			name='basic'
 			onFinish={submitNewOrderForm}
-			// onFinishFailed={}
 			onChange={failedSubmitNewOrderForm}
 			className='new-order-form'
 		>
@@ -49,6 +46,7 @@ function NewOrderForm() {
 					<Title level={2}>Клиент</Title>
 					<ClientNameInput />
 					<ClientPhoneInput />
+					<MyClientAddressSelect />
 					<ClientTypeRadio />
 					<HowKnowRadio />
 				</div>
@@ -97,6 +95,61 @@ function ClientPhoneInput() {
 		>
 			<Input />
 		</Form.Item>
+	)
+}
+
+function MyClientAddressSelect() {
+	// useFetchAddresses()
+	// useCreateAddressSuggestionsSelectOptionsData()
+
+	const addressSearch = useNewOrderStore((s) => s.addressSearch)
+	const addressOptions = useNewOrderStore((s) => s.addressSuggestionsSelectOptions)
+
+	return (
+		<Form.Item<FieldType>
+			label='Адрес'
+			name='clientAddress'
+			rules={[{ required: true, message: 'Введите, пожалуйста, адрес' }]}
+		>
+			<Select options={addressOptions} showSearch onSearch={onAddressSearchChange} searchValue={addressSearch} />
+		</Form.Item>
+	)
+}
+
+// DELETE LATER
+function ClientAddress() {
+	// const clientAddress = useNewOrderStore((s) => s.clientAddress)
+
+	return (
+		<AddressSuggestions
+			token='5b62c95fa0f8d31860b557b959d74091b06ee92c'
+			// value={clientAddress as null}
+			onChange={(value) => {
+				console.log(value)
+				/*setFormData((prevData) => ({
+					...prevData,
+					address: value.value, // Change value to value.value
+				}))
+				setValidation((prevValidation) => ({
+					...prevValidation,
+					address: value.value.trim() !== '', // Change value to value.value
+				}))*/
+			}}
+			/*// @ts-ignore*/
+			onSuggestionSelected={(suggestion) => {
+				console.log(suggestion)
+				/*setFormData((prevData) => ({
+					...prevData,
+					address: suggestion.value,
+				}))*/
+				/*setValidation((prevValidation) => ({
+					...prevValidation,
+					address: suggestion.value.trim() !== '',
+				}))*/
+			}}
+			// className={`input-style ${validation.address ? 'input-valid' : 'input-error'}`}
+			placeholder='Адрес'
+		/>
 	)
 }
 
@@ -179,7 +232,8 @@ function DeviceInputs() {
 }
 
 function MasterSelect() {
-	useCreateMastersSelectOptionsData()
+	useFetchMasters()
+	useCreateMastersRadiosData()
 
 	const mastersOptions = useNewOrderStore((s) => s.mastersSelectOptions)
 
@@ -194,8 +248,8 @@ function SubmitFormButton() {
 	const isFormValid = useNewOrderStore((s) => s.isFormValid)
 
 	return (
-		<Form.Item label={null}>
-			<Button type='primary' htmlType='submit' disabled={!isFormValid}>
+		<Form.Item label={null} className='new-order-form__submit-button'>
+			<Button type='primary' htmlType='submit' disabled={!isFormValid} block size='large'>
 				Создать заказ
 			</Button>
 		</Form.Item>

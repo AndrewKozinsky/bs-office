@@ -1,4 +1,5 @@
 .new-order-form {
+    position: relative;
     max-width: 130rem;
 }
 
@@ -6,4 +7,11 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
+}
+
+.new-order-form__submit-button {
+    position: sticky;
+    bottom: 1rem;
+    left: 0;
+    background-color: white;
 }

@@ -1,8 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { addEmptyValueToOptions } from '../../../../common/formUtils.ts'
 import { ClientTypes, TypesOfRepair } from '../../../../types/user.ts'
-import { AllOrdersStore, useAllOrdersStore } from '../../../allOrders/allPagesStore/allPagesStore.ts'
-import { useNewOrderStore } from '../../newOrderStore/allPagesStore.ts'
+import { NewOrderStore, useNewOrderStore } from '../../newOrderStore/allPagesStore.ts'
 
 export const repairTypes: TypesOfRepair = [
 	'Простой ремонт',
@@ -31,14 +30,14 @@ export const howKnowRadiosArrData = howKnow.map((item) => {
 	return { value: item, label: item }
 })
 
-export function useCreateMastersSelectOptionsData() {
+export function useCreateMastersRadiosData() {
 	const masters = useNewOrderStore((s) => s.masters)
 
 	useEffect(
 		function () {
 			if (!masters) return
 
-			const options: AllOrdersStore['mastersSelectOptions'] = masters.map((master) => {
+			const options: NewOrderStore['mastersSelectOptions'] = masters.map((master) => {
 				return {
 					label: master.user_name,
 					value: master.user_id,
@@ -50,5 +49,32 @@ export function useCreateMastersSelectOptionsData() {
 			useNewOrderStore.setState({ mastersSelectOptions: options })
 		},
 		[masters],
+	)
+}
+
+export function useCreateAddressSuggestionsSelectOptionsData() {
+	const addressSuggestions = useNewOrderStore((s) => s.addressSuggestions)
+
+	useEffect(
+		function () {
+			if (!addressSuggestions) {
+				useNewOrderStore.setState({ addressSuggestionsSelectOptions: null })
+				return
+			}
+
+			const options: NewOrderStore['addressSuggestionsSelectOptions'] = addressSuggestions.map((addObj) => {
+				const addString = `${addObj.city} ${addObj.street_type} ${addObj.street} ${addObj.house}`
+
+				return {
+					label: addString,
+					value: addString,
+				}
+			})
+
+			addEmptyValueToOptions(options)
+
+			useNewOrderStore.setState({ addressSuggestionsSelectOptions: options })
+		},
+		[addressSuggestions],
 	)
 }

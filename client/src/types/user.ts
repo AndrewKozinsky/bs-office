@@ -18,17 +18,7 @@ export enum UserRole {
 
 export type User = {
 	user_address: string
-	user_good_address: {
-		City: string
-		Country: string
-		House: string
-		Latitude: string
-		Longitude: string
-		PostalCode: string
-		Region: string
-		Street: string
-		URI: string
-	}
+	user_good_address: Address
 	user_id: string // '000000030'
 	user_legal_address: string // ''
 	user_name: string // 'Муксинов Ильшат Наильевич '
@@ -36,6 +26,21 @@ export type User = {
 	user_role: string // 'Инженер'
 	user_source: string // ''
 	user_type: string // ''
+}
+
+export type Address = {
+	city_type: string // "г"
+	city: string // Оренбург"
+	country: string // "Россия"
+	house: string // "9"
+	latitude: string // "51.831314"
+	longitude: string // '55.166997'
+	postal_code: string // '460052'
+	region_type: string // "обл"
+	region: string // 'Оренбургская обл'
+	street_type: string // "пер" или "ул."
+	street: string // 'Липовая'
+	uri: string // ''
 }
 
 // Откуда пользователь узнал про нас
