@@ -41,7 +41,7 @@ export type NewOrderStore = {
 	// Все модели устройств
 	deviceModels: GetDevicesModelRes
 	// Варианты производителя устройства в виде данных для показа в выпадающем списке
-	deviceModelsSelectOptions: null | SelectOption[]
+	deviceModelsSelectOptions: SelectOption[]
 }
 
 export const newOrderStoreInitial: NewOrderStore = {
@@ -65,7 +65,7 @@ export const newOrderStoreInitial: NewOrderStore = {
 	selectedBrandId: null,
 	deviceModelSearch: '',
 	deviceModels: null,
-	deviceModelsSelectOptions: null,
+	deviceModelsSelectOptions: [],
 }
 
 export const useNewOrderStore = create<NewOrderStore>()((set) => {

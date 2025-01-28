@@ -267,9 +267,9 @@ function DeviceModel(props: DeviceModelProps) {
 	useFetchDeviceModels(form)
 	useCreateDeviceModelsSelectOptionsData()
 
-	// const onDeviceModelSearchChange = useGetOnDeviceModelsSearchChange()
+	const onDeviceModelSearchChange = useGetOnDeviceModelsSearchChange()
+	const deviceModelSearch = useNewOrderStore((s) => s.deviceModelSearch)
 
-	// const deviceModelSearch = useNewOrderStore((s) => s.deviceModelSearch)
 	const deviceModelsSelectOptions = useNewOrderStore((s) => s.deviceModelsSelectOptions)
 
 	return (
@@ -280,11 +280,14 @@ function DeviceModel(props: DeviceModelProps) {
 		>
 			<Select
 				options={deviceModelsSelectOptions}
-				// showSearch
-				// onSearch={onDeviceModelSearchChange}
-				// searchValue={deviceModelSearch}
+				showSearch
+				onSearch={onDeviceModelSearchChange}
+				searchValue={deviceModelSearch}
 				filterOption={false}
 				disabled={!deviceModelsSelectOptions || !deviceModelsSelectOptions.length}
+				onSelect={(e) => console.log(e)}
+				onChange={(e) => console.log(e)}
+				value={null}
 			/>
 		</Form.Item>
 	)

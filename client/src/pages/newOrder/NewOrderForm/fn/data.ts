@@ -136,7 +136,7 @@ export function useCreateDeviceBrandsSelectOptionsData() {
 
 export function useCreateDeviceModelsSelectOptionsData() {
 	const deviceModels = useNewOrderStore((s) => s.deviceModels)
-	const deviceModelSearch = useNewOrderStore((s) => s.deviceBrandSearch)
+	const deviceModelSearch = useNewOrderStore((s) => s.deviceModelSearch)
 
 	useEffect(
 		function () {
@@ -152,7 +152,7 @@ export function useCreateDeviceModelsSelectOptionsData() {
 				(devTypeObj) => {
 					return {
 						label: devTypeObj.device_model_name,
-						value: devTypeObj.device_id,
+						value: devTypeObj.device_model_id,
 					}
 				},
 			)

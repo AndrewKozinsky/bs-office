@@ -53,6 +53,11 @@ export type DeviceType = {
 	device_type_name: string // 'SSD накопитель'
 }
 
+export type DeviceModel = {
+	device_model_id: string // "000000373"
+	device_model_name: string // "iPhone 7"
+}
+
 export type Device = {
 	device_id: string
 	device_model_id: '000005165'
