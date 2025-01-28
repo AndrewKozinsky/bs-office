@@ -10,8 +10,6 @@ function QRcodeScaner({ updateSearchWithQRCode }) {
         setQrMessage(decodedText);
         setEnable(false);
 
-        console.log('QR code scanned:', decodedText);
-
         const searchOrderUrlRegex = /\/SearchOrder\?orderNumber=(\d+)/;
         const match = decodedText.match(searchOrderUrlRegex);
 

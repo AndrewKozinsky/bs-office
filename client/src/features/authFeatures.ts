@@ -27,7 +27,6 @@ export const authFeatures = {
 	async registration(inputData: InputData) {
 		try {
 			const response = await authRequests.registration(inputData)
-			console.log(response)
 		} catch (e) {
 			console.log(e.response?.data?.message)
 		}

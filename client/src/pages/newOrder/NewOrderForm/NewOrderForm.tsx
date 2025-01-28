@@ -1,16 +1,29 @@
 import React from 'react'
-import { Button, Form, FormProps, Input, Radio, Select, Typography } from 'antd'
-import { AddressSuggestions } from 'react-dadata'
+import { Button, Form, Input, Radio, Select, Typography } from 'antd'
 import { useNewOrderStore } from '../newOrderStore/allPagesStore.ts'
 import {
 	clientTypesRadiosArrData,
 	howKnowRadiosArrData,
 	repairTypesRadiosArrData,
 	useCreateAddressSuggestionsSelectOptionsData,
+	useCreateDeviceBrandsSelectOptionsData,
+	useCreateDeviceModelsSelectOptionsData,
+	useCreateDeviceTypesSelectOptionsData,
 	useCreateMastersRadiosData,
 } from './fn/data.ts'
-import { useFetchAddresses, useFetchMasters } from './fn/fetchData.ts'
-import { onAddressSearchChange } from './fn/formInputs.ts'
+import {
+	useFetchAddresses,
+	useFetchDeviceBrands,
+	useFetchDeviceModels,
+	useFetchDeviceTypes,
+	useFetchMasters,
+} from './fn/fetchData.ts'
+import {
+	useGetOnAddressSearchChange,
+	useGetOnDeviceBrandsSearchChange,
+	useGetOnDeviceModelsSearchChange,
+	useGetOnDeviceTypeSearchChange,
+} from './fn/formInputs.ts'
 import { FieldType, useIsNewOrderFormValid, useGetSubmitNewOrderForm } from './fn/formSubmit.ts'
 import './NewOrderForm.scss'
 
@@ -99,8 +112,10 @@ function ClientPhoneInput() {
 }
 
 function MyClientAddressSelect() {
-	// useFetchAddresses()
-	// useCreateAddressSuggestionsSelectOptionsData()
+	useFetchAddresses()
+	useCreateAddressSuggestionsSelectOptionsData()
+
+	const onAddressSearchChange = useGetOnAddressSearchChange()
 
 	const addressSearch = useNewOrderStore((s) => s.addressSearch)
 	const addressOptions = useNewOrderStore((s) => s.addressSuggestionsSelectOptions)
@@ -111,45 +126,14 @@ function MyClientAddressSelect() {
 			name='clientAddress'
 			rules={[{ required: true, message: 'Введите, пожалуйста, адрес' }]}
 		>
-			<Select options={addressOptions} showSearch onSearch={onAddressSearchChange} searchValue={addressSearch} />
+			<Select
+				options={addressOptions}
+				showSearch
+				onSearch={onAddressSearchChange}
+				searchValue={addressSearch}
+				filterOption={false}
+			/>
 		</Form.Item>
-	)
-}
-
-// DELETE LATER
-function ClientAddress() {
-	// const clientAddress = useNewOrderStore((s) => s.clientAddress)
-
-	return (
-		<AddressSuggestions
-			token='5b62c95fa0f8d31860b557b959d74091b06ee92c'
-			// value={clientAddress as null}
-			onChange={(value) => {
-				console.log(value)
-				/*setFormData((prevData) => ({
-					...prevData,
-					address: value.value, // Change value to value.value
-				}))
-				setValidation((prevValidation) => ({
-					...prevValidation,
-					address: value.value.trim() !== '', // Change value to value.value
-				}))*/
-			}}
-			/*// @ts-ignore*/
-			onSuggestionSelected={(suggestion) => {
-				console.log(suggestion)
-				/*setFormData((prevData) => ({
-					...prevData,
-					address: suggestion.value,
-				}))*/
-				/*setValidation((prevValidation) => ({
-					...prevValidation,
-					address: suggestion.value.trim() !== '',
-				}))*/
-			}}
-			// className={`input-style ${validation.address ? 'input-valid' : 'input-error'}`}
-			placeholder='Адрес'
-		/>
 	)
 }
 
@@ -176,27 +160,9 @@ function HowKnowRadio() {
 function DeviceInputs() {
 	return (
 		<>
-			<Form.Item<FieldType>
-				label='Тип аппарата'
-				name='deviceType'
-				rules={[{ required: true, message: 'Please input your username!' }]}
-			>
-				<Input />
-			</Form.Item>
-			<Form.Item<FieldType>
-				label='Фирма'
-				name='deviceBrand'
-				rules={[{ required: true, message: 'Please input your username!' }]}
-			>
-				<Input />
-			</Form.Item>
-			<Form.Item<FieldType>
-				label='Модель'
-				name='deviceModel'
-				rules={[{ required: true, message: 'Please input your username!' }]}
-			>
-				<Input />
-			</Form.Item>
+			<DeviceType />
+			<DeviceBrand />
+			<DeviceModel />
 			<Form.Item<FieldType>
 				label='Серийный модуль'
 				name='deviceSerial'
@@ -229,6 +195,95 @@ function DeviceInputs() {
 			</Form.Item>
 		</>
 	)
+}
+
+function DeviceType() {
+	useFetchDeviceTypes()
+	useCreateDeviceTypesSelectOptionsData()
+
+	const onDeviceTypeSearchChange = useGetOnDeviceTypeSearchChange()
+
+	const deviceTypeSearch = useNewOrderStore((s) => s.deviceTypeSearch)
+	const deviceTypesSelectOptions = useNewOrderStore((s) => s.deviceTypesSelectOptions)
+
+	return (
+		<Form.Item<FieldType>
+			label='Тип аппарата'
+			name='deviceType'
+			rules={[{ required: true, message: 'Выберите тип аппарата' }]}
+		>
+			<Select
+				options={deviceTypesSelectOptions}
+				showSearch
+				onSearch={onDeviceTypeSearchChange}
+				searchValue={deviceTypeSearch}
+				filterOption={false}
+			/>
+		</Form.Item>
+	)
+}
+
+function DeviceBrand() {
+	useFetchDeviceBrands()
+	useCreateDeviceBrandsSelectOptionsData()
+
+	const onDeviceBrandSearchChange = useGetOnDeviceBrandsSearchChange()
+
+	const deviceBrandSearch = useNewOrderStore((s) => s.deviceBrandSearch)
+	const deviceBrandsSelectOptions = useNewOrderStore((s) => s.deviceBrandsSelectOptions)
+
+	return (
+		<Form.Item<FieldType>
+			label='Производитель'
+			name='deviceBrand'
+			rules={[{ required: true, message: 'Выберите производителя аппарата' }]}
+		>
+			<Select
+				options={deviceBrandsSelectOptions}
+				showSearch
+				onSearch={onDeviceBrandSearchChange}
+				searchValue={deviceBrandSearch}
+				filterOption={false}
+			/>
+		</Form.Item>
+	)
+}
+
+function DeviceModel() {
+	useFetchDeviceModels()
+	useCreateDeviceModelsSelectOptionsData()
+
+	const onDeviceModelSearchChange = useGetOnDeviceModelsSearchChange()
+
+	const deviceModelSearch = useNewOrderStore((s) => s.deviceModelSearch)
+	const deviceModelsSelectOptions = useNewOrderStore((s) => s.deviceModelsSelectOptions)
+
+	return (
+		<Form.Item<FieldType>
+			label='Модель'
+			name='deviceBrand'
+			rules={[{ required: true, message: 'Выберите модель аппарата' }]}
+		>
+			<Select
+				options={deviceModelsSelectOptions}
+				showSearch
+				onSearch={onDeviceModelSearchChange}
+				searchValue={deviceModelSearch}
+				filterOption={false}
+				disabled={!deviceModelsSelectOptions}
+			/>
+		</Form.Item>
+	)
+
+	/*return (
+		<Form.Item<FieldType>
+			label='Модель'
+			name='deviceModel'
+			rules={[{ required: true, message: 'Please input your username!' }]}
+		>
+			<Input />
+		</Form.Item>
+	)*/
 }
 
 function MasterSelect() {

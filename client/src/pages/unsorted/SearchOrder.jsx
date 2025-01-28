@@ -206,7 +206,6 @@ function SearcOrder() {
             diagnostics_result: diagnosticsResult,
             recommendations: recommendations,
         };
-        console.log('Saving with data:', requestData);
 
         try {
             const response = await fetch('/api/changeorder', {
@@ -217,7 +216,6 @@ function SearcOrder() {
                 body: JSON.stringify(requestData)
             });
             const responseData = await response.json();
-            console.log('Data received:', responseData);
             setRecords({ ...editedRecords, work_description: workDescription, diagnostics_result: diagnosticsResult, recommendations: recommendations });
         } catch (error) {
             console.error('Error saving data:', error);
@@ -227,7 +225,6 @@ function SearcOrder() {
         try {
             const response = await fetch('/api/alltemplate');
             const data = await response.json();
-            console.log("Fetched data:", data);
 
             // Обновление типов сообщений с заменой параметров
             const updatedTypes = data.map(template => ({

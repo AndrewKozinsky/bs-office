@@ -262,7 +262,7 @@ const OrderStatusOld = () => {
 
 	const searchModel = async (deviceModel) => {
 		try {
-			const response = await deviceRequests.getDevice(deviceModel)
+			const response = await deviceRequests.getBrandDevices(deviceModel)
 			const data = response.data
 			setDeviceModel(Array.isArray(data) ? data : [])
 		} catch (error) {
@@ -407,7 +407,6 @@ const OrderStatusOld = () => {
 
 	const saveFetch = async (cleanData) => {
 		const serverData = mapFormDataToServerFormat(cleanData)
-		console.log('Данные отправлены:', cleanData)
 		try {
 			const response = await ordersRequests.createOrder(cleanData)
 			const responseData = response.data

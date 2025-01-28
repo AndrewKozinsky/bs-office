@@ -57,15 +57,17 @@ const PagesContainer = () => {
 						}
 					/>
 					{/*<Route
-					path={pagesRoute.warrantyRepair}
-					element={
-						userRole === UserRole.Admin || userRole === UserRole.Manager || userRole === UserRole.Master ? (
-							<WarrantyRepair />
-						) : (
-							<Navigate to={pagesRoute.personalAccount.path} />
-						)
-					}
-				/>*/}
+						path={pagesRoute.warrantyRepair.path}
+						element={
+							userRole === UserRole.Admin ||
+							userRole === UserRole.Manager ||
+							userRole === UserRole.Master ? (
+								<WarrantyRepair />
+							) : (
+								<Navigate to={pagesRoute.personalAccount.path} />
+							)
+						}
+					/>*/}
 					{/*<Route
 					path={pagesRoute.maxvi}
 					element={

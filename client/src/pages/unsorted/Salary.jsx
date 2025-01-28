@@ -65,7 +65,6 @@ function WarrantyRepair() {
 
     const handleSaveClick = () => {
         // Реализуем функционал сохранения здесь
-        console.log('Data to be saved:', deviceData);
     };
 
     return (

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import LoadingAnimation from '../../common/components/LoadingAnimation/LoadingAnimation.tsx'
 import { repairRequests } from '../../requests/repairRequests.ts'
-import Messenger from './unsorted/messenger/Messenger'
 import { TbExclamationMark } from 'react-icons/tb'
 
 function WarrantyRepair() {
@@ -67,7 +66,6 @@ function WarrantyRepair() {
 
 	const handleSubmit = async () => {
 		if (!selectedFile) {
-			console.log('No file selected')
 			return
 		}
 
@@ -83,7 +81,6 @@ function WarrantyRepair() {
 				},
 			})
 
-			console.log('Данные с файла:', response.data)
 			const { data } = response
 
 			// Преобразование данных перед добавлением
@@ -138,7 +135,6 @@ function WarrantyRepair() {
 
 	const handleSaveClick = async () => {
 		if (!isValid) {
-			console.log('Please fill in all required fields.')
 			return
 		}
 		try {
@@ -154,19 +150,14 @@ function WarrantyRepair() {
 					...end_user,
 				},
 			}
-			console.log('Data to send:', dataToSend)
 
 			const response = await axios.post('/api/1c/WarrantyOrder', dataToSend)
-			console.log('Response data:', response.data)
 			if (response.status === 200 && response.data) {
 				const responseData = response.data
 				const order_id = responseData.order_id || ''
 				const order_Error = responseData.order_Error || 'Заказ наряд создан!'
-				console.log('Данные успешно сохранены:', order_id)
-				console.log('Статус заказа:', order_Error)
 				alert(`Номер заказа: ${order_id}\nСтатус: ${order_Error}`)
 			} else {
-				console.log('Данные не получены или отсутствуют')
 			}
 
 			setEditMode(false)
@@ -543,7 +534,7 @@ function WarrantyRepair() {
 				</div>
 				{WarrantyOrder()}
 			</div>
-			<Messenger />
+			{/*<Messenger />*/}
 		</div>
 	)
 }

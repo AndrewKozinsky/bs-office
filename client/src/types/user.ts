@@ -20,6 +20,7 @@ export type User = {
 	user_address: string
 	user_good_address: Address
 	user_id: string // '000000030'
+	user_id_oneC: string
 	user_legal_address: string // ''
 	user_name: string // 'Муксинов Ильшат Наильевич '
 	user_phone: string // ''
@@ -40,6 +41,7 @@ export type Address = {
 	region: string // 'Оренбургская обл'
 	street_type: string // "пер" или "ул."
 	street: string // 'Липовая'
+	full_adress: string // "Самарская обл. .  .  д. "
 	uri: string // ''
 }
 
@@ -52,8 +54,26 @@ export type DeviceType = {
 }
 
 export type Device = {
+	device_id: string
 	device_model_id: '000005165'
 	device_model_name: 'P30'
+	device_model: string
+	device_full_model: string
+	device_sale_date: string
+	device_type_id: string
+	device_type: string
+	device_brand_id: string
+	device_brand: string
+	device_excel_model: string
+	device_sn: string
+	device_imei: string
+	device_appearance: string
+	device_equipment: string
+	device_stated_defect: string
+	device_defect: string
+	work_description: string
+	diagnostics_result: string
+	recommendations: string
 }
 
 export type DeviceBrand = {
@@ -62,91 +82,10 @@ export type DeviceBrand = {
 }
 
 export type Order = {
-	device: {
-		device_appearance: ''
-		device_brand: ''
-		device_brand_id: ''
-		device_defect: null
-		device_equipment: ''
-		device_excel_model: ''
-		device_full_model: ''
-		device_id: ''
-		device_imei: ''
-		device_model: ''
-		device_model_id: ''
-		device_sale_date: ''
-		device_sn: ''
-		device_stated_defect: ''
-		device_type: ''
-		device_type_id: ''
-		diagnostics_result: ''
-		recommendations: ''
-		work_description: ''
-	}
-	end_user: {
-		user_address: ''
-		user_good_address: {
-			City: ''
-			Country: ''
-			House: ''
-			Latitude: ''
-			Longitude: ''
-			PostalCode: ''
-			Region: ''
-			Street: ''
-			URI: ''
-		}
-		user_id: ''
-		user_legal_address: ''
-		user_name: ''
-		user_phone: ''
-		user_role: ''
-		user_source: ''
-		user_type: ''
-	}
-	error: ''
-	master: {
-		user_address: ''
-		user_good_address: {
-			City: ''
-			Country: ''
-			House: ''
-			Latitude: ''
-			Longitude: ''
-			PostalCode: ''
-			Region: ''
-			Street: ''
-			URI: ''
-		}
-		user_id: ''
-		user_legal_address: ''
-		user_name: ''
-		user_phone: ''
-		user_role: ''
-		user_source: ''
-		user_type: ''
-	}
-	meneger: {
-		user_address: ''
-		user_good_address: {
-			City: ''
-			Country: ''
-			House: ''
-			Latitude: ''
-			Longitude: ''
-			PostalCode: ''
-			Region: ''
-			Street: ''
-			URI: ''
-		}
-		user_id: ''
-		user_legal_address: ''
-		user_name: ''
-		user_phone: ''
-		user_role: ''
-		user_source: ''
-		user_type: ''
-	}
+	device: Device
+	end_user: User
+	master: User
+	meneger: User
 	order_branch: 'Салмышская'
 	order_date: '20.01.2025 15:24:16'
 	order_id: '00НФ-025822'
@@ -154,30 +93,10 @@ export type Order = {
 	order_status: 'К выдаче'
 	order_type: 'Обслуживание картриджей'
 	oredr_change_date: ''
-	parts: null
+	parts: any[]
 	retail_order_date: ''
-	retail_user: {
-		user_address: ''
-		user_good_address: {
-			City: ''
-			Country: ''
-			House: ''
-			Latitude: ''
-			Longitude: ''
-			PostalCode: ''
-			Region: ''
-			Street: ''
-			URI: ''
-		}
-		user_id: 'НФ-003463'
-		user_legal_address: ''
-		user_name: 'Клиент. Картриджи. Салмышская'
-		user_phone: ''
-		user_role: ''
-		user_source: ''
-		user_type: 'Физическое лицо'
-	}
-	works: null
+	retail_user: User
+	works: any[]
 }
 
 export type OrderStatusName = string

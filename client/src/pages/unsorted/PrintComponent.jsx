@@ -117,7 +117,6 @@ const PrintComponent = () => {
         try {
             const response = await fetch(`/api/byt/order/${orderNumber}`);
             const data = await response.json();
-            console.log('Data:', data);
 
             // Вызываем функцию для обновления PDF с полученными данными о заказе
             const pdfBytes = await fetchPdf();

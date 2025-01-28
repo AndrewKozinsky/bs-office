@@ -338,10 +338,8 @@ app.get('/api/orders/', async (req, res) => {
     }
 
     const responseData = await response.json()
-    console.log(responseData)
     res.json(responseData)
   } catch (error) {
-    // console.log('err')
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
@@ -362,7 +360,6 @@ app.get('/api/status/', async (req, res) => {
     const responseData = await response.json()
     res.json(responseData)
   } catch (error) {
-    // console.log('err')
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
@@ -389,7 +386,11 @@ app.get('/api/users/search/:l_name', async (req, res) => {
   }
 })
 
-app.get('/api/device/model/:deviceModel', async (req, res) => {
+/**
+ * Получение названий устройств производителя с переданным идентификатором
+ * @param brandId — идентификатор производителя, название моделей, которые нужно получить
+ */
+app.get('/api/device/model/:brandId', async (req, res) => {
   const { deviceModel } = req.params;
 
   try {
@@ -438,7 +439,6 @@ app.post('/api/1c/WarrantyOrder', async (req, res) => {
     });
 
     const responseData = await response.json();
-    console.log('Data received:', responseData);
     res.json(responseData);
   } catch (error) {
     console.error('Error sending data:', error);
@@ -908,7 +908,6 @@ app.post(`/api/GetAllParts`, async (req, res) => {
     const responseData = await response.json();
     res.locals = { ...res.locals, url: savedLink };
     res.json(responseData);
-    console.log('Результат Parts', responseData);
   } catch (error) {
     console.error('Error sending data:', error);
     res.status(500).send(error.message || 'Internal Server Error');
@@ -945,7 +944,6 @@ app.post('/api/SaveAktData', async (req, res) => {
       throw new Error(errorMessage);
     }
     const responseData = await response.json();
-    console.log('Результат act:', responseData);
     res.locals = { ...res.locals, url: savedLink };
     res.status(response.status).json(responseData);
   } catch (error) {
@@ -973,7 +971,6 @@ app.post(`/api/Finish`, async (req, res) => {
     }
 
     const responseData = await response.json();
-    console.log('Результат fin:', responseData);
     res.locals = { ...res.locals, url: savedLink };
     res.json(responseData);
     res.status(response.status).json(responseData);
@@ -1011,10 +1008,8 @@ app.get('/api/address-suggestions', async (req, res) => {
     }
 
     const responseData = await response.json()
-    console.log(responseData)
     res.json(responseData)
   } catch (error) {
-    // console.log('err')
     console.error(error);
     res.status(500).send('Internal Server Error');
   }

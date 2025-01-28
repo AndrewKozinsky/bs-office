@@ -499,7 +499,6 @@ function Maxvi() {
 
 			if (response.ok) {
 				const responseData = await response.json()
-				console.log('Response from server:', responseData)
 
 				setShowManualDefectCause(responseData.device.device_defect_causes === true)
 				setActIssuingReasonDescription(responseData.act_issuing_reason_description)

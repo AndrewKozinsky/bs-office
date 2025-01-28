@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react'
 import './orders.css'
 import { Link, useNavigate } from 'react-router-dom'
 import LoadingAnimation from '../../common/components/LoadingAnimation/LoadingAnimation.tsx'
-import Messenger from './unsorted/messenger/Messenger'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { FaCalendarAlt } from 'react-icons/fa';
@@ -167,6 +166,7 @@ const Calls = () => {
     try {
       // @ts-ignore
 			let startDateParam = state[0].startDate ? format(state[0].startDate, 'yyyy-MM-dd') : null
+		// @ts-ignore
       let endDateParam = state[0].endDate ? format(state[0].endDate, 'yyyy-MM-dd') : null
       const searchNumberValue = searchNumber || null
 
@@ -178,6 +178,7 @@ const Calls = () => {
         setRecords([])
         setTableHeaderVisibility(false)
       } else {
+		  // @ts-ignore
 				data.sort((a, b) => new Date(a.date_time) - new Date(b.date_time))
 
         setRecords(data)
@@ -209,6 +210,7 @@ const Calls = () => {
       const response = await fetch(`/api/callstoday/${startDateParam ?? 'null'}/${endDateParam ?? 'null'}/${searchNumberValue}`)
       const data = await response.json()
 
+		// @ts-ignore
       data.sort((a, b) => new Date(a.date_time) - new Date(b.date_time))
 
       setRecords(data)
@@ -370,6 +372,7 @@ const Calls = () => {
     sortedRecords.sort((a, b) => {
 			const dateTimeA = new Date(`${a.date_time}`)
       const dateTimeB = new Date(`${b.date_time}`)
+		// @ts-ignore
       return sortByDateTimeAsc ? dateTimeB - dateTimeA : dateTimeA - dateTimeB
     });
 
@@ -384,6 +387,7 @@ const Calls = () => {
     setSearchFIO('')
     setSearchNumber('')
     setSearchOrder('')
+		// @ts-ignore
     setState([{ startDate: null, endDate: null, key: 'selection' }]) // Adjusted state reset
     filterfetchData() // Fetch new data after resetting filters
   };
@@ -408,6 +412,7 @@ const Calls = () => {
 
 	const renderRecords = () => {
 		if (!records || records.length === 0) {
+			// @ts-ignore
 			return <tr><td colSpan='8'>{noDataMessage || 'Нет данных для отображения'}</td></tr>
     }
 
@@ -444,6 +449,7 @@ const Calls = () => {
 
 			let displayNumber
       if (cal.name_user && cal.name_user.length > 0) {
+		  // @ts-ignore
 				displayNumber = <Link className='link-button-calls' onClick={() => handleFIOClick(cal.name_user)}>{cal.name_user}</Link>
       } else if (cal.in_number && cal.in_number.length < 4 && cal.out_nomber && cal.out_nomber.length < 4) {
 				displayNumber = (
@@ -604,7 +610,7 @@ const Calls = () => {
 					/>
 				)}
 			</div>
-			{/* <div className="block-searh">
+			 <div className="block-searh">
                   <input
                     type="text"
                     value={searchFIO}
@@ -646,7 +652,7 @@ const Calls = () => {
                       ))}
                     </div>
                   )}
-                </div> */}
+                </div>
 		</>
 	);
 }

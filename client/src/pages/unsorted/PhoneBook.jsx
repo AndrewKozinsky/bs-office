@@ -16,13 +16,11 @@ const PhoneBook = () => {
     const fetchData = async () => {
         setIsLoading(true);
         try {
-            console.log('Fetching data from /api/1c/users');
             const response = await fetch(`/api/1c/users`);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
             const data = await response.json();
-            console.log('Data received:', data);
             setRecords(data);
             setTableHeaderVisibility(true);
         } catch (error) {

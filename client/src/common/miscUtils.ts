@@ -3,9 +3,8 @@ export function throttle(func: (...args: any[]) => void, ms: number) {
 		savedArgs: any,
 		savedThis: any
 
-	function wrapper() {
+	function wrapper(...args: any[]) {
 		if (isThrottled) {
-			// (2)
 			savedArgs = arguments
 			// @ts-ignore
 			savedThis = this

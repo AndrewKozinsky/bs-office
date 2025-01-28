@@ -1,12 +1,15 @@
 .new-order-form {
     position: relative;
-    max-width: 130rem;
+    max-width: 140rem;
 }
 
 .new-order-form__content {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
     gap: 3rem;
+
+    & > *:nth-child(2), & > *:nth-child(3) {
+        flex-grow: 1;
+    }
 }
 
 .new-order-form__submit-button {
