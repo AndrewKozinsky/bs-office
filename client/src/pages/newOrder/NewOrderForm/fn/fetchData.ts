@@ -1,9 +1,11 @@
+import { Form, FormInstance } from 'antd'
 import { useEffect, useRef } from 'react'
 import { throttle } from '../../../../common/miscUtils.ts'
 import { addressRequests } from '../../../../requests/addressRequests.ts'
 import { deviceRequests } from '../../../../requests/deviceRequests.ts'
 import { staffRequests } from '../../../../requests/staffRequests.ts'
 import { useNewOrderStore } from '../../newOrderStore/allPagesStore.ts'
+import { FormNames } from './formSubmit.ts'
 
 // ==== Fetch masters ===
 
@@ -104,15 +106,31 @@ async function fetchDeviceBrands() {
 
 const throttledFetchDeviceModels = throttle(fetchDeviceModels, 500)
 
-export function useFetchDeviceModels() {
-	useEffect(function () {
-		throttledFetchDeviceModels()
-	}, [])
+export function useFetchDeviceModels(form: FormInstance) {
+	const selectedBrandId = useNewOrderStore((s) => s.selectedBrandId)
+
+	useEffect(
+		function () {
+			if (!selectedBrandId) return
+
+			const { deviceBrands } = useNewOrderStore.getState()
+			if (!deviceBrands) return
+
+			const selectedDeviceBrand = deviceBrands.find((deviceBrand) => {
+				return deviceBrand.device_brand_id === selectedBrandId
+			})
+
+			if (!selectedDeviceBrand) return
+
+			throttledFetchDeviceModels(selectedDeviceBrand.device_brand_name)
+		},
+		[selectedBrandId],
+	)
 }
 
-async function fetchDeviceModels() {
+async function fetchDeviceModels(brandName: string) {
 	try {
-		const response = await deviceRequests.getBrandDevices('apple')
+		const response = await deviceRequests.getBrandDevices(brandName.toLowerCase())
 
 		useNewOrderStore.setState({ deviceModels: response.data })
 	} catch (error) {

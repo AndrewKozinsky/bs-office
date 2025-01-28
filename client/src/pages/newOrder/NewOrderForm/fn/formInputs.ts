@@ -22,7 +22,18 @@ export function useGetOnDeviceTypeSearchChange() {
 
 export function useGetOnDeviceBrandsSearchChange() {
 	return useCallback(function (deviceBrandSearch: string) {
-		useNewOrderStore.setState({ deviceBrandSearch })
+		useNewOrderStore.setState({ deviceBrandSearch, selectedBrandId: null })
+	}, [])
+}
+
+/**
+ * Возвращает функцию, которая ставит в свойство brandIsSelected true
+ * если выбрали какой-то пункт из списка производителей.
+ * Нужно чтобы загрузился список устройств этого производителя.
+ */
+export function useGetOnDeviceBrandChanged() {
+	return useCallback(function (brandId: string) {
+		useNewOrderStore.setState({ selectedBrandId: brandId })
 	}, [])
 }
 

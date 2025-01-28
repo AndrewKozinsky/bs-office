@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Input, Radio, Select, Typography } from 'antd'
+import { Button, Form, FormInstance, Input, Radio, Select, Typography } from 'antd'
 import { useNewOrderStore } from '../newOrderStore/allPagesStore.ts'
 import {
 	clientTypesRadiosArrData,
@@ -20,11 +20,12 @@ import {
 } from './fn/fetchData.ts'
 import {
 	useGetOnAddressSearchChange,
+	useGetOnDeviceBrandChanged,
 	useGetOnDeviceBrandsSearchChange,
 	useGetOnDeviceModelsSearchChange,
 	useGetOnDeviceTypeSearchChange,
 } from './fn/formInputs.ts'
-import { FieldType, useIsNewOrderFormValid, useGetSubmitNewOrderForm } from './fn/formSubmit.ts'
+import { FieldType, useIsNewOrderFormValid, useGetSubmitNewOrderForm, FormNames } from './fn/formSubmit.ts'
 import './NewOrderForm.scss'
 
 const { Title } = Typography
@@ -45,7 +46,6 @@ function NewOrderForm() {
 		<Form
 			form={form}
 			layout='vertical'
-			name='basic'
 			onFinish={submitNewOrderForm}
 			onChange={failedSubmitNewOrderForm}
 			className='new-order-form'
@@ -65,7 +65,7 @@ function NewOrderForm() {
 				</div>
 				<div>
 					<Title level={2}>Аппарат</Title>
-					<DeviceInputs />
+					<DeviceInputs form={form} />
 				</div>
 				<div>
 					<Title level={2}>Мастер</Title>
@@ -81,7 +81,7 @@ export default NewOrderForm
 
 function RepairTypeRadio() {
 	return (
-		<Form.Item<FieldType> name='repairType' rules={[{ required: true, message: 'Отметьте тип ремонта' }]}>
+		<Form.Item<FieldType> name={FormNames.repairType} rules={[{ required: true, message: 'Отметьте тип ремонта' }]}>
 			<Radio.Group style={style} options={repairTypesRadiosArrData} />
 		</Form.Item>
 	)
@@ -91,7 +91,7 @@ function ClientNameInput() {
 	return (
 		<Form.Item<FieldType>
 			label='ФИО'
-			name='clientName'
+			name={FormNames.clientName}
 			rules={[{ required: true, message: 'Please input your username!' }]}
 		>
 			<Input />
@@ -103,7 +103,7 @@ function ClientPhoneInput() {
 	return (
 		<Form.Item<FieldType>
 			label='Телефон'
-			name='clientPhone'
+			name={FormNames.clientPhone}
 			rules={[{ required: true, message: 'Please input your username!' }]}
 		>
 			<Input />
@@ -123,7 +123,7 @@ function MyClientAddressSelect() {
 	return (
 		<Form.Item<FieldType>
 			label='Адрес'
-			name='clientAddress'
+			name={FormNames.clientAddress}
 			rules={[{ required: true, message: 'Введите, пожалуйста, адрес' }]}
 		>
 			<Select
@@ -141,7 +141,7 @@ function ClientTypeRadio() {
 	return (
 		<Form.Item<FieldType>
 			label='Статус'
-			name='clientStatus'
+			name={FormNames.clientStatus}
 			rules={[{ required: true, message: 'Please input your username!' }]}
 		>
 			<Radio.Group style={style} options={clientTypesRadiosArrData} />
@@ -151,46 +151,52 @@ function ClientTypeRadio() {
 
 function HowKnowRadio() {
 	return (
-		<Form.Item<FieldType> label='Как узнали о нас' name='howToKnowAboutUs'>
+		<Form.Item<FieldType> label='Как узнали о нас' name={FormNames.howToKnowAboutUs}>
 			<Radio.Group style={style} options={howKnowRadiosArrData} />
 		</Form.Item>
 	)
 }
 
-function DeviceInputs() {
+type DeviceInputsProps = {
+	form: FormInstance
+}
+
+function DeviceInputs(props: DeviceInputsProps) {
+	const { form } = props
+
 	return (
 		<>
 			<DeviceType />
 			<DeviceBrand />
-			<DeviceModel />
+			<DeviceModel form={form} />
 			<Form.Item<FieldType>
 				label='Серийный модуль'
-				name='deviceSerial'
+				name={FormNames.deviceSerial}
 				rules={[{ required: true, message: 'Please input your username!' }]}
 			>
 				<Input />
 			</Form.Item>
 			<Form.Item<FieldType>
 				label='imei'
-				name='deviceImai'
+				name={FormNames.deviceImai}
 				rules={[{ required: true, message: 'Please input your username!' }]}
 			>
 				<Input />
 			</Form.Item>
-			<Form.Item<FieldType> label='Внешний вид' name='deviceAppearance'>
+			<Form.Item<FieldType> label='Внешний вид' name={FormNames.deviceAppearance}>
 				<Input.TextArea rows={2} />
 			</Form.Item>
 			<Form.Item<FieldType>
 				label='Комплектация'
-				name='deviceEquipment'
+				name={FormNames.deviceEquipment}
 				rules={[{ required: true, message: 'Please input your username!' }]}
 			>
 				<Input.TextArea rows={2} />
 			</Form.Item>
-			<Form.Item<FieldType> label='Дефект' name='deviceDefect'>
+			<Form.Item<FieldType> label='Дефект' name={FormNames.deviceDefect}>
 				<Input.TextArea rows={2} />
 			</Form.Item>
-			<Form.Item<FieldType> label='Комментарий' name='deviceComment'>
+			<Form.Item<FieldType> label='Комментарий' name={FormNames.deviceComment}>
 				<Input.TextArea rows={2} />
 			</Form.Item>
 		</>
@@ -209,7 +215,7 @@ function DeviceType() {
 	return (
 		<Form.Item<FieldType>
 			label='Тип аппарата'
-			name='deviceType'
+			name={FormNames.deviceType}
 			rules={[{ required: true, message: 'Выберите тип аппарата' }]}
 		>
 			<Select
@@ -228,6 +234,7 @@ function DeviceBrand() {
 	useCreateDeviceBrandsSelectOptionsData()
 
 	const onDeviceBrandSearchChange = useGetOnDeviceBrandsSearchChange()
+	const onDeviceBrandChanged = useGetOnDeviceBrandChanged()
 
 	const deviceBrandSearch = useNewOrderStore((s) => s.deviceBrandSearch)
 	const deviceBrandsSelectOptions = useNewOrderStore((s) => s.deviceBrandsSelectOptions)
@@ -235,7 +242,7 @@ function DeviceBrand() {
 	return (
 		<Form.Item<FieldType>
 			label='Производитель'
-			name='deviceBrand'
+			name={FormNames.deviceBrand}
 			rules={[{ required: true, message: 'Выберите производителя аппарата' }]}
 		>
 			<Select
@@ -244,46 +251,43 @@ function DeviceBrand() {
 				onSearch={onDeviceBrandSearchChange}
 				searchValue={deviceBrandSearch}
 				filterOption={false}
+				onChange={onDeviceBrandChanged}
 			/>
 		</Form.Item>
 	)
 }
 
-function DeviceModel() {
-	useFetchDeviceModels()
+type DeviceModelProps = {
+	form: FormInstance
+}
+
+function DeviceModel(props: DeviceModelProps) {
+	const { form } = props
+
+	useFetchDeviceModels(form)
 	useCreateDeviceModelsSelectOptionsData()
 
-	const onDeviceModelSearchChange = useGetOnDeviceModelsSearchChange()
+	// const onDeviceModelSearchChange = useGetOnDeviceModelsSearchChange()
 
-	const deviceModelSearch = useNewOrderStore((s) => s.deviceModelSearch)
+	// const deviceModelSearch = useNewOrderStore((s) => s.deviceModelSearch)
 	const deviceModelsSelectOptions = useNewOrderStore((s) => s.deviceModelsSelectOptions)
 
 	return (
 		<Form.Item<FieldType>
 			label='Модель'
-			name='deviceBrand'
+			name={FormNames.deviceModel}
 			rules={[{ required: true, message: 'Выберите модель аппарата' }]}
 		>
 			<Select
 				options={deviceModelsSelectOptions}
-				showSearch
-				onSearch={onDeviceModelSearchChange}
-				searchValue={deviceModelSearch}
+				// showSearch
+				// onSearch={onDeviceModelSearchChange}
+				// searchValue={deviceModelSearch}
 				filterOption={false}
-				disabled={!deviceModelsSelectOptions}
+				disabled={!deviceModelsSelectOptions || !deviceModelsSelectOptions.length}
 			/>
 		</Form.Item>
 	)
-
-	/*return (
-		<Form.Item<FieldType>
-			label='Модель'
-			name='deviceModel'
-			rules={[{ required: true, message: 'Please input your username!' }]}
-		>
-			<Input />
-		</Form.Item>
-	)*/
 }
 
 function MasterSelect() {
@@ -293,7 +297,10 @@ function MasterSelect() {
 	const mastersOptions = useNewOrderStore((s) => s.mastersSelectOptions)
 
 	return (
-		<Form.Item<FieldType> name='master' rules={[{ required: true, message: 'Please input your username!' }]}>
+		<Form.Item<FieldType>
+			name={FormNames.master}
+			rules={[{ required: true, message: 'Please input your username!' }]}
+		>
 			<Radio.Group style={style} options={mastersOptions} />
 		</Form.Item>
 	)

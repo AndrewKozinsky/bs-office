@@ -33,6 +33,9 @@ export type NewOrderStore = {
 	// Варианты производителя устройства в виде данных для показа в выпадающем списке
 	deviceBrandsSelectOptions: null | SelectOption[]
 
+	// Если выбран производитель, то сюда пишется идентификатор.
+	// Если выбран, то можно загрузить его модели в список моделей
+	selectedBrandId: null | string
 	// Значение в поисковой строке модели устройства
 	deviceModelSearch: string
 	// Все модели устройств
@@ -59,6 +62,7 @@ export const newOrderStoreInitial: NewOrderStore = {
 	deviceBrands: null,
 	deviceBrandsSelectOptions: null,
 
+	selectedBrandId: null,
 	deviceModelSearch: '',
 	deviceModels: null,
 	deviceModelsSelectOptions: null,

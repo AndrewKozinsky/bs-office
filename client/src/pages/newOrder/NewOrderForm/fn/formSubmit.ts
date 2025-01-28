@@ -2,24 +2,26 @@ import { FormInstance } from 'antd'
 import { CreateOrderBody, ordersRequests } from '../../../../requests/ordersRequests.ts'
 import { useNewOrderStore } from '../../newOrderStore/allPagesStore.ts'
 
-export type FieldType = {
-	repairType: string
-	clientName: string
-	clientPhone: string
-	clientAddress: string
-	clientStatus: string
-	howToKnowAboutUs: string
-	deviceType: string
-	deviceBrand: string
-	deviceModel: string
-	deviceSerial: string
-	deviceImai: string
-	deviceAppearance: string
-	deviceEquipment: string
-	deviceDefect: string
-	deviceComment: string
-	master: string
+export enum FormNames {
+	repairType = 'repairType',
+	clientName = 'clientName',
+	clientPhone = 'clientPhone',
+	clientAddress = 'clientAddress',
+	clientStatus = 'clientStatus',
+	howToKnowAboutUs = 'howToKnowAboutUs',
+	deviceType = 'deviceType',
+	deviceBrand = 'deviceBrand',
+	deviceModel = 'deviceModel',
+	deviceSerial = 'deviceSerial',
+	deviceImai = 'deviceImai',
+	deviceAppearance = 'deviceAppearance',
+	deviceEquipment = 'deviceEquipment',
+	deviceDefect = 'deviceDefect',
+	deviceComment = 'deviceComment',
+	master = 'master',
 }
+
+export type FieldType = Record<FormNames, string>
 
 export function useIsNewOrderFormValid(form: FormInstance) {
 	return async function () {

@@ -391,12 +391,12 @@ app.get('/api/users/search/:l_name', async (req, res) => {
  * @param brandId — идентификатор производителя, название моделей, которые нужно получить
  */
 app.get('/api/device/model/:brandId', async (req, res) => {
-  const { deviceModel } = req.params;
+  const { brandId } = req.params;
 
   try {
     const { default: fetch } = await import('node-fetch');
 
-    const response = await fetch(`http://192.168.1.10/api/device/model/${encodeURIComponent(deviceModel)}`);
+    const response = await fetch(`http://192.168.1.10/api/device/model/${encodeURIComponent(brandId)}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -409,7 +409,8 @@ app.get('/api/device/model/:brandId', async (req, res) => {
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
-});
+})
+
 app.get('/api/works1c/:Z_name', async (req, res) => {
   const { Z_name } = req.params;
 
