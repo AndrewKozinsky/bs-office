@@ -1,0 +1,15 @@
+.customer-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.customer-profile__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.customer-profile__row-key {
+    font-weight: bold;
+}

@@ -940,16 +940,6 @@ input {
     border: 3px solid #1776CD;
     border-radius: 4px;
 }
-
-.order-box {
-    display: flex;
-    flex-direction: column;
-
-}
-
-.order-box h2 {
-    text-align: center;
-}
   
   .search-input {
     width: 100%;

@@ -195,14 +195,15 @@ app.get('/api/audio/:name', async (req, res) => {
     console.error('Error fetching audio:', error);
     res.status(500).send('Internal Server Error');
   }
-});
-app.get('/api/byt/order/:number', async (req, res) => {
+})
+
+app.get('/api/orders/:number', async (req, res) => {
   const { number } = req.params;
+  console.log(2)
 
   try {
-    const { default: fetch } = await import('node-fetch');
-
-    const response = await fetch(`http://192.168.1.10/api/byt/order/${number}`);
+    const response = await fetch(`http://192.168.1.10/api/orders/${number}`)
+    console.log(response)
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -217,12 +218,31 @@ app.get('/api/byt/order/:number', async (req, res) => {
   }
 })
 
-app.get('/api/byt/order/:searchNumber/:encodedUserRole/:UserName', async (req, res) => {
+app.get('/api/templates', async (req, res) => {
+  try {
+    const response = await fetch(`http://192.168.1.10/api/templates`)
+    console.log(response)
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+
+    res.json(responseData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+})
+
+/*app.get('/api/byt/order/:searchNumber/:encodedUserRole/:UserName', async (req, res) => {
   const { searchNumber, encodedUserRole, UserName } = req.params;
+  console.log(1)
 
   try {
-    const { default: fetch } = await import('node-fetch');
     const response = await fetch(`http://192.168.1.10/api/byt/order/${searchNumber}/${encodedUserRole}/${UserName}`);
+    console.log(response)
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -234,24 +254,50 @@ app.get('/api/byt/order/:searchNumber/:encodedUserRole/:UserName', async (req, r
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
-})
+})*/
 
 app.get('/api/1c/users', async (req, res) => {
   try {
-    const { default: fetch } = await import('node-fetch');
-    const response = await fetch('http://192.168.1.10/api/1c/users');
+    const query = new URLSearchParams(removeFalsyProperties(req.query))
+    const apiUrl = `http://192.168.1.10/api/1c/users?${query}`
+
+    const response = await fetch(apiUrl);
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    const responseData = await response.json();
+    const responseData = await response.json()
+    console.log(responseData)
     res.json(responseData);
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');
   }
-});
+})
+
+/*app.post('/api/1c/users', async (req, res) => {
+  try {
+    const query = new URLSearchParams(removeFalsyProperties(req.query))
+    console.log(query);
+
+    const apiUrl = `http://192.168.1.10/api/1c/users/?${query}`
+
+    const response = await fetch(apiUrl)
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const responseData = await response.json()
+    console.log(responseData)
+    res.json(responseData)
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+})*/
+
 app.get('/api/callstoday/:startDate/:endDate/:searchNumberValue', async (req, res) => {
   const { startDate, endDate, searchNumberValue } = req.params;
 
@@ -325,13 +371,16 @@ app.get('/api/shipment/:data/:userRole/:UserName/:destination', async (req, res)
     res.status(500).send('Internal Server Error');
   }
 })
+
 app.get('/api/orders/', async (req, res) => {
   try {
     const params = new URLSearchParams(removeFalsyProperties(req.query))
 
     const apiUrl = `http://192.168.1.10/api/orders/?${params}` // http://192.168.1.10/api/orders/?master=000000138
+    console.log(apiUrl)
 
     const response = await fetch(apiUrl)
+    console.log(response)
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -426,7 +475,8 @@ app.get('/api/works1c/:Z_name', async (req, res) => {
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
-});
+})
+
 app.post('/api/1c/WarrantyOrder', async (req, res) => {
   try {
     const requestData = req.body;
@@ -445,7 +495,8 @@ app.post('/api/1c/WarrantyOrder', async (req, res) => {
     console.error('Error sending data:', error);
     res.status(500).send(error.message || 'Internal Server Error');
   }
-});
+})
+
 app.get(`/api/WarrantyOrdermaxvi/:numberMaxvi`, async (req, res) => {
   const { numberMaxvi } = req.params;
   try {

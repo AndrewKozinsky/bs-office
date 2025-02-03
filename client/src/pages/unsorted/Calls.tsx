@@ -236,7 +236,7 @@ const Calls = () => {
   };
 	const searchUsers = async (fullName) => {
 		try {
-			const response = await usersRequests.getUsers(fullName)
+			const response = await usersRequests.getUsersByName(fullName)
 			const data = response.data
 			const filteredUsers = data.filter(user => user.user_phone)
       setMatchedOrder([]) // Очищаем результаты поиска заказов

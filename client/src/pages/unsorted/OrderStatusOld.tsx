@@ -251,7 +251,7 @@ const OrderStatusOld = () => {
 
 	const searchUsers = async (fullName) => {
 		try {
-			const response = await usersRequests.getUsers(fullName)
+			const response = await usersRequests.getUsersByName(fullName)
 			const data = response.data
 			setMatchedUsers(Array.isArray(data) ? data : [])
 		} catch (error) {

@@ -57,6 +57,7 @@ export type CreateOrderBody = {
 }
 
 export type GetOrdersRes = Order[]
+export type GetOrderRes = Order
 export type GetStatusesRes = OrderStatusName[]
 
 export const ordersRequests = {
@@ -68,5 +69,8 @@ export const ordersRequests = {
 	},
 	async getStatusesNames() {
 		return $api.get<GetStatusesRes>('/status')
+	},
+	async getOrder(orderId: number | string) {
+		return $api.get<GetOrderRes>('/orders/' + orderId)
 	},
 }

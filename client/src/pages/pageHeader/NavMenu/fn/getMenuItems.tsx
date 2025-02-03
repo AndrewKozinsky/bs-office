@@ -22,8 +22,8 @@ export function useGetMenuItems() {
 
 					children: [
 						{
-							label: <NavLink to={pagesRoute.allOrders.path}>{pagesRoute.allOrders.name}</NavLink>,
-							key: pagesRoute.allOrders.path,
+							label: <NavLink to={pagesRoute.orders.path}>{pagesRoute.orders.name}</NavLink>,
+							key: pagesRoute.orders.path,
 						},
 						{
 							label: (

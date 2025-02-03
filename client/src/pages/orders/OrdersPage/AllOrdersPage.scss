@@ -1,0 +1,13 @@
+.orders-box {
+    display: flex;
+    gap: 2rem;
+}
+.orders-box__left {
+    flex-grow: 1;
+    width: 240px;
+    max-width: 240px;
+}
+.orders-box__right {
+    flex-grow: 1;
+    flex-shrink: 100;
+}

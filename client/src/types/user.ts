@@ -118,3 +118,9 @@ export type TypesOfRepair = [
 ]
 
 export type ClientTypes = ['Физ. лицо', 'Юр. лицо', 'ИП', 'Гос. орган']
+
+export type MessageTemplate = {
+	template_id: string // "39"
+	template_text: string // 'Здравствуйте ваше устройство готово к выдаче'
+	template_type: 'SMS' | 'TG' | 'Звонок'
+}

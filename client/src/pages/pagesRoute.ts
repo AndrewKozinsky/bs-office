@@ -1,8 +1,4 @@
 export const pagesRoute = {
-	allOrders: {
-		path: '/all-orders',
-		name: 'Все заказы',
-	},
 	personalAccount: {
 		path: '/personal-account',
 		name: 'Личная страница',
@@ -39,9 +35,11 @@ export const pagesRoute = {
 		path: '/phoneBook',
 		name: 'Телефонная книга',
 	},
-	searchOrder: {
-		path: '/SearchOrder',
-		name: 'Поиск заказа',
+	order(orderId: string | number) {
+		return {
+			path: '/order/' + orderId,
+			name: 'Заказ',
+		}
 	},
 	adminka: {
 		path: '/adminka',

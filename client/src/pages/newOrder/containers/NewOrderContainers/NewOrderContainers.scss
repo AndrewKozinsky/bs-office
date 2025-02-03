@@ -1,0 +1,14 @@
+.new-order-containers {
+    display: flex;
+    gap: 3rem;
+    max-width: 140rem;
+}
+
+.new-order-container__left {
+    flex-grow: 1;
+    max-width: 30rem;
+}
+
+.new-order-container__right {
+    //flex-grow: 1;
+}

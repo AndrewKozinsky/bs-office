@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import NewOrderPage from '../newOrder/NewOrderPage/NewOrderPage.tsx'
+import NewOrderPage from '../newOrder/containers/NewOrderPage/NewOrderPage.tsx'
+import OrderPage from '../order/OrderPage/OrderPage.tsx'
 import PageHead from '../pageHeader/PageHead/PageHead.tsx'
 import { pagesRoute } from '../pagesRoute.ts'
 import WarrantyRepair from '../unsorted/WarrantyRepair.tsx'
@@ -18,7 +19,7 @@ import { UserRole } from '../../types/user.ts'
 import Maxvi from '../unsorted/Maxvi.tsx'
 // import Adminka from './components/pages/Adminka.jsx'
 // import Shipment from './components/pages/Shipment.jsx';
-import AllOrdersPage from '../allOrders/AllOrdersPage/AllOrdersPage.tsx'
+import AllOrdersPage from '../orders/OrdersPage/AllOrdersPage.tsx'
 import './PagesContainer.scss'
 
 const PagesContainer = () => {
@@ -33,12 +34,24 @@ const PagesContainer = () => {
 				<Routes>
 					{/*<Route path='/' element={<PersonalAccount />} />*/}
 					<Route
-						path={pagesRoute.allOrders.path}
+						path={pagesRoute.orders.path}
 						element={
 							userRole === UserRole.Admin ||
 							userRole === UserRole.Master ||
 							userRole === UserRole.Manager ? (
 									<AllOrdersPage />
+								) : (
+									<Navigate to={pagesRoute.personalAccount.path} />
+								)
+						}
+					/>
+					<Route
+						path={pagesRoute.order(':orderId').path}
+						element={
+							userRole === UserRole.Admin ||
+							userRole === UserRole.Master ||
+							userRole === UserRole.Manager ? (
+									<OrderPage />
 								) : (
 									<Navigate to={pagesRoute.personalAccount.path} />
 								)
