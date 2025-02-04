@@ -86,7 +86,7 @@ export type DeviceBrand = {
 	device_brand_name: '3q'
 }
 
-export type Order = {
+export type IOrder = {
 	device: Device
 	end_user: User
 	master: User
@@ -104,7 +104,7 @@ export type Order = {
 	works: any[]
 }
 
-export type OrderStatusName = string
+export type IOrderStatusName = string
 
 export type TypesOfRepair = [
 	'Простой ремонт',

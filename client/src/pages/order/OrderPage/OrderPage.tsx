@@ -15,9 +15,11 @@ function OrderPage() {
 	return (
 		<PageContainer header={pagesRoute.order('0').name}>
 			<div className='order-page'>
-				<CustomerProfile orderId={orderId} />
+				<div className='order-page__left'>
+					<CustomerProfile orderId={orderId} />
+				</div>
 				{clientPhone && (
-					<div>
+					<div className='order-page__right'>
 						<SMSNotification orderId={orderId} clientPhone={clientPhone} />
 						<CallToClientForm clientPhone={clientPhone} />
 					</div>

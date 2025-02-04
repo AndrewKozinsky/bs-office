@@ -3,12 +3,12 @@ import { GetDeviceBrandsRes, GetDeviceTypesRes } from '../../../requests/deviceR
 import { GetStatusesRes } from '../../../requests/ordersRequests.ts'
 import { GetStaffRes } from '../../../requests/staffRequests.ts'
 import { SelectOption } from '../../../types/commonTypes.ts'
-import { Order } from '../../../types/user.ts'
+import { IOrder } from '../../../types/user.ts'
 
 export type OrdersStore = {
 	loadingOrders: boolean
-	allOrders: null | Order[]
-	pageOrders: null | Order[]
+	allOrders: null | IOrder[]
+	pageOrders: null | IOrder[]
 	currentPage: number
 	totalPages: number
 	pageSize: number

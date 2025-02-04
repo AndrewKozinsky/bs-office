@@ -1,15 +1,14 @@
 .customer-profile {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.customer-profile__row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    grid-template-columns: auto auto;
+    column-gap: 2.2rem;
+    row-gap: 1rem;
 }
 
 .customer-profile__row-key {
-    font-weight: bold;
+    font-weight: 600;
+
+    &--gray {
+        color: gray;
+    }
 }

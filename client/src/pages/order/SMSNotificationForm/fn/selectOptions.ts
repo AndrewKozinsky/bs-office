@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { FormInstance } from 'antd'
-import { Order } from '../../../../types/user.ts'
+import { IOrder } from '../../../../types/user.ts'
 import { SMSNotificationStore, useSMSNotificationStore } from '../SMSNotificationStore.ts'
 import { checkNotificationForm, FieldNames, FieldType } from './form.ts'
 
@@ -47,7 +47,7 @@ export function useCreateSelectOptionsData() {
 	)
 }
 
-function replaceTemplateParameters(template: string, order: Order) {
+function replaceTemplateParameters(template: string, order: IOrder) {
 	return template
 		.replace(/{number}/g, order.order_id || '')
 		.replace(/{status}/g, order.order_status || '')

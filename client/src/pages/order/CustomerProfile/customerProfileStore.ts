@@ -1,9 +1,9 @@
 import { create } from 'zustand'
-import { Order } from '../../../types/user.ts'
+import { IOrder } from '../../../types/user.ts'
 
 export type CustomerProfileStore = {
 	loadingOrder: boolean
-	order: null | Order
+	order: null | IOrder
 }
 
 export const useCustomerProfileStore = create<CustomerProfileStore>()((set) => {

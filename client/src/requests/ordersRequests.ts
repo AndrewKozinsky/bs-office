@@ -1,5 +1,5 @@
 import $api from '../components/http'
-import { Device, Order, OrderStatusName, User } from '../types/user.ts'
+import { Device, IOrder, IOrderStatusName, User } from '../types/user.ts'
 
 export type GetOrdersParams = {
 	// Не правильно названо.
@@ -56,9 +56,9 @@ export type CreateOrderBody = {
 	}*/
 }
 
-export type GetOrdersRes = Order[]
-export type GetOrderRes = Order
-export type GetStatusesRes = OrderStatusName[]
+export type GetOrdersRes = IOrder[]
+export type GetOrderRes = IOrder
+export type GetStatusesRes = IOrderStatusName[]
 
 export const ordersRequests = {
 	async getOrders(params: GetOrdersParams) {
