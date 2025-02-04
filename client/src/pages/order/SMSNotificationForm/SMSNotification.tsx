@@ -49,8 +49,8 @@ function SMSNotification(props: SMSNotificationProps) {
 					<TextArea rows={2} onChange={changeSMSTextarea} />
 				</Form.Item>
 				<TooManySMSNotification />
-				<Form.Item>
-					<Button htmlType='submit' disabled={!isFormValid}>
+				<Form.Item style={{ textAlign: 'right' }}>
+					<Button htmlType='submit' disabled={!isFormValid} type='primary'>
 						Отправить СМС
 					</Button>
 				</Form.Item>

@@ -124,3 +124,16 @@ export type MessageTemplate = {
 	template_text: string // 'Здравствуйте ваше устройство готово к выдаче'
 	template_type: 'SMS' | 'TG' | 'Звонок'
 }
+
+export type EmployeePhone = {
+	user_address: ''
+	user_good_address: Address
+	user_id: string
+	user_id_oneC: string
+	user_legal_address: string
+	user_name: string // 'Приемка_софт'
+	user_phone: string // '110'
+	user_role: ''
+	user_source: ''
+	user_type: ''
+}

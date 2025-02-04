@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
+import { FormInstance } from 'antd'
 import { SendCMCRequestBody, smsRequests } from '../../../../requests/smsRequests.ts'
 import { useOrderStore } from '../../orderStore/orderStore.ts'
-import { FormInstance } from 'antd'
-import { FieldType } from '../SMSNotification.tsx'
+import { FieldNames, FieldType } from './form.ts'
 
 export function useGetSendSMS(form: FormInstance<FieldType>) {
 	const order = useOrderStore((s) => s.order)
@@ -16,7 +16,7 @@ export function useGetSendSMS(form: FormInstance<FieldType>) {
 
 			const requestData: SendCMCRequestBody = {
 				phone_number: order.retail_user.user_phone,
-				msg_text: form.getFieldValue('messageArea'),
+				msg_text: form.getFieldValue(FieldNames.message),
 			}
 
 			try {

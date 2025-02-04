@@ -10,7 +10,7 @@ export type SendCMCRequestBody = {
 
 export const smsRequests = {
 	// Отправка СМС
-	async sendCMC(data: SendCMCRequestBody) {
-		return $api.post<GetMessageTemplatesRes>('/sms', { data })
+	async sendCMC(bodyData: SendCMCRequestBody) {
+		return $api.post<GetMessageTemplatesRes>('/sms', bodyData)
 	},
 }

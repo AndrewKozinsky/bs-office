@@ -1,7 +1,3 @@
-// import React from 'react'
-import { useParams } from 'react-router-dom'
-import { ordersRequests } from '../../../requests/ordersRequests.ts'
-import { useUserStore } from '../../../stores/userStore.ts'
 import LoadingAnimation from '../../../common/components/LoadingAnimation/LoadingAnimation.tsx'
 import PageContainer from '../../PageContainer/PageContainer.tsx'
 import { pagesRoute } from '../../pagesRoute.ts'

@@ -8,11 +8,11 @@ export function useFetchOrder() {
 	let { orderId } = useParams()
 
 	useEffect(() => {
-		fetchData(orderId)
+		fetchOrderData(orderId)
 	}, [orderId])
 }
 
-async function fetchData(orderId: string) {
+async function fetchOrderData(orderId: string) {
 	try {
 		useOrderStore.setState({ loadingOrder: true })
 
@@ -27,6 +27,6 @@ async function fetchData(orderId: string) {
 	}
 }
 
-function isOrderExists(order: Order) {
+export function isOrderExists(order: Order) {
 	return !!order.device.device_id
 }

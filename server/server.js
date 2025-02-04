@@ -562,6 +562,7 @@ app.post('/api/neworder', async (req, res) => {
 app.post('/api/sms', async (req, res) => {
   try {
     const requestData = req.body
+    // console.log(requestData);
 
     const response = await fetch('http://192.168.1.10/api/sms', {
       method: 'POST',
