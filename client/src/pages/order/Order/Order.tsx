@@ -2,7 +2,7 @@ import { Typography } from 'antd'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import CustomerProfile from '../CustomerProfile/CustomerProfile.tsx'
-import SMSNotification from '../SMSNotification/SMSNotification.tsx'
+import SMSNotification from '../SMSNotificationForm/SMSNotification.tsx'
 
 const { Title } = Typography
 

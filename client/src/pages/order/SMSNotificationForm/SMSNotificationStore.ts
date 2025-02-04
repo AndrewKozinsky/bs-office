@@ -7,6 +7,9 @@ export type SMSNotificationStore = {
 	order: null | Order
 	smsTemplates: null | MessageTemplate[]
 	smsTemplatesSelectOptions: null | SelectOption[]
+	isFormValid: boolean
+	// Сколько СМС требуется для отправки введённого сообщения
+	smsCountToSendText: number
 }
 
 export const useSMSNotificationStore = create<SMSNotificationStore>()((set) => {
@@ -15,5 +18,7 @@ export const useSMSNotificationStore = create<SMSNotificationStore>()((set) => {
 		order: null,
 		smsTemplates: null,
 		smsTemplatesSelectOptions: null,
+		isFormValid: false,
+		smsCountToSendText: 0,
 	}
 })

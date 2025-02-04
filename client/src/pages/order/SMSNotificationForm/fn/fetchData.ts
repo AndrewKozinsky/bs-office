@@ -35,9 +35,9 @@ function isOrderExists(order: Order) {
 
 async function fetchMessageTemplates() {
 	try {
-		const response = await messageTemplateRequests.getMessageTemplates()
+		const messageTemplatesResp = await messageTemplateRequests.getMessageTemplates()
 
-		const smsTemplates = response.data.filter((template) => template.template_type === 'SMS')
+		const smsTemplates = messageTemplatesResp.data.filter((template) => template.template_type === 'SMS')
 
 		useSMSNotificationStore.setState({ smsTemplates })
 	} catch (error) {
