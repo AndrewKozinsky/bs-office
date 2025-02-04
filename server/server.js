@@ -557,12 +557,13 @@ app.post('/api/neworder', async (req, res) => {
     console.error('Ошибка:', error);
     res.status(500).send(error.message || 'Ошибка сервера');
   }
-});
-app.post('/api/sms/message/sms', async (req, res) => {
-  try {
-    const requestData = req.body;
+})
 
-    const response = await fetch('http://192.168.1.76:80/sms/message', {
+app.post('/api/sms', async (req, res) => {
+  try {
+    const requestData = req.body
+
+    const response = await fetch('http://192.168.1.10/api/sms', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -579,7 +580,8 @@ app.post('/api/sms/message/sms', async (req, res) => {
     console.error('Error sending data:', error);
     res.status(500).json({ message: error.message || 'Ошибка запроса', status: 500 });
   }
-});
+})
+
 app.post('/api/initiate_call', async (req, res) => {
   try {
     const requestData = req.body;
