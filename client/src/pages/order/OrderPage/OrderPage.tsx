@@ -1,24 +1,27 @@
-import LoadingAnimation from '../../../common/components/LoadingAnimation/LoadingAnimation.tsx'
+import React from 'react'
+import { useParams } from 'react-router-dom'
 import PageContainer from '../../PageContainer/PageContainer.tsx'
 import { pagesRoute } from '../../pagesRoute.ts'
-import NoOrderFound from '../NoOrderFound/NoOrderFound.tsx'
-import Order from '../Order/Order.tsx'
-import { useOrderStore } from '../orderStore/orderStore.ts'
-import { useFetchOrder } from './fn/fetchData.ts'
+import CallToClientForm from '../CallToClientForm/CallToClientForm.tsx'
+import CustomerProfile from '../CustomerProfile/CustomerProfile.tsx'
+import { useGetClientPhoneFromOrderData } from './fn/getCustomerPhone.ts'
+import SMSNotification from '../SMSNotificationForm/SMSNotification.tsx'
 import './OrderPage.scss'
 
 function OrderPage() {
-	const loadingOrder = useOrderStore((s) => s.loadingOrder)
-	const order = useOrderStore((s) => s.order)
-
-	useFetchOrder()
+	let { orderId } = useParams()
+	const clientPhone = useGetClientPhoneFromOrderData(orderId)
 
 	return (
 		<PageContainer header={pagesRoute.order('0').name}>
 			<div className='order-page'>
-				{loadingOrder && <LoadingAnimation />}
-				{!loadingOrder && !order && <NoOrderFound />}
-				{!loadingOrder && order && <Order />}
+				<CustomerProfile orderId={orderId} />
+				{clientPhone && (
+					<div>
+						<SMSNotification orderId={orderId} clientPhone={clientPhone} />
+						<CallToClientForm clientPhone={clientPhone} />
+					</div>
+				)}
 			</div>
 		</PageContainer>
 	)

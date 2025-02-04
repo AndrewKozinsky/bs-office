@@ -1,9 +1,29 @@
 import React from 'react'
-import { useOrderStore } from '../orderStore/orderStore.ts'
+import LoadingAnimation from '../../../common/components/LoadingAnimation/LoadingAnimation.tsx'
+import NoOrderFound from '../NoOrderFound/NoOrderFound.tsx'
+import { useFetchOrder } from './fn/fetchData.ts'
+import { useCustomerProfileStore } from './customerProfileStore.ts'
 import './CustomerProfile.scss'
 
-function CustomerProfile() {
-	const order = useOrderStore((s) => s.order)
+type CustomerProfileProps = {
+	orderId: string
+}
+
+function CustomerProfile(props: CustomerProfileProps) {
+	const { orderId } = props
+
+	useFetchOrder(orderId)
+
+	const order = useCustomerProfileStore((s) => s.order)
+	const loadingOrder = useCustomerProfileStore((s) => s.loadingOrder)
+
+	if (loadingOrder) {
+		return <LoadingAnimation />
+	}
+
+	if (!loadingOrder && !order) {
+		return <NoOrderFound />
+	}
 
 	return (
 		<div className='customer-profile'>

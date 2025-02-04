@@ -1,12 +1,12 @@
 import { create } from 'zustand'
 import { Order } from '../../../types/user.ts'
 
-export type OrderStore = {
+export type CustomerProfileStore = {
 	loadingOrder: boolean
 	order: null | Order
 }
 
-export const useOrderStore = create<OrderStore>()((set) => {
+export const useCustomerProfileStore = create<CustomerProfileStore>()((set) => {
 	return {
 		loadingOrder: true,
 		order: null,
