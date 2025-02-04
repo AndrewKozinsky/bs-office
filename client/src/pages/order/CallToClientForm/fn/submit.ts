@@ -7,12 +7,10 @@ export function useGetCallToClient(form: FormInstance<FieldType>, clientPhone: s
 	return useCallback(async function () {
 		try {
 			const reqBody: MakeCallReqBody = {
-				to: clientPhone,
-				from: form.getFieldValue(FieldNames.phone),
+				out_nomber: clientPhone,
+				in_number: form.getFieldValue(FieldNames.phone),
 			}
 			const response = await callsRequests.makeCall(reqBody)
-
-			alert('Сообщение отправлено')
 		} catch (error) {
 			alert(`Ошибка: ${error.message}`)
 		}

@@ -13,10 +13,12 @@ function Order() {
 	return (
 		<>
 			<CustomerProfile />
-			<div>
-				<SMSNotification orderId={orderId} />
-				{clientPhone && <CallToClientForm clientPhone={clientPhone} />}
-			</div>
+			{clientPhone && (
+				<div>
+					<SMSNotification orderId={orderId} clientPhone={clientPhone} />
+					<CallToClientForm clientPhone={clientPhone} />
+				</div>
+			)}
 		</>
 	)
 }

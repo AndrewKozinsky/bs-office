@@ -15,10 +15,11 @@ const { TextArea } = Input
 
 type SMSNotificationProps = {
 	orderId: string
+	clientPhone: string
 }
 
 function SMSNotification(props: SMSNotificationProps) {
-	const { orderId } = props
+	const { orderId, clientPhone } = props
 
 	useFetchMessageTemplates(orderId)
 
@@ -28,7 +29,7 @@ function SMSNotification(props: SMSNotificationProps) {
 	const isFormValid = useSMSNotificationStore((s) => s.isFormValid)
 	const changeTemplatesSelectChange = useGetChangeTemplatesSelectInput(form)
 	const changeSMSTextarea = useGetChangeSMSTextarea()
-	const sendSMS = useGetSendSMS(form)
+	const sendSMS = useGetSendSMS(form, clientPhone)
 
 	if (!orderId) {
 		return <p>Не указан orderId</p>

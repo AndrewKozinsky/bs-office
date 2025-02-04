@@ -4,18 +4,13 @@ import { SendCMCRequestBody, smsRequests } from '../../../../requests/smsRequest
 import { useOrderStore } from '../../orderStore/orderStore.ts'
 import { FieldNames, FieldType } from './form.ts'
 
-export function useGetSendSMS(form: FormInstance<FieldType>) {
+export function useGetSendSMS(form: FormInstance<FieldType>, clientPhone: string) {
 	const order = useOrderStore((s) => s.order)
 
 	return useCallback(
 		async function () {
-			if (!order || !order.retail_user || !order.retail_user.user_phone) {
-				alert('Номер телефона не найден')
-				return
-			}
-
 			const requestData: SendCMCRequestBody = {
-				phone_number: order.retail_user.user_phone,
+				phone_number: clientPhone,
 				msg_text: form.getFieldValue(FieldNames.message),
 			}
 

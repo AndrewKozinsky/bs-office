@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { messageTemplateRequests } from '../../../../requests/messageTemplateRequests.ts'
 import { ordersRequests } from '../../../../requests/ordersRequests.ts'
-import { Order } from '../../../../types/user.ts'
+import { orderManager } from '../../orderManager.ts'
 import { useSMSNotificationStore } from '../SMSNotificationStore.ts'
 
 export function useFetchMessageTemplates(orderId: string) {
@@ -19,7 +19,7 @@ async function fetchOrderData(orderId: string) {
 		useSMSNotificationStore.setState({ loading: true })
 
 		const response = await ordersRequests.getOrder(orderId)
-		const order = isOrderExists(response.data) ? response.data : null
+		const order = orderManager.isOrderExists(response.data) ? response.data : null
 
 		useSMSNotificationStore.setState({ order })
 	} catch (error) {
@@ -27,10 +27,6 @@ async function fetchOrderData(orderId: string) {
 	} finally {
 		useSMSNotificationStore.setState({ loading: false })
 	}
-}
-
-function isOrderExists(order: Order) {
-	return !!order.device.device_id
 }
 
 async function fetchMessageTemplates() {

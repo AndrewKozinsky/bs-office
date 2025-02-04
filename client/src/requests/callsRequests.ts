@@ -3,8 +3,8 @@ import { EmployeePhone, User, UserDiscoverySource } from '../types/user.ts'
 
 export type GetStaffPhones = EmployeePhone[]
 export type MakeCallReqBody = {
-	to: string // Номер телефона клиента
-	from: string // Номер телефона сотрудника
+	out_nomber: string // Номер телефона клиента
+	in_number: string // Номер телефона сотрудника
 }
 
 export const callsRequests = {
@@ -12,8 +12,8 @@ export const callsRequests = {
 	async getStaffPhones() {
 		return $api.get<GetStaffPhones>('/usersasterisk')
 	},
-	// Получение списка телефонов сотрудников
+	// Звонок клиенту с телефона сотрудника
 	async makeCall(body: MakeCallReqBody) {
-		return $api.post<GetStaffPhones>('/initiate_call', { body })
+		return $api.post<GetStaffPhones>('/initiate_call', body)
 	},
 }

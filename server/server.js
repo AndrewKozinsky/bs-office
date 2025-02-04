@@ -585,15 +585,15 @@ app.post('/api/sms', async (req, res) => {
 
 app.post('/api/initiate_call', async (req, res) => {
   try {
-    const requestData = req.body;
+    const requestData = req.body
 
-    const response = await fetch('http://192.168.1.76:80/initiate_call', {
+    const response = await fetch('http://192.168.1.10:80/api/initcallonec', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(requestData)
-    });
+    })
 
     if (!response.ok) {
       throw new Error(`Server responded with status ${response.status}`);
