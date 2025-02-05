@@ -1,7 +1,7 @@
 import { create } from 'zustand'
-import { GetDeviceBrandsRes, GetDeviceTypesRes } from '../../../requests/deviceRequests.ts'
-import { GetStatusesRes } from '../../../requests/ordersRequests.ts'
-import { GetStaffRes } from '../../../requests/staffRequests.ts'
+import DeviceApiTypes from '../../../requests/device/deviceApiTypes.ts'
+import OrdersApiTypes from '../../../requests/orders/ordersApiTypes.ts'
+import StaffApiTypes from '../../../requests/staff/staffApiTypes.ts'
 import { SelectOption } from '../../../types/commonTypes.ts'
 import { IOrder } from '../../../types/user.ts'
 
@@ -17,10 +17,10 @@ export type OrdersStore = {
 	universalSearchQuery: null | string
 
 	// Данные по мастерам и устройствам
-	masters: null | GetStaffRes
-	deviceTypes: null | GetDeviceTypesRes
-	deviceBrands: null | GetDeviceBrandsRes
-	orderStatuses: null | GetStatusesRes
+	masters: null | StaffApiTypes.GetStaffRes
+	deviceTypes: null | DeviceApiTypes.GetDeviceTypesRes
+	deviceBrands: null | DeviceApiTypes.GetDeviceBrandsRes
+	orderStatuses: null | OrdersApiTypes.GetStatusesRes
 
 	// Данные для вывода пунктов выпадающих списков
 	mastersSelectOptions: null | SelectOption[]

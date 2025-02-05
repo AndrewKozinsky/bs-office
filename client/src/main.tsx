@@ -1,18 +1,18 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createRoot } from 'react-dom/client'
 import App from './components/App/App.jsx'
 import * as React from 'react'
-import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import { store } from './components/redux/store.js'
 import './components/App/css/index.scss'
 
 const domNode = document.getElementById('root')
 const root = createRoot(domNode)
+const queryClient = new QueryClient()
 
 root.render(
-	<Provider store={store}>
+	<QueryClientProvider client={queryClient}>
 		<BrowserRouter>
 			<App />
 		</BrowserRouter>
-	</Provider>,
+	</QueryClientProvider>,
 )

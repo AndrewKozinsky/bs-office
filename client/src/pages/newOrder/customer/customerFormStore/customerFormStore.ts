@@ -1,8 +1,5 @@
 import { create } from 'zustand'
-import { AddressSuggestionsRes } from '../../../../requests/addressRequests.ts'
-import { GetDeviceBrandsRes, GetDevicesModelRes, GetDeviceTypesRes } from '../../../../requests/deviceRequests.ts'
-import { GetStaffRes } from '../../../../requests/staffRequests.ts'
-import { GetUsers } from '../../../../requests/usersRequests.ts'
+import UsersApiTypes from '../../../../requests/users/usersApiTypes.ts'
 import { SelectOption } from '../../../../types/commonTypes.ts'
 
 export enum CustomerFormTab {
@@ -13,7 +10,7 @@ export enum CustomerFormTab {
 export type CustomerFormStore = {
 	tab: CustomerFormTab
 	userNameSearch: string
-	users: null | GetUsers
+	users: null | UsersApiTypes.GetUsers
 	usersSelectOptions: SelectOption[]
 }
 

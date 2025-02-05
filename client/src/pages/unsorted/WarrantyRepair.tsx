@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import LoadingAnimation from '../../common/components/LoadingAnimation/LoadingAnimation.tsx'
-import { repairRequests } from '../../requests/repairRequests.ts'
+import { repairRequests } from '../../requests/repair/repairRequests.ts'
 import { TbExclamationMark } from 'react-icons/tb'
 
 function WarrantyRepair() {

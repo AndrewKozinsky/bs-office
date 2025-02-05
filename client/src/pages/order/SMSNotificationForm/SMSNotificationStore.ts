@@ -1,12 +1,12 @@
 import { create } from 'zustand'
-import { GetMessageTemplatesRes } from '../../../requests/messageTemplateRequests.ts'
+import MessageTemplateApiTypes from '../../../requests/messageTemplate/deviceApiTypes.ts'
 import { SelectOption } from '../../../types/commonTypes.ts'
-import { MessageTemplate, IOrder } from '../../../types/user.ts'
+import { IOrder } from '../../../types/user.ts'
 
 export type SMSNotificationStore = {
 	loading: boolean
 	order: null | IOrder
-	smsTemplates: null | GetMessageTemplatesRes
+	smsTemplates: null | MessageTemplateApiTypes.GetMessageTemplatesRes
 	smsTemplatesSelectOptions: null | SelectOption[]
 	isFormValid: boolean
 	// Сколько СМС требуется для отправки введённого сообщения

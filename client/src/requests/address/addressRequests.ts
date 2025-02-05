@@ -1,7 +1,5 @@
-import $api from '../components/http'
-import { Address, CurrentUser } from '../types/user.ts'
-
-export type AddressSuggestionsRes = Address[]
+import $api from '../../components/http'
+import AddressApiTypes from './addressApiTypes.ts'
 
 export const addressRequests = {
 	/**
@@ -10,6 +8,6 @@ export const addressRequests = {
 	 * @param search — строки вида 'Оренбург, Салмы'
 	 */
 	async addressSuggestions(search: string) {
-		return $api.get<AddressSuggestionsRes>('/address-suggestions', { params: { search } })
+		return $api.get<AddressApiTypes.AddressSuggestionsRes>('/address-suggestions', { params: { search } })
 	},
 }

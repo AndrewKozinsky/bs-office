@@ -1,6 +1,5 @@
 import { Button, Form, FormProps, Input } from 'antd'
 import React from 'react'
-import { observer } from 'mobx-react-lite'
 import { FieldType, submitForm } from './fn/submit.ts'
 import './login.css'
 
@@ -45,4 +44,4 @@ function LoginForm() {
 	)
 }
 
-export default observer(LoginForm)
+export default LoginForm

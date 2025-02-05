@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { GetOrdersParams, ordersRequests } from '../../../../requests/ordersRequests.ts'
+import OrdersApiTypes from '../../../../requests/orders/ordersApiTypes.ts'
+import { ordersRequests } from '../../../../requests/orders/ordersRequests.ts'
 import { useOrdersStore } from '../../ordersStore/ordersStore.ts'
 import { setOrdersDependsOnPage } from './pagination.ts'
 
@@ -21,7 +22,7 @@ export function useFetchOrders() {
 	}, [universalSearch, masterId, deviceBrandId, deviceTypeId])
 }
 
-async function fetchData(searchParams: GetOrdersParams = {}) {
+async function fetchData(searchParams: OrdersApiTypes.GetOrdersParams = {}) {
 	// http://192.168.1.10/api/orders/?brand=&deviceType=&master=&orderStatus=&fio=null
 	const { pageSize } = useOrdersStore.getState()
 

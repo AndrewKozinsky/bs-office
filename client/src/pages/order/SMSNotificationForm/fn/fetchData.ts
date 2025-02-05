@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { messageTemplateRequests } from '../../../../requests/messageTemplateRequests.ts'
-import { ordersRequests } from '../../../../requests/ordersRequests.ts'
+import { messageTemplateRequests } from '../../../../requests/messageTemplate/messageTemplateRequests.ts'
+import { ordersRequests } from '../../../../requests/orders/ordersRequests.ts'
 import { orderManager } from '../../orderManager.ts'
 import { useSMSNotificationStore } from '../SMSNotificationStore.ts'
 

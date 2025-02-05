@@ -1,12 +1,13 @@
 import { useCallback } from 'react'
 import { FormInstance } from 'antd'
-import { callsRequests, MakeCallReqBody } from '../../../../requests/callsRequests.ts'
+import CallsApiTypes from '../../../../requests/calls/callsApiTypes.ts'
+import { callsRequests } from '../../../../requests/calls/callsRequests.ts'
 import { FieldNames, FieldType } from './form'
 
 export function useGetCallToClient(form: FormInstance<FieldType>, clientPhone: string) {
 	return useCallback(async function () {
 		try {
-			const reqBody: MakeCallReqBody = {
+			const reqBody: CallsApiTypes.MakeCallReqBody = {
 				out_nomber: clientPhone,
 				in_number: form.getFieldValue(FieldNames.phone),
 			}

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { ordersRequests } from '../../../../requests/ordersRequests.ts'
+import { ordersRequests } from '../../../../requests/orders/ordersRequests.ts'
 import { orderManager } from '../../orderManager.ts'
 import { useCustomerProfileStore } from '../customerProfileStore.ts'
 

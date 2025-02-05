@@ -1,12 +1,12 @@
 import { create } from 'zustand'
-import { GetStaffPhones } from '../../../requests/callsRequests.ts'
+import CallsApiTypes from '../../../requests/calls/callsApiTypes.ts'
 import { SelectOption } from '../../../types/commonTypes.ts'
-import { MessageTemplate, IOrder } from '../../../types/user.ts'
+import { IOrder } from '../../../types/user.ts'
 
 export type CallToClientFormStore = {
 	loading: boolean
 	order: null | IOrder
-	staffPhones: null | GetStaffPhones
+	staffPhones: null | CallsApiTypes.GetStaffPhones
 	phonesSelectOptions: null | SelectOption[]
 	isFormValid: boolean
 	phoneSearch: string

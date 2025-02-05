@@ -1,4 +1,4 @@
-import { authRequests } from '../requests/authRequests.ts'
+import { authRequests } from '../requests/auth/authRequests.ts'
 import { useUserStore } from '../stores/userStore.ts'
 
 type InputData = { login: string; password: string; role: string }

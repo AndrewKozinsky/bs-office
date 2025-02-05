@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { throttle } from '../../../../../common/miscUtils.ts'
-import { usersRequests } from '../../../../../requests/usersRequests.ts'
+import { usersRequests } from '../../../../../requests/users/usersRequests.ts'
 import { useCustomerFormStore } from '../../customerFormStore/customerFormStore.ts'
 
 const throttledFetchDeviceTypes = throttle(fetchDeviceTypes, 500)

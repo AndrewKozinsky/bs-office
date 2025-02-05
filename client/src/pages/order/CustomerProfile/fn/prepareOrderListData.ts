@@ -1,4 +1,3 @@
-import React from 'react'
 import { IOrder } from '../../../../types/user.ts'
 
 export function getOrderListData(order: IOrder) {

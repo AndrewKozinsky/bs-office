@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ordersRequests } from '../../../../requests/ordersRequests.ts'
+import { ordersRequests } from '../../../../requests/orders/ordersRequests.ts'
 import { orderManager } from '../../orderManager.ts'
 
 export function useGetClientPhoneFromOrderData(orderId: string) {

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import { deviceRequests } from '../../../../requests/deviceRequests.ts'
-import { ordersRequests } from '../../../../requests/ordersRequests.ts'
-import { staffRequests } from '../../../../requests/staffRequests.ts'
+import { deviceRequests } from '../../../../requests/device/deviceRequests.ts'
+import { ordersRequests } from '../../../../requests/orders/ordersRequests.ts'
+import { staffRequests } from '../../../../requests/staff/staffRequests.ts'
 import { useOrdersStore } from '../../ordersStore/ordersStore.ts'
 
 export function useFetchData() {

@@ -1,7 +1,10 @@
 import { create } from 'zustand'
-import { AddressSuggestionsRes } from '../../../../requests/addressRequests.ts'
-import { GetDeviceBrandsRes, GetDevicesModelRes, GetDeviceTypesRes } from '../../../../requests/deviceRequests.ts'
-import { GetStaffRes } from '../../../../requests/staffRequests.ts'
+import {
+	GetDeviceBrandsRes,
+	GetDevicesModelRes,
+	GetDeviceTypesRes,
+} from '../../../../requests/device/deviceRequests.ts'
+import { GetStaffRes } from '../../../../requests/staff/staffRequests.ts'
 import { SelectOption } from '../../../../types/commonTypes.ts'
 
 export type NewOrderStore = {

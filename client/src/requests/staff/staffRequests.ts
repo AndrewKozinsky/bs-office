@@ -1,11 +1,10 @@
-import $api from '../components/http'
-import { User } from '../types/user.ts'
-
-export type GetStaffRes = User[]
+import $api from '../../components/http'
+import { User } from '../../types/user.ts'
+import StaffApiTypes from './staffApiTypes.ts'
 
 export const staffRequests = {
 	async getStaff() {
-		return $api.get<GetStaffRes>('/staff')
+		return $api.get<StaffApiTypes.GetStaffRes>('/staff')
 	},
 	async createEmployee() {
 		return $api.post<unknown>('/staff')

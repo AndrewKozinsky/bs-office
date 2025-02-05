@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { callsRequests } from '../../../../requests/callsRequests.ts'
+import { callsRequests } from '../../../../requests/calls/callsRequests.ts'
 import { useCallToClientFormStore } from '../callToClientFormStore.ts'
 
 export function useFetchStaffPhones() {

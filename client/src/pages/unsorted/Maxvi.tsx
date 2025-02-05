@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import LoadingAnimation from '../../common/components/LoadingAnimation/LoadingAnimation.tsx'
-import { warrantyRequests } from '../../requests/warrantyRequests.ts'
+import { warrantyRequests } from '../../requests/warranty/warrantyRequests.ts'
 import Messenger from './unsorted/messenger/Messenger'
 
 function Maxvi() {

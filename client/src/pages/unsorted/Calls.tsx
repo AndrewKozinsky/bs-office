@@ -11,7 +11,7 @@ import { format } from 'date-fns'
 import { GoTriangleDown } from 'react-icons/go';
 import { IoSearch } from 'react-icons/io5';
 import { FaTimesCircle } from 'react-icons/fa'
-import { usersRequests } from '../../requests/usersRequests.ts'
+import { usersRequests } from '../../requests/users/usersRequests.ts'
 
 const Modal = ({ cal, isModalOpen, toggleModal, downloadAudio }) => {
 	const audioRef = useRef(null)
