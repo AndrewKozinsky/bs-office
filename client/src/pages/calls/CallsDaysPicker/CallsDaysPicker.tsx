@@ -3,9 +3,12 @@ import { Button, DatePicker, Form, Space } from 'antd'
 import {
 	disabledDate,
 	getDefaultPickerValueProp,
-	getDefaultValuesProp,
+	getCurrentValuesProp,
 	onCallsDaysPickerChange,
 	useGetSetPreviousDay,
+	useGetSetThisWeek,
+	useIsChooseYesterday,
+	useIsChooseThisWeek,
 } from './fn/dataPickerSettings.ts'
 
 const { RangePicker } = DatePicker
@@ -18,8 +21,12 @@ type CallsDaysPickerProps = {
 function CallsDaysPicker(props: CallsDaysPickerProps) {
 	const { fromDate, toDate } = props
 
-	const defaultValues = getDefaultValuesProp(fromDate, toDate)
+	const currentValues = getCurrentValuesProp(fromDate, toDate)
 	const setPreviousDay = useGetSetPreviousDay()
+	const setThisWeek = useGetSetThisWeek()
+
+	const isChooseYesterday = useIsChooseYesterday(fromDate, toDate)
+	const isChooseThisWeek = useIsChooseThisWeek(fromDate, toDate)
 
 	return (
 		<Form style={{ maxWidth: 600 }}>
@@ -27,12 +34,16 @@ function CallsDaysPicker(props: CallsDaysPickerProps) {
 				<Space direction='horizontal'>
 					<RangePicker
 						defaultPickerValue={getDefaultPickerValueProp()}
-						defaultValue={defaultValues}
 						disabledDate={disabledDate}
 						onChange={onCallsDaysPickerChange as any}
+						value={currentValues}
 					/>
-					<Button onClick={setPreviousDay}>Вчера</Button>
-					<Button>Эта неделя</Button>
+					<Button onClick={setPreviousDay} disabled={isChooseYesterday}>
+						Вчера
+					</Button>
+					<Button onClick={setThisWeek} disabled={isChooseThisWeek}>
+						Эта неделя
+					</Button>
 				</Space>
 			</Form.Item>
 		</Form>

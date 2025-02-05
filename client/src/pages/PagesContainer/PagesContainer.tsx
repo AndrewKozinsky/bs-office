@@ -1,3 +1,4 @@
+import { ConfigProvider } from 'antd'
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import CallsPage from '../calls/CallsPage/CallsPage.tsx'
@@ -19,6 +20,8 @@ import { UserRole } from '../../types/user.ts'
 import Maxvi from '../unsorted/Maxvi.tsx'
 // import Adminka from './components/pages/Adminka.jsx'
 // import Shipment from './components/pages/Shipment.jsx';
+import ruRU from 'antd/es/locale/ru_RU' // Uses Monday as the first day
+import 'dayjs/locale/ru'
 import AllOrdersPage from '../orders/OrdersPage/AllOrdersPage.tsx'
 import './PagesContainer.scss'
 import PageContainerContext from '../pageContainer/PageContainerContext/PageContainerContext.tsx'
@@ -29,61 +32,62 @@ const PagesContainer = () => {
 	const userRole = user.role
 
 	return (
-		<PageContainerContext>
-			<PageHead />
-			{/* <AppMedia /> */}
-			<div className='container-box'>
-				<Routes>
-					{/*<Route path='/' element={<PersonalAccount />} />*/}
-					<Route
-						path={pagesRoute.orders.path}
-						element={
-							userRole === UserRole.Admin ||
-							userRole === UserRole.Master ||
-							userRole === UserRole.Manager ? (
+		<ConfigProvider locale={ruRU}>
+			<PageContainerContext>
+				<PageHead />
+				{/* <AppMedia /> */}
+				<div className='container-box'>
+					<Routes>
+						{/*<Route path='/' element={<PersonalAccount />} />*/}
+						<Route
+							path={pagesRoute.orders.path}
+							element={
+								userRole === UserRole.Admin ||
+								userRole === UserRole.Master ||
+								userRole === UserRole.Manager ? (
 									<AllOrdersPage />
 								) : (
 									<Navigate to={pagesRoute.personalAccount.path} />
 								)
-						}
-					/>
-					<Route
-						path={pagesRoute.order(':orderId').path}
-						element={
-							userRole === UserRole.Admin ||
-							userRole === UserRole.Master ||
-							userRole === UserRole.Manager ? (
+							}
+						/>
+						<Route
+							path={pagesRoute.order(':orderId').path}
+							element={
+								userRole === UserRole.Admin ||
+								userRole === UserRole.Master ||
+								userRole === UserRole.Manager ? (
 									<OrderPage />
 								) : (
 									<Navigate to={pagesRoute.personalAccount.path} />
 								)
-						}
-					/>
-					<Route
-						path={pagesRoute.newOrder.path}
-						element={
-							userRole === UserRole.Admin ||
-							userRole === UserRole.Master ||
-							userRole === UserRole.Manager ? (
-								<NewOrderPage />
-							) : (
-								<Navigate to={pagesRoute.personalAccount.path} />
-							)
-						}
-					/>
-					<Route
-						path={pagesRoute.calls.path}
-						element={
-							userRole === UserRole.Admin ||
-							userRole === UserRole.Master ||
-							userRole === UserRole.Manager ? (
-								<CallsPage />
-							) : (
-								<Navigate to={pagesRoute.personalAccount.path} />
-							)
-						}
-					/>
-					{/*<Route
+							}
+						/>
+						<Route
+							path={pagesRoute.newOrder.path}
+							element={
+								userRole === UserRole.Admin ||
+								userRole === UserRole.Master ||
+								userRole === UserRole.Manager ? (
+									<NewOrderPage />
+									) : (
+									<Navigate to={pagesRoute.personalAccount.path} />
+								)
+							}
+						/>
+						<Route
+							path={pagesRoute.calls.path}
+							element={
+								userRole === UserRole.Admin ||
+								userRole === UserRole.Master ||
+								userRole === UserRole.Manager ? (
+									<CallsPage />
+									) : (
+									<Navigate to={pagesRoute.personalAccount.path} />
+								)
+							}
+						/>
+						{/*<Route
 						path={pagesRoute.warrantyRepair.path}
 						element={
 							userRole === UserRole.Admin ||
@@ -95,7 +99,7 @@ const PagesContainer = () => {
 							)
 						}
 					/>*/}
-					{/*<Route
+						{/*<Route
 					path={pagesRoute.maxvi}
 					element={
 						userRole === UserRole.Admin || userRole === UserRole.Master || userRole === UserRole.Manager ? (
@@ -105,7 +109,7 @@ const PagesContainer = () => {
 						)
 					}
 				/>*/}
-					{/*<Route
+						{/*<Route
 					path={pagesRoute.orders}
 					element={
 						userRole === UserRole.Admin || userRole === UserRole.Master || userRole === UserRole.Manager ? (
@@ -115,11 +119,11 @@ const PagesContainer = () => {
 						)
 					}
 				/>*/}
-					{/*<Route
+						{/*<Route
 					path={pagesRoute.employees}
 					element={userRole === UserRole.Admin ? <Employees /> : <Navigate to={pagesRoute.personalAccount.path} />}
 				/>*/}
-					{/*<Route
+						{/*<Route
 					path={pagesRoute.changeOrder}
 					element={
 						userRole === UserRole.Admin || userRole === UserRole.Master ? (
@@ -129,14 +133,15 @@ const PagesContainer = () => {
 						)
 					}
 				/>*/}
-					{/*<Route path={pagesRoute.phoneBook} element={<PhoneBook />} />*/}
-					{/*<Route path={pagesRoute.searchOrder} element={userRole === UserRole.Admin || userRole === 'ADMIN' || userRole === UserRole.Manager ? <SearchOrder /> : <Navigate to="/PersonalAccount" />} />*/}
-					{/*<Route path={pagesRoute.adminka} element={userRole === UserRole.Admin ? <Adminka /> : <Navigate to="/PersonalAccount" />} />*/}
-					{/*<Route path={pagesRoute.acceptance} element={userRole === 'Туркистанская' || userRole === 'Выдача' || userRole === 'Отправка' || userRole === UserRole.Admin ? <Acceptance /> : <Navigate to="/PersonalAccount" />} />*/}
-					{/*<Route path={pagesRoute.shipment} element={userRole === 'Туркистанская' || userRole === 'Приёмка' || userRole === 'Отправка' || userRole === UserRole.Admin ? <Shipment /> : <Navigate to="/PersonalAccount" />} />*/}
-				</Routes>
-			</div>
-		</PageContainerContext>
+						{/*<Route path={pagesRoute.phoneBook} element={<PhoneBook />} />*/}
+						{/*<Route path={pagesRoute.searchOrder} element={userRole === UserRole.Admin || userRole === 'ADMIN' || userRole === UserRole.Manager ? <SearchOrder /> : <Navigate to="/PersonalAccount" />} />*/}
+						{/*<Route path={pagesRoute.adminka} element={userRole === UserRole.Admin ? <Adminka /> : <Navigate to="/PersonalAccount" />} />*/}
+						{/*<Route path={pagesRoute.acceptance} element={userRole === 'Туркистанская' || userRole === 'Выдача' || userRole === 'Отправка' || userRole === UserRole.Admin ? <Acceptance /> : <Navigate to="/PersonalAccount" />} />*/}
+						{/*<Route path={pagesRoute.shipment} element={userRole === 'Туркистанская' || userRole === 'Приёмка' || userRole === 'Отправка' || userRole === UserRole.Admin ? <Shipment /> : <Navigate to="/PersonalAccount" />} />*/}
+					</Routes>
+				</div>
+			</PageContainerContext>
+		</ConfigProvider>
 	)
 }
 
