@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
+import CallsPage from '../calls/CallsPage/CallsPage.tsx'
 import NewOrderPage from '../newOrder/containers/NewOrderPage/NewOrderPage.tsx'
 import OrderPage from '../order/OrderPage/OrderPage.tsx'
 import PageHead from '../pageHeader/PageHead/PageHead.tsx'
@@ -9,7 +10,6 @@ import OrderStatusOld from '../unsorted/OrderStatusOld.tsx'
 import Orders from '../unsorted/Orders.tsx'
 import Employees from '../unsorted/Employees.tsx'
 import ChangeOrder from '../unsorted/ChangeOrder.tsx'
-import Calls from '../unsorted/Calls.tsx'
 // import SearchOrder from './components/pages/SearchOrder.jsx';
 import PersonalAccount from '../unsorted/PersonalAccount.tsx'
 import { useUserStore } from '../../stores/userStore.ts'
@@ -21,13 +21,15 @@ import Maxvi from '../unsorted/Maxvi.tsx'
 // import Shipment from './components/pages/Shipment.jsx';
 import AllOrdersPage from '../orders/OrdersPage/AllOrdersPage.tsx'
 import './PagesContainer.scss'
+import PageContainerContext from '../pageContainer/PageContainerContext/PageContainerContext.tsx'
+import { PageContainerCtx } from '../pageContainer/PageContainerContext/fn/context.ts'
 
 const PagesContainer = () => {
 	const user = useUserStore((s) => s.user)
 	const userRole = user.role
 
 	return (
-		<>
+		<PageContainerContext>
 			<PageHead />
 			{/* <AppMedia /> */}
 			<div className='container-box'>
@@ -64,6 +66,18 @@ const PagesContainer = () => {
 							userRole === UserRole.Master ||
 							userRole === UserRole.Manager ? (
 								<NewOrderPage />
+							) : (
+								<Navigate to={pagesRoute.personalAccount.path} />
+							)
+						}
+					/>
+					<Route
+						path={pagesRoute.calls.path}
+						element={
+							userRole === UserRole.Admin ||
+							userRole === UserRole.Master ||
+							userRole === UserRole.Manager ? (
+								<CallsPage />
 							) : (
 								<Navigate to={pagesRoute.personalAccount.path} />
 							)
@@ -115,16 +129,6 @@ const PagesContainer = () => {
 						)
 					}
 				/>*/}
-					{/*<Route
-					path={pagesRoute.calls}
-					element={
-						userRole === UserRole.Admin || userRole === UserRole.Master || userRole === UserRole.Manager ? (
-							<Calls />
-						) : (
-							<Navigate to={pagesRoute.personalAccount.path} />
-						)
-					}
-				/>*/}
 					{/*<Route path={pagesRoute.phoneBook} element={<PhoneBook />} />*/}
 					{/*<Route path={pagesRoute.searchOrder} element={userRole === UserRole.Admin || userRole === 'ADMIN' || userRole === UserRole.Manager ? <SearchOrder /> : <Navigate to="/PersonalAccount" />} />*/}
 					{/*<Route path={pagesRoute.adminka} element={userRole === UserRole.Admin ? <Adminka /> : <Navigate to="/PersonalAccount" />} />*/}
@@ -132,7 +136,7 @@ const PagesContainer = () => {
 					{/*<Route path={pagesRoute.shipment} element={userRole === 'Туркистанская' || userRole === 'Приёмка' || userRole === 'Отправка' || userRole === UserRole.Admin ? <Shipment /> : <Navigate to="/PersonalAccount" />} />*/}
 				</Routes>
 			</div>
-		</>
+		</PageContainerContext>
 	)
 }
 

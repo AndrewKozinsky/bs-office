@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import PageContainer from '../../PageContainer/PageContainer.tsx'
+import PageContainer from '../../pageContainer/PageContainer/PageContainer.tsx'
+import { useSetPageTitle } from '../../pageContainer/PageContainerContext/fn/context.ts'
 import { pagesRoute } from '../../pagesRoute.ts'
 import CallToClientForm from '../CallToClientForm/CallToClientForm.tsx'
 import CustomerProfile from '../CustomerProfile/CustomerProfile.tsx'
@@ -10,10 +11,12 @@ import './OrderPage.scss'
 
 function OrderPage() {
 	let { orderId } = useParams()
+
+	useSetPageTitle(pagesRoute.order('0').name)
 	const clientPhone = useGetClientPhoneFromOrderData(orderId)
 
 	return (
-		<PageContainer header={pagesRoute.order('0').name}>
+		<PageContainer>
 			<div className='order-page'>
 				<div className='order-page__left'>
 					<CustomerProfile orderId={orderId} />

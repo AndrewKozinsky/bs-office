@@ -1,20 +1,22 @@
 import React, { ReactNode } from 'react'
 import { Typography } from 'antd'
+import { useGetPageTitle } from '../PageContainerContext/fn/context.ts'
 import './PageContainer.scss'
 
 const { Title } = Typography
 
 type PageContainerProps = {
-	header: string
 	children: ReactNode
 }
 
 function PageContainer(props: PageContainerProps) {
-	const { header, children } = props
+	const { children } = props
+
+	const pageTitle = useGetPageTitle()
 
 	return (
 		<div className='page-container'>
-			<Title>{header}</Title>
+			<Title>{pageTitle}</Title>
 			{children}
 		</div>
 	)
