@@ -9,6 +9,8 @@ import {
 } from '../../../common/components/UTable/UTable.tsx'
 import CallsApiTypes from '../../../requests/calls/callsApiTypes.ts'
 import { useFetchCalls } from './fn/fetchCallsData.ts'
+import { PhoneRecordPreparedData, prepareCellRecordData } from './fn/textTransform.ts'
+import './CallsTable.scss'
 
 type CallsTableProps = {
 	startDate: null | string
@@ -27,14 +29,14 @@ function CallsTable(props: CallsTableProps) {
 
 	return (
 		<UTable block>
-			<UTableHeadRow>
+			<UTableHeadRow sticky>
 				<UTableHeadCell>Офис</UTableHeadCell>
 				<UTableHeadCell>Номер</UTableHeadCell>
 				<UTableHeadCell>Клиент</UTableHeadCell>
 				<UTableHeadCell>Номер заказа</UTableHeadCell>
-				<UTableHeadCell>Дата звонка</UTableHeadCell>
-				<UTableHeadCell>Продолжительность звонка</UTableHeadCell>
-				<UTableHeadCell>Тип звонка</UTableHeadCell>
+				<UTableHeadCell>Дата</UTableHeadCell>
+				<UTableHeadCell>Длительность</UTableHeadCell>
+				<UTableHeadCell>Тип</UTableHeadCell>
 			</UTableHeadRow>
 			{callsArr.map((cellRecord, i) => {
 				return <CallTableRow cellRecord={cellRecord} key={i} />
@@ -52,15 +54,63 @@ type CallTableRowProps = {
 function CallTableRow(props: CallTableRowProps) {
 	const { cellRecord } = props
 
+	const preparedData = prepareCellRecordData(cellRecord)
+
 	return (
 		<UTableRow>
-			<UTableCell>{cellRecord.out_nomber}</UTableCell>
-			<UTableCell>{cellRecord.in_number}</UTableCell>
-			<UTableCell>{cellRecord.name_user}</UTableCell>
-			<UTableCell>{cellRecord.id_order}</UTableCell>
-			<UTableCell>{cellRecord.date_time}</UTableCell>
-			<UTableCell>{cellRecord.call_bill_sec}</UTableCell>
-			<UTableCell>{cellRecord.call_status}</UTableCell>
+			<UTableCell>{preparedData.office}</UTableCell>
+			<UTableCell>{preparedData.phoneNumber}</UTableCell>
+			<UTableCell>{preparedData.clientName}</UTableCell>
+			<OrderCell preparedData={preparedData} />
+			<DateCell preparedData={preparedData} />
+			<UTableCell align='right'>
+				{preparedData.duration === '0 сек.' ? (
+					<span className='calls-table__zero-duration'>{preparedData.duration}</span>
+				) : (
+					preparedData.duration
+				)}
+			</UTableCell>
+			<UTableCell>{preparedData.callType}</UTableCell>
 		</UTableRow>
+	)
+}
+
+type DateCellProps = {
+	preparedData: PhoneRecordPreparedData
+}
+
+function DateCell(props: DateCellProps) {
+	const { preparedData } = props
+
+	let dateElem = <span className='calls-table__day-rect'>{preparedData.date}</span>
+	if (preparedData.date === 'сегодня') {
+		dateElem = <span className='calls-table__today-rect'>{preparedData.date}</span>
+	} else if (preparedData.date === 'вчера') {
+		dateElem = <span className='calls-table__yesterday-rect'>{preparedData.date}</span>
+	}
+
+	return (
+		<UTableCell>
+			<p>{dateElem}</p>
+			<p>{preparedData.time}</p>
+		</UTableCell>
+	)
+}
+
+type OrderCellProps = {
+	preparedData: PhoneRecordPreparedData
+}
+
+function OrderCell(props: OrderCellProps) {
+	const { preparedData } = props
+
+	if (!preparedData.orderPrefix || !preparedData.orderNum) {
+		return <UTableCell>{preparedData.orderNumFull}</UTableCell>
+	}
+
+	return (
+		<UTableCell>
+			<span className='calls-table__order-prefix'>{preparedData.orderPrefix}</span>-{preparedData.orderNum}
+		</UTableCell>
 	)
 }

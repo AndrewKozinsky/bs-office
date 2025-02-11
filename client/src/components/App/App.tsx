@@ -4,7 +4,7 @@ import { authFeatures } from '../../features/authFeatures.ts'
 import PagesContainer from '../../pages/PagesContainer/PagesContainer.tsx'
 import { useUserStore } from '../../stores/userStore.ts'
 import LoginForm from '../LoginForm/LoginForm.tsx'
-import './css/index.scss'
+import './css/global.scss'
 
 function App() {
 	const user = useUserStore((s) => s.user)

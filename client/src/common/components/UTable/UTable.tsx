@@ -22,13 +22,14 @@ export function UTable(props: UTableProps) {
 }
 
 type UTableHeadRowProps = {
+	sticky?: boolean
 	children: ReactNode[]
 }
 
 export function UTableHeadRow(props: UTableHeadRowProps) {
-	const { children } = props
+	const { sticky, children } = props
 
-	return <tr className='u-table-head-row'>{children}</tr>
+	return <tr className={cn('u-table-head-row', sticky && 'u-table-head-row--sticky')}>{children}</tr>
 }
 
 type UTableRowProps = {
@@ -52,11 +53,12 @@ export function UTableHeadCell(props: UTableHeadCellProps) {
 }
 
 type UTableCellProps = {
-	children: ReactNode
+	align?: 'left' | 'center' | 'right'
+	children?: ReactNode
 }
 
 export function UTableCell(props: UTableCellProps) {
-	const { children } = props
+	const { align = 'left', children = null } = props
 
-	return <td className='u-table-cell'>{children}</td>
+	return <td className={cn('u-table-cell', 'u-table-cell--' + align)}>{children}</td>
 }

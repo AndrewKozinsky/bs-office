@@ -5,15 +5,33 @@
     width: 100%;
 }
 
-.u-table-row {
-
+.u-table-head-row {
+    background-color: white;
+}
+.u-table-head-row--sticky {
+    position: sticky;
+    top: -2rem;
 }
 
 .u-table-head-cell {
     font-weight: bold;
-    padding: 0 1rem 1rem 0;
+    padding: .5rem 1rem .5rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.u-table-row {
+
 }
 
 .u-table-cell {
-    padding: 0 1rem 1rem 0;
+    padding: 1rem 1rem 0 0;
+}
+.u-table-cell--left {
+
+}
+.u-table-cell--center {
+
+}
+.u-table-cell--right {
+    text-align: right;
 }

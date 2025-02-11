@@ -1,0 +1,23 @@
+.calls-table__zero-duration {
+    color: #8f8f8f;
+}
+
+.calls-table__today-rect {
+    color: #1677ff;
+    background-color: #f2f7ff;
+    padding: .1rem .5rem;
+    border-radius: .4rem;
+}
+.calls-table__yesterday-rect {
+    color: #1677ff;
+}
+
+.calls-table__day-rect {
+    font-size: 1.3rem;
+    color: #6c6c6c;
+}
+
+.calls-table__order-prefix {
+    font-size: 1.3rem;
+    color: #6c6c6c;
+}
