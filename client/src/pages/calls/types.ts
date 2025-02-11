@@ -1,4 +1,4 @@
 export enum DateRangeNames {
-	fromDate = 'fromDate',
-	toDate = 'toDate',
+	startDate = 'startDate',
+	endDate = 'endDate',
 }

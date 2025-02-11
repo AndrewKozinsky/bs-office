@@ -10,4 +10,12 @@ export const callsRequests = {
 	async makeCall(body: CallsApiTypes.MakeCallReqBody) {
 		return $api.post<CallsApiTypes.GetStaffPhones>('/initiate_call', body)
 	},
+	// Записи звонков за определённый период
+	async getRecords(
+		args: CallsApiTypes.GetCallRecordsArgs = { startDate: null, endDate: null, searchNumberValue: '' },
+	) {
+		return $api.get<CallsApiTypes.GetCallRecords>(
+			`/callstoday/${args.startDate}/${args.endDate}/${args.searchNumberValue || 'null'}`,
+		)
+	},
 }

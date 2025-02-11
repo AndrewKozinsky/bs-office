@@ -268,7 +268,6 @@ app.get('/api/1c/users', async (req, res) => {
     }
 
     const responseData = await response.json()
-    console.log(responseData)
     res.json(responseData);
   } catch (error) {
     console.error('Error:', error);
@@ -304,6 +303,7 @@ app.get('/api/callstoday/:startDate/:endDate/:searchNumberValue', async (req, re
   try {
     const { default: fetch } = await import('node-fetch');
 
+    console.log(`http://192.168.1.10/api/callstoday/${startDate}/${endDate}/${searchNumberValue}`)
     const response = await fetch(`http://192.168.1.10/api/callstoday/${startDate}/${endDate}/${searchNumberValue}`);
 
     res.header('Access-Control-Allow-Origin', req.headers.origin || "*");

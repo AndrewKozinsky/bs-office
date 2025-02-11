@@ -12,25 +12,21 @@ export const disabledDate: RangePickerProps['disabledDate'] = (current) => {
 	return current && current > dayjs()
 }
 
-export const onCallsDaysPickerChange: DatePickerProps['onChange'] = (fromDate, dates) => {
-	useCallsStore.setState({ fromDate: dates[0], toDate: dates[1] })
+export const onCallsDaysPickerChange: DatePickerProps['onChange'] = (startDate, dates) => {
+	useCallsStore.setState({ startDate: dates[0], endDate: dates[1] })
 }
 
-export function getCurrentValuesProp(fromDate: null | string, toDate: null | string): any {
+export function getCurrentValuesProp(startDate: null | string, endDate: null | string): any {
 	const currentDate = dayjs().format(dateFormat)
 
-	return [dayjs(fromDate || currentDate, dateFormat), dayjs(toDate || currentDate, dateFormat)]
-}
-
-export function getDefaultPickerValueProp() {
-	return [dayjs().subtract(1, 'month'), dayjs()] as any
+	return [dayjs(startDate || currentDate, dateFormat), dayjs(endDate || currentDate, dateFormat)]
 }
 
 export function useGetSetPreviousDay() {
 	return useCallback(function () {
 		const yesterday = dayjs().subtract(1, 'day').format(dateFormat)
 
-		useCallsStore.setState({ fromDate: yesterday, toDate: yesterday })
+		useCallsStore.setState({ startDate: yesterday, endDate: yesterday })
 	}, [])
 }
 
@@ -39,32 +35,32 @@ export function useGetSetThisWeek() {
 		const monday = dayjs().day(1).format(dateFormat)
 		const today = dayjs().format(dateFormat)
 
-		useCallsStore.setState({ fromDate: monday, toDate: today })
+		useCallsStore.setState({ startDate: monday, endDate: today })
 	}, [])
 }
 
-export function useIsChooseYesterday(fromDate: null | string, toDate: null | string) {
+export function useIsChooseYesterday(startDate: null | string, endDate: null | string) {
 	return useMemo(
 		function () {
-			if (!fromDate || !toDate) return false
+			if (!startDate || !endDate) return false
 
 			const yesterday = dayjs().subtract(1, 'day').format(dateFormat)
-			return yesterday === fromDate && yesterday === toDate
+			return yesterday === startDate && yesterday === endDate
 		},
-		[fromDate, toDate],
+		[startDate, endDate],
 	)
 }
 
-export function useIsChooseThisWeek(fromDate: null | string, toDate: null | string) {
+export function useIsChooseThisWeek(startDate: null | string, endDate: null | string) {
 	return useMemo(
 		function () {
-			if (!fromDate || !toDate) return false
+			if (!startDate || !endDate) return false
 
 			const monday = dayjs().day(1).format(dateFormat)
 			const today = dayjs().format(dateFormat)
 
-			return monday === fromDate && today === toDate
+			return monday === startDate && today === endDate
 		},
-		[fromDate, toDate],
+		[startDate, endDate],
 	)
 }

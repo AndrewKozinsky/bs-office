@@ -2,7 +2,6 @@ import React from 'react'
 import { Button, DatePicker, Form, Space } from 'antd'
 import {
 	disabledDate,
-	getDefaultPickerValueProp,
 	getCurrentValuesProp,
 	onCallsDaysPickerChange,
 	useGetSetPreviousDay,
@@ -14,26 +13,25 @@ import {
 const { RangePicker } = DatePicker
 
 type CallsDaysPickerProps = {
-	fromDate: null | string
-	toDate: null | string
+	startDate: null | string
+	endDate: null | string
 }
 
 function CallsDaysPicker(props: CallsDaysPickerProps) {
-	const { fromDate, toDate } = props
+	const { startDate, endDate } = props
 
-	const currentValues = getCurrentValuesProp(fromDate, toDate)
+	const currentValues = getCurrentValuesProp(startDate, endDate)
 	const setPreviousDay = useGetSetPreviousDay()
 	const setThisWeek = useGetSetThisWeek()
 
-	const isChooseYesterday = useIsChooseYesterday(fromDate, toDate)
-	const isChooseThisWeek = useIsChooseThisWeek(fromDate, toDate)
+	const isChooseYesterday = useIsChooseYesterday(startDate, endDate)
+	const isChooseThisWeek = useIsChooseThisWeek(startDate, endDate)
 
 	return (
 		<Form style={{ maxWidth: 600 }}>
 			<Form.Item label='Даты' layout='vertical'>
 				<Space direction='horizontal'>
 					<RangePicker
-						defaultPickerValue={getDefaultPickerValueProp()}
 						disabledDate={disabledDate}
 						onChange={onCallsDaysPickerChange as any}
 						value={currentValues}

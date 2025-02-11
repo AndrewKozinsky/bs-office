@@ -1,13 +1,15 @@
 import { create } from 'zustand'
 
 export type ICallsStore = {
-	fromDate?: null | string
-	toDate?: string
+	startDate: null | string
+	endDate: null | string
+	searchNumberValue: string
 }
 
 export const newCallsStoreInitial: ICallsStore = {
-	fromDate: null,
-	toDate: null,
+	startDate: null,
+	endDate: null,
+	searchNumberValue: '',
 }
 
 export const useCallsStore = create<ICallsStore>()((set) => {

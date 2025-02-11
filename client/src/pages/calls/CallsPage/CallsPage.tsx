@@ -9,8 +9,9 @@ import { useSetPageAddressBarQuery, useSetPageAddressBarQueryToStore } from './f
 import './CallsPage.scss'
 
 function CallsPage() {
-	const fromDate = useCallsStore((s) => s.fromDate)
-	const toDate = useCallsStore((s) => s.toDate)
+	const startDate = useCallsStore((s) => s.startDate)
+	const endDate = useCallsStore((s) => s.endDate)
+	const searchNumberValue = useCallsStore((s) => s.searchNumberValue)
 
 	useSetCallsPageTitle()
 	useSetPageAddressBarQueryToStore()
@@ -21,10 +22,10 @@ function CallsPage() {
 			<div className='calls-page'>
 				<div className='calls-page__top'>
 					<SearchCallsForm />
-					<CallsDaysPicker fromDate={fromDate} toDate={toDate} />
+					<CallsDaysPicker startDate={startDate} endDate={endDate} />
 				</div>
 				<div className='calls-page__table'>
-					<CallsTable />
+					<CallsTable startDate={startDate} endDate={endDate} searchNumberValue={searchNumberValue} />
 				</div>
 			</div>
 		</PageContainer>

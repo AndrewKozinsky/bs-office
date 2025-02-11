@@ -10,8 +10,8 @@ export function useSetCallsPageTitle() {
 	const yesterdayPageHeader = pagesRoute.calls.name + ' вчерашнего дня'
 	const thisWeekPageHeader = pagesRoute.calls.name + ' этой недели'
 
-	const fromDate = useCallsStore((s) => s.fromDate)
-	const toDate = useCallsStore((s) => s.toDate)
+	const startDate = useCallsStore((s) => s.startDate)
+	const endDate = useCallsStore((s) => s.endDate)
 
 	const [pageTitle, setPageTitle] = useState(todayPageHeader)
 	useSetPageTitle(pageTitle)
@@ -22,16 +22,16 @@ export function useSetCallsPageTitle() {
 			const yesterdayDateStr = dayjs().subtract(1, 'day').format(dateFormat)
 			const todayDateStr = dayjs().format(dateFormat)
 
-			if (!fromDate && !toDate) {
+			if (!startDate && !endDate) {
 				setPageTitle(todayPageHeader)
-			} else if (fromDate === yesterdayDateStr && toDate === yesterdayDateStr) {
+			} else if (startDate === yesterdayDateStr && endDate === yesterdayDateStr) {
 				setPageTitle(yesterdayPageHeader)
-			} else if (fromDate === mondayDateStr && toDate === todayDateStr) {
+			} else if (startDate === mondayDateStr && endDate === todayDateStr) {
 				setPageTitle(thisWeekPageHeader)
 			} else {
 				setPageTitle(pagesRoute.calls.name)
 			}
 		},
-		[fromDate, toDate],
+		[startDate, endDate],
 	)
 }

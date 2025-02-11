@@ -6,23 +6,23 @@ import { DateRangeNames } from '../../types.ts'
 export function useSetPageAddressBarQuery() {
 	const [_, setSearchParams] = useSearchParams()
 
-	const fromDate = useCallsStore((s) => s.fromDate)
-	const toDate = useCallsStore((s) => s.toDate)
+	const startDate = useCallsStore((s) => s.startDate)
+	const endDate = useCallsStore((s) => s.endDate)
 
 	useEffect(
 		function () {
-			const queryObj: { [DateRangeNames.fromDate]?: string; [DateRangeNames.toDate]?: string } = {}
+			const queryObj: { [DateRangeNames.startDate]?: string; [DateRangeNames.endDate]?: string } = {}
 
-			if (fromDate) {
-				queryObj.fromDate = fromDate
+			if (startDate) {
+				queryObj[DateRangeNames.startDate] = startDate
 			}
-			if (toDate) {
-				queryObj.toDate = toDate
+			if (endDate) {
+				queryObj[DateRangeNames.endDate] = endDate
 			}
 
 			setSearchParams(queryObj)
 		},
-		[fromDate, toDate],
+		[startDate, endDate],
 	)
 }
 
@@ -31,8 +31,8 @@ export function useSetPageAddressBarQueryToStore() {
 
 	useEffect(function () {
 		useCallsStore.setState({
-			fromDate: searchParams.get(DateRangeNames.fromDate),
-			toDate: searchParams.get(DateRangeNames.toDate),
+			startDate: searchParams.get(DateRangeNames.startDate),
+			endDate: searchParams.get(DateRangeNames.endDate),
 		})
 	}, [])
 }
