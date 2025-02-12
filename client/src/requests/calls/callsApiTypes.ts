@@ -16,8 +16,8 @@ namespace CallsApiTypes {
 	export type CallRecord = {
 		call_bill_sec: string // '00:00:13'
 		call_context: string // ''
-		call_status: 'ANSWERED' | 'NO ANSWER'
-		call_type: 'Внутренний' | 'Исходящий' | 'Входящий'
+		call_status: 'ANSWERED' | 'NO ANSWER' | 'FAILED' | 'BUSY'
+		call_type: 'Внутренний' | 'Входящий' | 'Исходящий'
 		computer_name: string // ''
 		date: string // '2025-02-10'
 		date_time: string // '2025-02-10 12:38:01'

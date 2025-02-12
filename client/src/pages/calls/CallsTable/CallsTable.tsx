@@ -10,6 +10,14 @@ import {
 import CallsApiTypes from '../../../requests/calls/callsApiTypes.ts'
 import { useFetchCalls } from './fn/fetchCallsData.ts'
 import { PhoneRecordPreparedData, prepareCellRecordData } from './fn/textTransform.ts'
+import { IncomingAnsweredIcon } from './icons/IncomingAnsweredIcon.tsx'
+import { IncomingFailedIcon } from './icons/IncomingFailedIcon.tsx'
+import { IncomingNoAnsweredIcon } from './icons/IncomingNoAnsweredIcon.tsx'
+import { InsideAnsweredIcon } from './icons/InsideAnsweredIcon.tsx'
+import { OutgoingAnsweredIcon } from './icons/OutgoingAnsweredIcon.tsx'
+import { OutgoingFailedIcon } from './icons/OutgoingFailedIcon.tsx'
+import { OutgoingNoAnsweredIcon } from './icons/OutgoingNoAnsweredIcon.tsx'
+import { InsideNoAnsweredIcon } from './icons/InsideNoAnsweredIcon.tsx'
 import './CallsTable.scss'
 
 type CallsTableProps = {
@@ -26,6 +34,7 @@ function CallsTable(props: CallsTableProps) {
 	if (!callsArr) {
 		return <LoadingAnimation />
 	}
+	console.log(callsArr)
 
 	return (
 		<UTable block>
@@ -70,7 +79,7 @@ function CallTableRow(props: CallTableRowProps) {
 					preparedData.duration
 				)}
 			</UTableCell>
-			<UTableCell>{preparedData.callType}</UTableCell>
+			<CallStatusCell preparedData={preparedData} />
 		</UTableRow>
 	)
 }
@@ -110,7 +119,80 @@ function OrderCell(props: OrderCellProps) {
 
 	return (
 		<UTableCell>
-			<span className='calls-table__order-prefix'>{preparedData.orderPrefix}</span>-{preparedData.orderNum}
+			<span className='calls-table__order-prefix'>{preparedData.orderPrefix}-</span>
+			{preparedData.orderNum}
 		</UTableCell>
 	)
+}
+
+type CallStatusCellProps = {
+	preparedData: PhoneRecordPreparedData
+}
+
+function CallStatusCell(props: CallStatusCellProps) {
+	const { preparedData } = props
+
+	if (preparedData.clientName.includes('Есмейкон Виталий Владимирович')) {
+		console.log(preparedData)
+	}
+
+	const iconMap = {
+		Входящий__ANSWERED: (
+			<span title='Клиенту ответилили'>
+				<IncomingAnsweredIcon />
+			</span>
+		),
+		Исходящий__ANSWERED: (
+			<span title='Клиент ответил'>
+				<OutgoingAnsweredIcon />
+			</span>
+		),
+		Внутренний__ANSWERED: (
+			<span title='Сотрудник ответил сотруднику'>
+				<InsideAnsweredIcon />
+			</span>
+		),
+
+		'Входящий__NO ANSWER': (
+			<span title='Клиенту не ответили'>
+				<IncomingNoAnsweredIcon />
+			</span>
+		),
+		'Исходящий__NO ANSWER': (
+			<span title='Клиент не ответил'>
+				<OutgoingNoAnsweredIcon />
+			</span>
+		),
+		'Внутренний__NO ANSWER': (
+			<span title='Сотрудник не ответил сотруднику'>
+				<InsideNoAnsweredIcon />
+			</span>
+		),
+
+		Входящий__FAILED: (
+			<span title='Клиент позвонил на недоступный телефон'>
+				<IncomingFailedIcon />
+			</span>
+		),
+		Исходящий__FAILED: (
+			<span title='У клиента телефон не доступен'>
+				<OutgoingFailedIcon />
+			</span>
+		),
+		Внутренний__FAILED: null,
+
+		Входящий__BUSY: (
+			<span title='Клиент позвонил на занятый телефон'>
+				<IncomingFailedIcon />
+			</span>
+		),
+		Исходящий__BUSY: (
+			<span title='У клиента телефон занят'>
+				<OutgoingFailedIcon />
+			</span>
+		),
+		Внутренний__BUSY: null,
+	}
+
+	return <UTableCell>{iconMap[preparedData.callType + '__' + preparedData.callStatus]}</UTableCell>
 }

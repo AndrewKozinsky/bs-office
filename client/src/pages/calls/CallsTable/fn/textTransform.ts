@@ -11,7 +11,8 @@ export type PhoneRecordPreparedData = {
 	date: string
 	time: string
 	duration: string
-	callType: string
+	callType: 'Внутренний' | 'Исходящий' | 'Входящий'
+	callStatus: 'ANSWERED' | 'NO ANSWER' | 'FAILED' | 'BUSY'
 }
 
 export function prepareCellRecordData(cellRecord: CallsApiTypes.CallRecord): PhoneRecordPreparedData {
@@ -30,7 +31,8 @@ export function prepareCellRecordData(cellRecord: CallsApiTypes.CallRecord): Pho
 		date,
 		time,
 		duration,
-		callType: cellRecord.call_status,
+		callType: cellRecord.call_type,
+		callStatus: cellRecord.call_status,
 	}
 }
 
