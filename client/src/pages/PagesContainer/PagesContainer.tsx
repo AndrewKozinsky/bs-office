@@ -37,7 +37,7 @@ function PagesContainer() {
 				<Routes>
 					{/*<Route path='/' element={<PersonalAccount />} />*/}
 					<Route
-						path={pagesRoute.orders.path}
+						path={pagesRoute.orders.path()}
 						element={
 							userRole === UserRole.Admin ||
 							userRole === UserRole.Master ||

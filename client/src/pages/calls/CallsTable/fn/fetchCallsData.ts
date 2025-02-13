@@ -4,19 +4,19 @@ import { callsRequests } from '../../../../requests/calls/callsRequests.ts'
 export type FetchCallsArgs = {
 	startDate: null | string
 	endDate: null | string
-	searchNumberValue: string
+	searchValue: string
 }
 
 export function useFetchCalls(args: FetchCallsArgs) {
-	const { startDate, endDate, searchNumberValue } = args
+	const { startDate, endDate, searchValue } = args
 
 	const { error, data, isLoading } = useQuery({
-		queryKey: ['getRecords', startDate, endDate, searchNumberValue],
+		queryKey: ['getRecords', startDate, endDate, searchValue],
 		queryFn: async () => {
-			const data = await callsRequests.getRecords({ startDate, endDate, searchNumberValue })
+			const data = await callsRequests.getRecords({ startDate, endDate, searchValue })
 			return data.data
 		},
 	})
 
-	return data
+	return { error, callsArr: data, isLoading }
 }

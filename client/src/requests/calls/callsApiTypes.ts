@@ -9,9 +9,9 @@ namespace CallsApiTypes {
 	}
 
 	export type GetCallRecordsArgs = {
-		startDate: null | string
-		endDate: null | string
-		searchNumberValue?: string
+		startDate?: null | string
+		endDate?: null | string
+		searchValue?: string
 	}
 	export type CallRecord = {
 		call_bill_sec: string // '00:00:13'

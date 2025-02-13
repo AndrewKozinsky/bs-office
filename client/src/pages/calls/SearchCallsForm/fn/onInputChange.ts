@@ -1,11 +1,24 @@
-import React, { useCallback } from 'react'
+import { FormInstance } from 'antd'
+import React, { useCallback, useEffect } from 'react'
 import { useCallsStore } from '../../callsStore/callsStore.ts'
 
-export function useGetOnSearchInputChange() {
+export type FieldType = Record<FormNames, string>
+
+export enum FormNames {
+	search = 'search',
+}
+
+export function useGetOnSearchInputChange(form: FormInstance) {
 	return useCallback((e: React.FormEvent<HTMLInputElement>) => {
 		// @ts-ignore
 		const { value } = e.target
 
-		useCallsStore.setState({ searchNumberValue: value })
+		useCallsStore.setState({ searchValue: value })
 	}, [])
+}
+
+export function useSetValueToInput(form: FormInstance, value: string) {
+	useEffect(() => {
+		form.setFieldsValue({ [FormNames.search]: value })
+	}, [value, form])
 }

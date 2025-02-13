@@ -11,7 +11,7 @@
 	height: 100vh;
 }
 
-*:not(svg, g, path) {
+*:not(svg, g, path, audio) {
 	all: unset;
 	display: revert;
 	list-style: none;
@@ -55,4 +55,14 @@ button {
 
 .mini-space {
 	font-size: 0.4em;
+}
+
+.link {
+	color: $blueColor-2;
+	border-bottom: 1px solid rgba($blueColor-2, .2);
+	transition: border-bottom 0.2s;
+
+	&:hover {
+		border-bottom-color: rgba($blueColor-2, .4);
+	}
 }

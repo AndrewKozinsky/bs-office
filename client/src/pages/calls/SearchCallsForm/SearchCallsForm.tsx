@@ -1,20 +1,23 @@
 import { DatePicker, Form, FormProps, Input } from 'antd'
-import React from 'react'
-import { useGetOnSearchInputChange } from './fn/onInputChange.ts'
+import React, { useEffect } from 'react'
+import { FieldType, FormNames, useGetOnSearchInputChange, useSetValueToInput } from './fn/onInputChange.ts'
 
-export enum FormNames {
-	search = 'search',
+type SearchCallsFormProps = {
+	value: string
 }
 
-export type FieldType = Record<FormNames, string>
+function SearchCallsForm(props: SearchCallsFormProps) {
+	const { value } = props
 
-function SearchCallsForm() {
-	const onSearchInputChange = useGetOnSearchInputChange()
+	const [form] = Form.useForm()
+
+	useSetValueToInput(form, value)
+	const onSearchInputChange = useGetOnSearchInputChange(form)
 
 	return (
-		<Form style={{ maxWidth: 600 }} initialValues={{ remember: true }}>
-			<Form.Item<FieldType> name={FormNames.search} label='Номер заказа' layout='vertical'>
-				<Input onInput={onSearchInputChange} />
+		<Form form={form}>
+			<Form.Item<FieldType> name={FormNames.search} label='Поиск по номеру заказа или телефону' layout='vertical'>
+				<Input onInput={onSearchInputChange} type='number' />
 			</Form.Item>
 		</Form>
 	)

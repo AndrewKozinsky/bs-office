@@ -8,17 +8,22 @@ export type PhoneRecordPreparedData = {
 	orderPrefix: string
 	orderNum: string
 	orderNumFull: string
-	date: string
+	rawDate: string
+	humanReadableDate: string
 	time: string
-	duration: string
+	// У звонка нулевая продолжительность?
+	isZeroDuration: boolean
+	humanReadableDuration: string
 	callType: 'Внутренний' | 'Исходящий' | 'Входящий'
 	callStatus: 'ANSWERED' | 'NO ANSWER' | 'FAILED' | 'BUSY'
+	recordFileName: string // "external-101-79619235154-20250210-090217-1739160137.18879.wav"
 }
 
 export function prepareCellRecordData(cellRecord: CallsApiTypes.CallRecord): PhoneRecordPreparedData {
-	const duration = convertDurationToHumanReadableFormat(cellRecord.call_bill_sec)
-	const date = getDateFromDateAndTime(cellRecord.date_time)
+	const humanReadableDuration = convertDurationToHumanReadableFormat(cellRecord.call_bill_sec)
+	const humanReadableDate = getDateFromDateAndTime(cellRecord.date_time)
 	const time = getTimeFromDateAndTime(cellRecord.date_time)
+	const zeroDuration = isZeroDuration(cellRecord.call_bill_sec)
 	const { orderPrefix, orderNum } = splitOrderNumber(cellRecord.id_order)
 
 	return {
@@ -28,11 +33,14 @@ export function prepareCellRecordData(cellRecord: CallsApiTypes.CallRecord): Pho
 		orderPrefix,
 		orderNum,
 		orderNumFull: cellRecord.id_order,
-		date,
+		rawDate: cellRecord.date,
+		humanReadableDate,
 		time,
-		duration,
+		isZeroDuration: zeroDuration,
+		humanReadableDuration,
 		callType: cellRecord.call_type,
 		callStatus: cellRecord.call_status,
+		recordFileName: cellRecord.record_file_name,
 	}
 }
 
@@ -71,6 +79,9 @@ function convertDurationToHumanReadableFormat(duration: string) {
 function getDateFromDateAndTime(dateAndTime: string) {
 	const date = dayjs(dateAndTime, 'YYYY-MM-DD HH:mm:ss')
 
+	const currentYear = dayjs().get('year')
+	const dateYear = date.get('year')
+
 	const today = dayjs().locale('ru-Ru')
 	const yesterday = today.subtract(1, 'day')
 
@@ -78,8 +89,10 @@ function getDateFromDateAndTime(dateAndTime: string) {
 		return 'сегодня'
 	} else if (date.isSame(yesterday, 'day')) {
 		return 'вчера'
+	} else if (currentYear === dateYear) {
+		return date.format('DD MMM')
 	} else {
-		return date.format('DD MMMM')
+		return date.format('DD MMM YYYY')
 	}
 }
 
@@ -92,6 +105,10 @@ function getDateFromDateAndTime(dateAndTime: string) {
  */
 function getTimeFromDateAndTime(dateAndTime: string) {
 	return dateAndTime.split(' ')[1]
+}
+
+function isZeroDuration(duration: string) {
+	return duration === '00:00:00'
 }
 
 /**

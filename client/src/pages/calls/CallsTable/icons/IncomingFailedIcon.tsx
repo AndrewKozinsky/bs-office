@@ -1,4 +1,8 @@
-export function IncomingFailedIcon() {
+import React from 'react'
+
+interface IconProps extends React.SVGProps<SVGSVGElement> {}
+
+export function IncomingFailedIcon(props: IconProps) {
 	return (
 		<svg
 			width='22px'
@@ -7,6 +11,7 @@ export function IncomingFailedIcon() {
 			version='1.1'
 			xmlns='http://www.w3.org/2000/svg'
 			xmlnsXlink='http://www.w3.org/1999/xlink'
+			{...props}
 		>
 			<polygon
 				id='Path-2-Copy-20'

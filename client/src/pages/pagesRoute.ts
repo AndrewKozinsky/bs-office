@@ -16,7 +16,15 @@ export const pagesRoute = {
 		name: 'Гарантийный ремонт',
 	},
 	orders: {
-		path: '/orders',
+		path(args?: { clientName?: string }) {
+			const path = '/orders'
+
+			if (args && args.clientName) {
+				return path + '?clientName=' + args.clientName
+			}
+
+			return path
+		},
 		name: 'Все заказы',
 	},
 	employees: {

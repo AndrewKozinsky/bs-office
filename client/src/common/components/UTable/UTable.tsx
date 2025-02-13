@@ -12,7 +12,6 @@ export function UTable(props: UTableProps) {
 
 	const firstElem = children[0]
 	const otherElems = children.slice(1)
-
 	return (
 		<table className={cn('u-table', block && 'u-table--block')}>
 			<thead>{firstElem}</thead>
@@ -34,12 +33,13 @@ export function UTableHeadRow(props: UTableHeadRowProps) {
 
 type UTableRowProps = {
 	children: ReactNode[]
+	isRowSelected?: boolean
 }
 
 export function UTableRow(props: UTableRowProps) {
-	const { children } = props
+	const { children, isRowSelected } = props
 
-	return <tr className='u-table-row'>{children}</tr>
+	return <tr className={cn('u-table-row', isRowSelected && 'u-table-row--selected')}>{children}</tr>
 }
 
 type UTableHeadCellProps = {

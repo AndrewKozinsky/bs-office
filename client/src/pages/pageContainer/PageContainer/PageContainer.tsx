@@ -16,8 +16,10 @@ function PageContainer(props: PageContainerProps) {
 
 	return (
 		<div className='page-container'>
-			<Title>{pageTitle}</Title>
-			{children}
+			<div className='page-container__content'>
+				<Title>{pageTitle}</Title>
+				{children}
+			</div>
 		</div>
 	)
 }

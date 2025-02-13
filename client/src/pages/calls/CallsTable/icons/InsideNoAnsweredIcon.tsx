@@ -1,4 +1,8 @@
-export function InsideNoAnsweredIcon() {
+import React from 'react'
+
+interface IconProps extends React.SVGProps<SVGSVGElement> {}
+
+export function InsideNoAnsweredIcon(props: IconProps) {
 	return (
 		<svg
 			width='22px'
@@ -7,6 +11,7 @@ export function InsideNoAnsweredIcon() {
 			version='1.1'
 			xmlns='http://www.w3.org/2000/svg'
 			xmlnsXlink='http://www.w3.org/1999/xlink'
+			{...props}
 		>
 			<path
 				d='M11,0 C17.0751322,0 22,4.92486775 22,11 C22,17.0751322 17.0751322,22 11,22 C4.92486775,22 0,17.0751322 0,11 C0,4.92486775 4.92486775,0 11,0 Z M11,1 C5.4771525,1 1,5.4771525 1,11 C1,16.5228475 5.4771525,21 11,21 C16.5228475,21 21,16.5228475 21,11 C21,5.4771525 16.5228475,1 11,1 Z'

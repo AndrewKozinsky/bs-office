@@ -1,0 +1,26 @@
+.call-record-player {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 1.2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.call-record-player__content {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    background-color: #f1f3f4;
+    width: 100%;
+    max-width: 70rem;
+    box-sizing: border-box;
+    padding: .8rem 2rem;
+    border-radius: .8rem;
+    //box-shadow: 0 1px 3px 0 rgba(28, 44, 55, 0.1), 0 4px 10px 0 rgba(24, 37, 46, 0.1);
+}
+
+.call-record-player__audio {
+    flex-grow: 1;
+}
