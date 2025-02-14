@@ -6,8 +6,8 @@ export const sql = postgres({
     host: 'localhost',
     port: 5432,
     database: 'test',
-    username: 'postgres',
-    password: 'postgres'
+    username: 'user',
+    password: '123'
 })
 
 /*

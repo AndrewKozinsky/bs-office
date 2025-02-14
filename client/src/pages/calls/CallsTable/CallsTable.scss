@@ -1,4 +1,5 @@
 @use '../../../components/App/css/variables' as *;
+@use "sass:color";
 
 .calls-table__date-wrapper {
     display: flex;
@@ -27,7 +28,7 @@
 
 .calls-table__order-prefix {
     font-size: 1.3rem;
-    color: darken($blueColor-2, 20%);
+    color: color.adjust($blueColor-2, $lightness: -20%);
 }
 
 .calls-table__call-icon {

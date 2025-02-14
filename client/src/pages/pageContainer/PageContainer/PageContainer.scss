@@ -1,3 +1,5 @@
+@use '../../../components/App/css/variables' as *;
+
 .page-container {
     flex-grow: 1;
     overflow: auto;
@@ -7,6 +9,6 @@
 }
 
 .page-container__content {
-    max-width: 150rem;
+    max-width: $max-page-width;
     margin: 0 auto;
 }

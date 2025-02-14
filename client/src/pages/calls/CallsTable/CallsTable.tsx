@@ -13,8 +13,6 @@ import {
 import CallsApiTypes from '../../../requests/calls/callsApiTypes.ts'
 import { callsQuery } from '../../../requests/calls/callsQuery.ts'
 import { pagesRoute } from '../../pagesRoute.ts'
-import { useIsPlayerVisible } from '../CallRecordPleer/fn/playerLogic.ts'
-import { useFetchCalls } from './fn/fetchCallsData.ts'
 import { useIsRowSelected } from './fn/isRowSelected.ts'
 import { PhoneRecordPreparedData, prepareCellRecordData } from './fn/textTransform.ts'
 import { IncomingAnsweredIcon } from './icons/IncomingAnsweredIcon.tsx'
@@ -39,17 +37,17 @@ type CallsTableProps = {
 function CallsTable(props: CallsTableProps) {
 	const { startDate, endDate, searchValue, passRecordData } = props
 
-	const { error, callsArr, isLoading } = useFetchCalls({ startDate, endDate, searchValue })
+	const getRecordsRes = callsQuery.getRecords({ startDate, endDate, searchValue }).useQuery()
 
-	if (isLoading) {
+	if (getRecordsRes.isLoading) {
 		return <LoadingAnimation />
 	}
 
-	if (error) {
+	if (getRecordsRes.error) {
 		return <p>Во время запроса произошла ошибка.</p>
 	}
 
-	if (!callsArr) {
+	if (!getRecordsRes.data) {
 		return <p>Нет данных для отображения.</p>
 	}
 
@@ -64,7 +62,7 @@ function CallsTable(props: CallsTableProps) {
 				<UTableHeadCell>Длительность</UTableHeadCell>
 				<UTableHeadCell>Тип</UTableHeadCell>
 			</UTableHeadRow>
-			{callsArr.map((cellRecord, i) => {
+			{getRecordsRes.data.map((cellRecord, i) => {
 				return <CallTableRow cellRecord={cellRecord} passRecordData={passRecordData} key={i} />
 			})}
 		</UTable>

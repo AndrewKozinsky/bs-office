@@ -1,3 +1,5 @@
+@use '../../../components/App/css/variables' as *;
+
 .u-table {
 
 }
@@ -28,7 +30,7 @@
     }
 }
 .u-table-row--selected {
-    background-color: #f1f3f4;
+    background-color: $grayColor-1;
 }
 
 .u-table-cell {
