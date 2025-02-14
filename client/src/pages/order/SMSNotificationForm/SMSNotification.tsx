@@ -1,6 +1,6 @@
 import React from 'react'
 import { Alert, Button, Form, Input, Select, Typography } from 'antd'
-import { useFetchMessageTemplates } from './fn/fetchData.ts'
+import { messageTemplateQuery } from '../../../requests/messageTemplate/messageTemplateQuery.ts'
 import { checkNotificationForm, FieldNames, FieldType } from './fn/form.ts'
 import {
 	useCreateSelectOptionsData,
@@ -21,15 +21,23 @@ type SMSNotificationProps = {
 function SMSNotification(props: SMSNotificationProps) {
 	const { orderId, clientPhone } = props
 
-	useFetchMessageTemplates(orderId)
-
 	const [form] = Form.useForm<FieldType>()
-	useCreateSelectOptionsData()
+	useCreateSelectOptionsData(orderId)
 	const smsTemplatesSelectOptions = useSMSNotificationStore((s) => s.smsTemplatesSelectOptions)
 	const isFormValid = useSMSNotificationStore((s) => s.isFormValid)
 	const changeTemplatesSelectChange = useGetChangeTemplatesSelectInput(form)
 	const changeSMSTextarea = useGetChangeSMSTextarea()
 	const sendSMS = useGetSendSMS(form, clientPhone)
+
+	const getMessageTemplatesRes = messageTemplateQuery.getMessageTemplates().useQuery()
+
+	if (getMessageTemplatesRes.isLoading) {
+		return <p>Загрузка...</p>
+	}
+
+	if (getMessageTemplatesRes.error) {
+		return <p>При загрузке произошла ошибка</p>
+	}
 
 	if (!orderId) {
 		return <p>Не указан orderId</p>

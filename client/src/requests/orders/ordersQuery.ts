@@ -8,7 +8,7 @@ import OrdersApiTypes from './ordersApiTypes.ts'
 import { ordersRequests } from './ordersRequests.ts'
 
 export const ordersQuery = {
-	async getOrders(params: OrdersApiTypes.GetOrdersParams) {
+	getOrders(params: OrdersApiTypes.GetOrdersParams) {
 		return {
 			key: 'getOrders',
 			useQuery() {
@@ -17,39 +17,23 @@ export const ordersQuery = {
 					queryFn: async () => {
 						return await ordersRequests.getOrders(params)
 					},
+					staleTime: 60000,
 				})
 			},
 		}
-
-		/*return {
-			key: 'getOrders',
-			useQuery(options: QueryOptions<OrdersApiTypes.GetOrdersRes> = {}) {
-				return useQuery({
-					queryKey: [this.key],
-
-					queryFn: () => ordersRequests.getOrders(params),
-					...options,
-				})
-			},
-		}*/
-
-		// return $api.get<OrdersApiTypes.GetOrdersRes>('/orders', { params })
 	},
-	/*getTariffs(groupId: number | string) {
+	getOrder(orderId: number | string) {
 		return {
-			key: 'getTariffs-' + groupId,
-			useQuery(options: QueryOptions<GroupsApiTypes.GetTariffs> = {}) {
+			key: 'getOrder_' + orderId,
+			useQuery() {
 				return useQuery({
 					queryKey: [this.key],
-					queryFn: () => groupRequests.getTariffs(groupId),
-					...options,
+					queryFn: async () => {
+						return await ordersRequests.getOrder(orderId)
+					},
+					staleTime: 60000,
 				})
 			},
 		}
-	},*/
-	/*createOrEditTariffs: {
-		useMutation(options: MutationOptions = {}) {
-			return useMutation(groupRequests.createOrEditTariffs, options)
-		},
-	},*/
+	},
 }

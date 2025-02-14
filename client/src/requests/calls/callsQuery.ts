@@ -18,9 +18,4 @@ export const callsQuery = {
 			},
 		}
 	},
-	/*createOrEditTariffs: {
-		useMutation(options: MutationOptions = {}) {
-			return useMutation(groupRequests.createOrEditTariffs, options)
-		},
-	},*/
 }

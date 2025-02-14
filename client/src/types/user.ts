@@ -1,5 +1,3 @@
-import React from 'react'
-
 export type CurrentUser = {
 	id: number // 1
 	login: string // 'andreyAdmin'

@@ -1,5 +1,5 @@
 import $api from '../../components/http'
-import MessageTemplateApiTypes from './deviceApiTypes.ts'
+import MessageTemplateApiTypes from './messageTemplateTypes.ts'
 
 export const messageTemplateRequests = {
 	// Получение всх шаблонов сообщений

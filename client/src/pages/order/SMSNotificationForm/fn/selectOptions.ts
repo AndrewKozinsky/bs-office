@@ -1,16 +1,24 @@
 import React, { useEffect } from 'react'
 import { FormInstance } from 'antd'
+import { messageTemplateQuery } from '../../../../requests/messageTemplate/messageTemplateQuery.ts'
+import MessageTemplateApiTypes from '../../../../requests/messageTemplate/messageTemplateTypes.ts'
+import { ordersQuery } from '../../../../requests/orders/ordersQuery.ts'
 import { IOrder } from '../../../../types/user.ts'
 import { SMSNotificationStore, useSMSNotificationStore } from '../SMSNotificationStore.ts'
 import { checkNotificationForm, FieldNames, FieldType } from './form.ts'
 
-export function useCreateSelectOptionsData() {
-	const smsTemplates = useSMSNotificationStore((s) => s.smsTemplates)
-	const order = useSMSNotificationStore((s) => s.order)
+export function useCreateSelectOptionsData(orderId: string | number) {
+	const getMessageTemplatesRes = messageTemplateQuery.getMessageTemplates().useQuery()
+	const templates = getMessageTemplatesRes.data?.data
+
+	const getOrderRes = ordersQuery.getOrder(orderId).useQuery()
+	const order = getOrderRes.data?.data
 
 	useEffect(
 		function () {
-			if (!smsTemplates || !order) return
+			if (!templates || !order) return
+
+			const smsTemplates = filterSMSTemplates(getMessageTemplatesRes.data.data)
 
 			smsTemplates.forEach((template) => {
 				template.template_text = replaceTemplateParameters(template.template_text, order)
@@ -43,7 +51,7 @@ export function useCreateSelectOptionsData() {
 
 			useSMSNotificationStore.setState({ smsTemplatesSelectOptions: options })
 		},
-		[smsTemplates, order],
+		[templates, order],
 	)
 }
 
@@ -55,8 +63,14 @@ function replaceTemplateParameters(template: string, order: IOrder) {
 }
 
 export function useGetChangeTemplatesSelectInput(form: FormInstance<FieldType>) {
+	const getMessageTemplatesRes = messageTemplateQuery.getMessageTemplates().useQuery()
+
 	return function (smsTemplateId: string) {
-		const { smsTemplates } = useSMSNotificationStore.getState()
+		if (!getMessageTemplatesRes.data?.data) {
+			return
+		}
+
+		const smsTemplates = filterSMSTemplates(getMessageTemplatesRes.data.data)
 		if (!smsTemplates) return
 
 		const template = smsTemplates.find((template) => template.template_id === smsTemplateId)
@@ -65,6 +79,10 @@ export function useGetChangeTemplatesSelectInput(form: FormInstance<FieldType>) 
 		form.setFieldValue(FieldNames.message, template.template_text)
 		checkNotificationForm(form)
 	}
+}
+
+function filterSMSTemplates(templates: MessageTemplateApiTypes.GetMessageTemplatesRes) {
+	return templates.filter((template) => template.template_type === 'SMS')
 }
 
 export function useGetChangeSMSTextarea() {

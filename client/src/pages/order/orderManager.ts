@@ -5,6 +5,6 @@ export const orderManager = {
 		return order.end_user.user_phone || order.retail_user.user_phone
 	},
 	isOrderExists(order: IOrder) {
-		return !!order.device.device_id
+		return !!order?.order_date
 	},
 }
