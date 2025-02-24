@@ -47,7 +47,7 @@ export function useDownloadAudioAndSetToAudioElem($audioPlayer: null | HTMLAudio
 
 	useEffect(
 		function () {
-			// console.log($audioPlayer)
+			console.log($audioPlayer)
 			if (!$audioPlayer || !isPlayerVisible({ recordDate, recordFileName })) {
 				return
 			}

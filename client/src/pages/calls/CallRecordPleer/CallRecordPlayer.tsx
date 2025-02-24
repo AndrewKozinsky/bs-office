@@ -12,18 +12,11 @@ import {
 import './CallRecordPleer.scss'
 
 function CallRecordPlayer() {
-	const recordFileName = useCallsStore((s) => s.currentRecordFileName)
-
 	const audioPlayerRef = useRef<HTMLAudioElement | null>(null)
+
 	const isPlayerVisible = useIsPlayerVisible()
 	const closePlayer = useGetClosePlayer()
 	const downloadAudio = useGetDownloadAudio()
-
-	useEffect(function () {
-		if (audioPlayerRef.current) {
-			console.log(audioPlayerRef.current)
-		}
-	}, [])
 
 	useDownloadAudioAndSetToAudioElem(audioPlayerRef.current)
 
@@ -32,11 +25,7 @@ function CallRecordPlayer() {
 	return (
 		<div className='call-record-player'>
 			<div className='call-record-player__content'>
-				<AudioPlayer
-					src={`audio/${recordFileName}`}
-					className='call-record-player__audio'
-					ref={audioPlayerRef}
-				/>
+				<AudioPlayer className='call-record-player__audio' ref={audioPlayerRef} />
 				<Button icon={<DownloadOutlined />} onClick={downloadAudio}>
 					Скачать
 				</Button>
