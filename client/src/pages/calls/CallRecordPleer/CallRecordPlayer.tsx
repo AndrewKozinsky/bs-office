@@ -3,7 +3,12 @@ import { Button, Space } from 'antd'
 import { CloseOutlined, DownloadOutlined } from '@ant-design/icons'
 import AudioPlayer from '../../../common/components/AudioPlayer/AudioPlayer.tsx'
 import { useCallsStore } from '../callsStore/callsStore.ts'
-import { useTest, useGetClosePlayer, useIsPlayerVisible, useGetDownloadAudio } from './fn/playerLogic.ts'
+import {
+	useDownloadAudioAndSetToAudioElem,
+	useGetClosePlayer,
+	useIsPlayerVisible,
+	useGetDownloadAudio,
+} from './fn/playerLogic.ts'
 import './CallRecordPleer.scss'
 
 function CallRecordPlayer() {
@@ -14,14 +19,13 @@ function CallRecordPlayer() {
 	const closePlayer = useGetClosePlayer()
 	const downloadAudio = useGetDownloadAudio()
 
-	useEffect(
-		function () {
-			console.log(audioPlayerRef)
-		},
-		[audioPlayerRef],
-	)
+	useEffect(function () {
+		if (audioPlayerRef.current) {
+			console.log(audioPlayerRef.current)
+		}
+	}, [])
 
-	useTest()
+	useDownloadAudioAndSetToAudioElem(audioPlayerRef.current)
 
 	if (!isPlayerVisible) return null
 

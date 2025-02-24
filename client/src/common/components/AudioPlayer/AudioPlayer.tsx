@@ -4,13 +4,13 @@ import './AudioPlayer.scss'
 
 interface AudioPlayerProps
 	extends React.DetailedHTMLProps<React.AudioHTMLAttributes<HTMLAudioElement>, HTMLAudioElement> {
-	ref?: React.MutableRefObject<HTMLAudioElement>
+	ref?: React.RefObject<HTMLAudioElement>
 }
 
 function AudioPlayer(props: AudioPlayerProps) {
-	const { className, ref, ...lastProps } = props
+	const { className, ...lastProps } = props
 
-	return <audio className={cn('audio-player', className)} {...lastProps} preload='auto' controls ref={ref} />
+	return <audio className={cn('audio-player', className)} {...lastProps} preload='auto' controls />
 }
 
 export default AudioPlayer

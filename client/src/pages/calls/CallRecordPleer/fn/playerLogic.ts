@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { audioRequests } from '../../../../requests/audio/audioRequests.ts'
 import { callsRequests } from '../../../../requests/calls/callsRequests.ts'
 import { useCallsStore } from '../../callsStore/callsStore.ts'
@@ -41,43 +41,35 @@ export function useGetDownloadAudio() {
 	)
 }
 
-export function useTest() {
+export function useDownloadAudioAndSetToAudioElem($audioPlayer: null | HTMLAudioElement) {
 	const recordFileName = useCallsStore((s) => s.currentRecordFileName)
 	const recordDate = useCallsStore((s) => s.currentRecordDate)
 
 	useEffect(
 		function () {
-			if (!isPlayerVisible({ recordDate, recordFileName })) {
+			// console.log($audioPlayer)
+			if (!$audioPlayer || !isPlayerVisible({ recordDate, recordFileName })) {
 				return
 			}
 
-			makeFetch(recordDate, recordFileName)
+			downloadAudio(recordDate, recordFileName).then((audioBlob) => {
+				// Создание URL для объекта Blob и установка источника
+				$audioPlayer.src = URL.createObjectURL(audioBlob)
+			})
 		},
-		[recordFileName, recordDate],
+		[$audioPlayer, recordFileName, recordDate],
 	)
 }
 
-async function makeFetch(recordDate: string, recordName: string) {
+async function downloadAudio(recordDate: string, recordName: string) {
 	const splitRecordDate = recordDate.split('-') // ["2025", "02", "24"]
 	const recordYear = splitRecordDate[0]
 	const recordMonth = splitRecordDate[1]
 	const recordDay = splitRecordDate[2]
 
 	try {
-		const audioBlob = await callsRequests.getRecordedDetailsBlob({ recordYear, recordMonth, recordDay, recordName })
-
-		// Создание URL для объекта Blob
-		const audioUrl = URL.createObjectURL(audioBlob)
-
-		// Установка источника для аудиоплеера
-		// const audioPlayer = document.getElementById('audioPlayer')
-		// audioPlayer.src = audioUrl
+		return await callsRequests.getRecordedDetailsBlob({ recordYear, recordMonth, recordDay, recordName })
 	} catch (error) {
 		console.error('Error fetching or loading audio:', error)
 	}
-
-	/*function playAudio() {
-		const audioPlayer = document.getElementById('audioPlayer')
-		audioPlayer.play()
-	}*/
 }
