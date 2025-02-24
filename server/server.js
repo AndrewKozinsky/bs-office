@@ -326,9 +326,8 @@ app.get('/api/order/record/:date/:name', async (req, res) => {
   const { date, name } = req.params;
 
   try {
-    const { default: fetch } = await import('node-fetch');
-
-    const response = await fetch(`http://192.168.1.10/api/order/record/${date}/${name}`);
+    const response = await fetch(`http://192.168.1.10/api/order/record/${date}/${name}`)
+    console.log(response)
 
     res.header('Access-Control-Allow-Origin', req.headers.origin || "*");
     res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,HEAD,DELETE,OPTIONS');
@@ -345,7 +344,32 @@ app.get('/api/order/record/:date/:name', async (req, res) => {
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
-});
+})
+
+app.get('/api/record/:year/:month/:day/:name', async (req, res) => {
+  const { year, month, day, name } = req.params
+
+  try {
+    const response = await fetch(`http://192.168.1.10/api/order/record/${year}/${month}/${day}/${name}`)
+    console.log(response)
+
+    res.header('Access-Control-Allow-Origin', req.headers.origin || "*");
+    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,HEAD,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'content-Type,x-requested-with');
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+
+    res.json(responseData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+})
+
 app.get('/api/shipment/:data/:userRole/:UserName/:destination', async (req, res) => {
   let { data, userRole, UserName, destination } = req.params;
 

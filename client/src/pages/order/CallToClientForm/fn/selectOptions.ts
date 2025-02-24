@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { FormInstance } from 'antd'
+import { callsQuery } from '../../../../requests/calls/callsQuery.ts'
 import { CallToClientFormStore, useCallToClientFormStore } from '../callToClientFormStore.ts'
 import { checkCallToClientForm, FieldType } from './form.ts'
 
 export function useCreateSelectOptionsData() {
-	const staffPhones = useCallToClientFormStore((s) => s.staffPhones)
-	const order = useCallToClientFormStore((s) => s.order)
+	const getStaffPhonesRes = callsQuery.getStaffPhones().useQuery()
+	const staffPhones = getStaffPhonesRes.data
 	const phoneSearch = useCallToClientFormStore((s) => s.phoneSearch)
 
 	useEffect(
@@ -29,7 +30,7 @@ export function useCreateSelectOptionsData() {
 
 			useCallToClientFormStore.setState({ phonesSelectOptions: options })
 		},
-		[staffPhones, order, phoneSearch],
+		[staffPhones, phoneSearch],
 	)
 }
 

@@ -47,31 +47,37 @@ export function useTest() {
 
 	useEffect(
 		function () {
-			if (!isPlayerVisible({ recordFileName, recordDate })) {
+			if (!isPlayerVisible({ recordDate, recordFileName })) {
 				return
 			}
 
-			// record_file_name
-			// date
-			callsRequests.getRecordedDetails({ recordDate, recordFileName }).then((response) => {
-				return response.data
-			})
-
-			/*const response = axios.get(`order/record/${recordDate}/${recordFileName}`).then((response) => {
-				console.log(response)
-				return response.data
-			})*/
-
-			/*try {
-				const data = await response.json()
-				return data
-				// setSelectedRecord({ name, data })
-				// setIsModalOpen(true)
-				// handleSearchTermChange({})
-			} catch (error) {
-				console.log(error)
-			}*/
+			makeFetch(recordDate, recordFileName)
 		},
 		[recordFileName, recordDate],
 	)
+}
+
+async function makeFetch(recordDate: string, recordName: string) {
+	const splitRecordDate = recordDate.split('-') // ["2025", "02", "24"]
+	const recordYear = splitRecordDate[0]
+	const recordMonth = splitRecordDate[1]
+	const recordDay = splitRecordDate[2]
+
+	try {
+		const audioBlob = await callsRequests.getRecordedDetailsBlob({ recordYear, recordMonth, recordDay, recordName })
+
+		// Создание URL для объекта Blob
+		const audioUrl = URL.createObjectURL(audioBlob)
+
+		// Установка источника для аудиоплеера
+		// const audioPlayer = document.getElementById('audioPlayer')
+		// audioPlayer.src = audioUrl
+	} catch (error) {
+		console.error('Error fetching or loading audio:', error)
+	}
+
+	/*function playAudio() {
+		const audioPlayer = document.getElementById('audioPlayer')
+		audioPlayer.play()
+	}*/
 }

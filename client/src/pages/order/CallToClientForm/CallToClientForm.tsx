@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button, Form, Select, Typography } from 'antd'
+import { callsQuery } from '../../../requests/calls/callsQuery.ts'
 import { useCallToClientFormStore } from './callToClientFormStore.ts'
 import { FieldType } from './fn/form.ts'
-import { useFetchStaffPhones } from './fn/fetchData.ts'
 import { checkCallToClientForm, FieldNames } from './fn/form.ts'
 import {
 	useCreateSelectOptionsData,
@@ -20,7 +20,7 @@ type CallToClientFormProps = {
 function CallToClientForm(props: CallToClientFormProps) {
 	const { clientPhone } = props
 
-	useFetchStaffPhones()
+	const getStaffPhonesRes = callsQuery.getStaffPhones().useQuery()
 
 	const [form] = Form.useForm<FieldType>()
 	useCreateSelectOptionsData()
@@ -29,6 +29,14 @@ function CallToClientForm(props: CallToClientFormProps) {
 	const onAddressSearchChange = useGetOnAddressSearchChange()
 	const isFormValid = useCallToClientFormStore((s) => s.isFormValid)
 	const callToClient = useGetCallToClient(form, clientPhone)
+
+	if (getStaffPhonesRes.isLoading) {
+		return <p>Загрузка...</p>
+	}
+
+	if (getStaffPhonesRes.error) {
+		return <p>Во время загрузки произошла ошибка.</p>
+	}
 
 	return (
 		<div>

@@ -50,6 +50,7 @@ function CallsTable(props: CallsTableProps) {
 	if (!getRecordsRes.data) {
 		return <p>Нет данных для отображения.</p>
 	}
+	console.log(getRecordsRes.data)
 
 	return (
 		<UTable block>
@@ -229,7 +230,9 @@ function CallStatusCell(props: CallStatusCellProps) {
 	return (
 		<UTableCell>
 			<Button
-				onClick={() => passRecordData({ recordName: preparedData.recordFileName, date: preparedData.rawDate })}
+				onClick={() => {
+					passRecordData({ recordName: preparedData.recordFileName, date: preparedData.rawDate })
+				}}
 				disabled={isButtonDisabled}
 				className={cn(isButtonDisabled && 'calls-table__call-button--disabled')}
 				type='text'

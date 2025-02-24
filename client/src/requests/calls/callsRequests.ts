@@ -21,9 +21,24 @@ export const callsRequests = {
 		)
 	},
 	// Получение данных о записи разговора
-	async getRecordedDetails(args: { recordDate: string; recordFileName: string }) {
-		const { recordDate, recordFileName } = args
+	async getRecordedDetailsBlob(args: {
+		recordYear: string
+		recordMonth: string
+		recordDay: string
+		recordName: string
+	}) {
+		const { recordYear, recordMonth, recordDay, recordName } = args
 
-		return $api.get<CallsApiTypes.GetCallRecords>(`order/record/${recordDate}/${recordFileName}`)
+		const url = `record/${recordYear}/${recordMonth}/${recordDay}/${recordName}`
+		const response = await fetch(url)
+		if (!response.ok) {
+			throw new Error('Network response was not ok')
+		}
+
+		// Получение бинарных данных
+		const audioData = await response.arrayBuffer()
+
+		// Создание объекта Blob из бинарных данных
+		return new Blob([audioData], { type: 'audio/wav' })
 	},
 }
