@@ -29,16 +29,20 @@ export const callsRequests = {
 	}) {
 		const { recordYear, recordMonth, recordDay, recordName } = args
 
-		const url = `record/${recordYear}/${recordMonth}/${recordDay}/${recordName}`
+		const url = `http://localhost:5001/api/record/${recordYear}/${recordMonth}/${recordDay}/${recordName}`
+
 		const response = await fetch(url)
 		if (!response.ok) {
 			throw new Error('Network response was not ok')
 		}
 
+		return await response.text()
+
 		// Получение бинарных данных
-		const audioData = await response.arrayBuffer()
+		// const audioData = await response.arrayBuffer()
+		// console.log(audioData)
 
 		// Создание объекта Blob из бинарных данных
-		return new Blob([audioData], { type: 'audio/wav' })
+		// return new Blob([audioData], { type: 'audio/wav' })
 	},
 }

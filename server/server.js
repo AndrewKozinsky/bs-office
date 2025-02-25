@@ -350,20 +350,17 @@ app.get('/api/record/:year/:month/:day/:name', async (req, res) => {
   const { year, month, day, name } = req.params
 
   try {
-    const response = await fetch(`http://192.168.1.10/api/order/record/${year}/${month}/${day}/${name}`)
-    console.log(response)
+    const url = `http://192.168.1.10/record/${year}/${month}/${day}/${name}`
+    const response = await fetch(url)
+    // console.log(response)
 
-    res.header('Access-Control-Allow-Origin', req.headers.origin || "*");
-    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,HEAD,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'content-Type,x-requested-with');
+    // res.status(200).send(response.url);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const responseData = await response.json();
-
-    res.json(responseData);
+    const audioData = await response.arrayBuffer()
+    console.log(audioData);
+    const blob = new Blob([audioData], { type: 'audio/wav' })
+    console.log(blob)
+    return blob
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');

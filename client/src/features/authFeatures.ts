@@ -1,19 +1,18 @@
+import AuthApiTypes from '../requests/auth/authApiTypes.ts'
 import { authRequests } from '../requests/auth/authRequests.ts'
 import { useUserStore } from '../stores/userStore.ts'
 
-type InputData = { login: string; password: string; role: string }
-
 export const authFeatures = {
 	// метод для входа
-	async login(inputData: InputData) {
+	async login(inputData: AuthApiTypes.LoginInputData) {
 		try {
 			const response = await authRequests.login(inputData)
 
-			useUserStore.setState({ user: response.data.user })
+			/*useUserStore.setState({ user: response.data.user })
 
 			localStorage.setItem('token', response.data.accessToken)
 			localStorage.setItem('role', response.data.role)
-			document.cookie = `refreshToken=${response.data.refreshToken}; Max-Age=${30 * 24 * 60 * 60}; Path=/PersonalAccount; Secure; SameSite=None`
+			document.cookie = `refreshToken=${response.data.refreshToken}; Max-Age=${30 * 24 * 60 * 60}; Path=/PersonalAccount; Secure; SameSite=None`*/
 
 			return true
 		} catch (e) {
@@ -24,7 +23,7 @@ export const authFeatures = {
 		}
 	},
 	// метод для входа
-	async registration(inputData: InputData) {
+	async registration(inputData: AuthApiTypes.LoginInputData) {
 		try {
 			const response = await authRequests.registration(inputData)
 		} catch (e) {

@@ -7,6 +7,6 @@ export type FieldType = {
 
 export async function submitForm(formValues: FieldType) {
 	try {
-		await authFeatures.login({ login: formValues.login, password: formValues.password, role: '' })
+		await authFeatures.login({ staff_login: formValues.login, staff_password: formValues.password })
 	} catch (error) {}
 }

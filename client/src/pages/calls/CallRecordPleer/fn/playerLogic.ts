@@ -10,8 +10,8 @@ export function useIsPlayerVisible() {
 	return isPlayerVisible({ recordFileName, recordDate })
 }
 
-function isPlayerVisible(data: { recordFileName: null | string; recordDate: null | string }) {
-	return data.recordFileName && data.recordDate
+function isPlayerVisible(data: { recordFileName: null | string; recordDate: null | string }): boolean {
+	return !!data.recordFileName && !!data.recordDate
 }
 
 export function useGetClosePlayer() {
@@ -41,23 +41,28 @@ export function useGetDownloadAudio() {
 	)
 }
 
-export function useDownloadAudioAndSetToAudioElem($audioPlayer: null | HTMLAudioElement) {
+export function useDownloadAudioAndSetToAudioElem(
+	audioPlayerRef: React.RefObject<HTMLAudioElement>,
+	isVisible: boolean,
+) {
 	const recordFileName = useCallsStore((s) => s.currentRecordFileName)
 	const recordDate = useCallsStore((s) => s.currentRecordDate)
 
 	useEffect(
 		function () {
-			console.log($audioPlayer)
-			if (!$audioPlayer || !isPlayerVisible({ recordDate, recordFileName })) {
+			if (!isVisible) {
 				return
 			}
 
 			downloadAudio(recordDate, recordFileName).then((audioBlob) => {
+				const $audioPlayer = audioPlayerRef.current
+
+				console.log(audioBlob)
 				// Создание URL для объекта Blob и установка источника
-				$audioPlayer.src = URL.createObjectURL(audioBlob)
+				// $audioPlayer.src = URL.createObjectURL(audioBlob)
 			})
 		},
-		[$audioPlayer, recordFileName, recordDate],
+		[recordFileName, recordDate, isVisible],
 	)
 }
 

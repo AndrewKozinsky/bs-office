@@ -1,8 +1,7 @@
-import React, { useEffect, useRef } from 'react'
-import { Button, Space } from 'antd'
+import React, { useRef } from 'react'
+import { Button } from 'antd'
 import { CloseOutlined, DownloadOutlined } from '@ant-design/icons'
 import AudioPlayer from '../../../common/components/AudioPlayer/AudioPlayer.tsx'
-import { useCallsStore } from '../callsStore/callsStore.ts'
 import {
 	useDownloadAudioAndSetToAudioElem,
 	useGetClosePlayer,
@@ -18,7 +17,7 @@ function CallRecordPlayer() {
 	const closePlayer = useGetClosePlayer()
 	const downloadAudio = useGetDownloadAudio()
 
-	useDownloadAudioAndSetToAudioElem(audioPlayerRef.current)
+	useDownloadAudioAndSetToAudioElem(audioPlayerRef, isPlayerVisible)
 
 	if (!isPlayerVisible) return null
 
