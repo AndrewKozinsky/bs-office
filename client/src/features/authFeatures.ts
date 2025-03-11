@@ -8,9 +8,9 @@ export const authFeatures = {
 		try {
 			const response = await authRequests.login(inputData)
 
-			/*useUserStore.setState({ user: response.data.user })
+			// useUserStore.setState({ user: response.data.user })
 
-			localStorage.setItem('token', response.data.accessToken)
+			/*localStorage.setItem('token', response.data.accessToken)
 			localStorage.setItem('role', response.data.role)
 			document.cookie = `refreshToken=${response.data.refreshToken}; Max-Age=${30 * 24 * 60 * 60}; Path=/PersonalAccount; Secure; SameSite=None`*/
 
@@ -42,15 +42,17 @@ export const authFeatures = {
 	},
 
 	async checkAuth() {
-		if (!localStorage.getItem('token')) return
-
-		try {
-			const response = await authRequests.refresh()
-			localStorage.setItem('token', response.data.accessToken)
-			useUserStore.setState({ user: response.data.user })
-		} catch (e) {
-			console.log(e.response?.data?.message)
-		} finally {
+		if (localStorage.getItem('token')) {
+			try {
+				const response = await authRequests.refresh()
+				localStorage.setItem('token', response.data.accessToken)
+				useUserStore.setState({ user: response.data.user })
+			} catch (e) {
+				console.log(e.response?.data?.message)
+			} finally {
+				useUserStore.setState({ isLoading: false })
+			}
+		} else {
 			useUserStore.setState({ isLoading: false })
 		}
 	},
