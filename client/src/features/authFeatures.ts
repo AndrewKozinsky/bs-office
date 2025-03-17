@@ -3,10 +3,11 @@ import { authRequests } from '../requests/auth/authRequests.ts'
 import { useUserStore } from '../stores/userStore.ts'
 
 export const authFeatures = {
-	// метод для входа
+	// Вход пользователя
 	async login(inputData: AuthApiTypes.LoginInputData) {
 		try {
 			const response = await authRequests.login(inputData)
+			console.log(response)
 
 			// useUserStore.setState({ user: response.data.user })
 
@@ -16,6 +17,7 @@ export const authFeatures = {
 
 			return true
 		} catch (e) {
+			console.log('Login failed with error:')
 			console.log(e.response.data.message)
 			return false
 		} finally {
@@ -45,6 +47,7 @@ export const authFeatures = {
 		if (localStorage.getItem('token')) {
 			try {
 				const response = await authRequests.refresh()
+				console.log(response)
 				localStorage.setItem('token', response.data.accessToken)
 				useUserStore.setState({ user: response.data.user })
 			} catch (e) {
