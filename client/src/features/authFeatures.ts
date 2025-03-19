@@ -7,14 +7,7 @@ export const authFeatures = {
 	async login(inputData: AuthApiTypes.LoginInputData) {
 		try {
 			const response = await authRequests.login(inputData)
-			console.log(response)
-
-			// useUserStore.setState({ user: response.data.user })
-
-			/*localStorage.setItem('token', response.data.accessToken)
-			localStorage.setItem('role', response.data.role)
-			document.cookie = `refreshToken=${response.data.refreshToken}; Max-Age=${30 * 24 * 60 * 60}; Path=/PersonalAccount; Secure; SameSite=None`*/
-
+			useUserStore.setState({ user: { ...response.data, id: parseInt(response.data.id) }, isLoading: false })
 			return true
 		} catch (e) {
 			console.log('Login failed with error:')
@@ -44,18 +37,15 @@ export const authFeatures = {
 	},
 
 	async checkAuth() {
-		if (localStorage.getItem('token')) {
-			try {
-				const response = await authRequests.refresh()
-				console.log(response)
-				localStorage.setItem('token', response.data.accessToken)
-				useUserStore.setState({ user: response.data.user })
-			} catch (e) {
-				console.log(e.response?.data?.message)
-			} finally {
-				useUserStore.setState({ isLoading: false })
-			}
-		} else {
+		try {
+			const response = await authRequests.me()
+
+			useUserStore.setState({
+				user: { id: parseInt(response.data.id), role: response.data.role, login: response.data.login },
+			})
+		} catch (e) {
+			console.log(e.response?.data?.message)
+		} finally {
 			useUserStore.setState({ isLoading: false })
 		}
 	},

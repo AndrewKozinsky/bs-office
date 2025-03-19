@@ -9,10 +9,6 @@ export const authRequests = {
 		} catch (err: any) {
 			console.log(err)
 		}
-
-		// console.log(inputData)
-
-		// return $api.post<AuthApiTypes.LoginRes>('/login', inputData)
 	},
 
 	async registration(inputData: AuthApiTypes.LoginInputData) {
@@ -25,5 +21,9 @@ export const authRequests = {
 
 	async refresh() {
 		return $api.get<AuthApiTypes.RefreshRes>('/refresh', { withCredentials: true })
+	},
+
+	async me() {
+		return $api.get<AuthApiTypes.Me>('/me', { withCredentials: true })
 	},
 }
