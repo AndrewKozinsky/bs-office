@@ -1,5 +1,6 @@
 import { FormInstance } from 'antd'
 import React, { useCallback, useEffect } from 'react'
+import { debounce } from '../../../../utils/other.ts'
 import { useCallsStore } from '../../callsStore/callsStore.ts'
 
 export type FieldType = Record<FormNames, string>
@@ -9,12 +10,15 @@ export enum FormNames {
 }
 
 export function useGetOnSearchInputChange(form: FormInstance) {
-	return useCallback((e: React.FormEvent<HTMLInputElement>) => {
-		// @ts-ignore
-		const { value } = e.target
+	return useCallback(
+		debounce((e: React.FormEvent<HTMLInputElement>) => {
+			// @ts-ignore
+			const { value } = e.target
 
-		useCallsStore.setState({ searchValue: value })
-	}, [])
+			useCallsStore.setState({ searchValue: value })
+		}, 1000),
+		[],
+	)
 }
 
 export function useSetValueToInput(form: FormInstance, value: string) {

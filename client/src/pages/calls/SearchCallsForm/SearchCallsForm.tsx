@@ -16,8 +16,12 @@ function SearchCallsForm(props: SearchCallsFormProps) {
 
 	return (
 		<Form form={form}>
-			<Form.Item<FieldType> name={FormNames.search} label='Поиск по номеру заказа или телефону' layout='vertical'>
-				<Input onInput={onSearchInputChange} type='number' />
+			<Form.Item<FieldType>
+				name={FormNames.search}
+				label='Поиск по заказу, телефону или фамилии'
+				layout='vertical'
+			>
+				<Input onInput={onSearchInputChange} />
 			</Form.Item>
 		</Form>
 	)
