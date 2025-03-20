@@ -14,10 +14,6 @@ function OrdersList() {
 	const loadingOrders = useOrdersStore((s) => s.loadingOrders)
 	const allOrders = useOrdersStore((s) => s.allOrders)
 
-	if (loadingOrders && allOrders) {
-		console.log(allOrders)
-	}
-
 	return (
 		<div>
 			{loadingOrders ? (

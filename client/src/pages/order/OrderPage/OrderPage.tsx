@@ -1,3 +1,4 @@
+import { Button } from 'antd'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import LoadingAnimation from '../../../common/components/LoadingAnimation/LoadingAnimation.tsx'
@@ -7,6 +8,7 @@ import { useSetPageTitle } from '../../pageContainer/PageContainerContext/fn/con
 import { pagesRoute } from '../../pagesRoute.ts'
 import CallToClientForm from '../CallToClientForm/CallToClientForm.tsx'
 import CustomerProfile from '../CustomerProfile/CustomerProfile.tsx'
+import PrintSticker from '../PrintSticker/PrintSticker.tsx'
 import { useGetClientPhoneFromOrderData } from './fn/getCustomerPhone.ts'
 import SMSNotification from '../SMSNotificationForm/SMSNotification.tsx'
 import { orderManager } from '../orderManager.ts'
@@ -45,6 +47,7 @@ function OrderPage() {
 					<div className='order-page__right'>
 						<SMSNotification orderId={orderId} clientPhone={clientPhone} />
 						<CallToClientForm clientPhone={clientPhone} />
+						<PrintSticker orderId={orderId} />
 					</div>
 				)}
 			</div>

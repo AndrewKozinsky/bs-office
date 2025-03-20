@@ -80,7 +80,6 @@ export function useCreateCustomersSelectOptionsData() {
 					value: user.user_id,
 				}
 			})
-			console.log(options)
 
 			useCustomerFormStore.setState({ usersSelectOptions: options })
 		},
