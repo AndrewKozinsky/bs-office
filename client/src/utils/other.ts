@@ -1,4 +1,4 @@
-type RegularOrAsyncFn = ((...args: any[]) => void) | ((...args: any[]) => Promise<void>)
+type RegularOrAsyncFn = ((...args: any[]) => void) | ((...args: any[]) => Promise<void>) | Promise<void>
 
 export function debounce(func: RegularOrAsyncFn, ms: number) {
 	// @ts-ignore

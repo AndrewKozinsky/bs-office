@@ -4,7 +4,7 @@ import { ordersRequests } from '../../../../requests/orders/ordersRequests.ts'
 import { staffRequests } from '../../../../requests/staff/staffRequests.ts'
 import { useOrdersStore } from '../../ordersStore/ordersStore.ts'
 
-export function useFetchData() {
+export function useFetchInitData() {
 	useEffect(() => {
 		fetchStaff()
 		fetchDeviceTypes()

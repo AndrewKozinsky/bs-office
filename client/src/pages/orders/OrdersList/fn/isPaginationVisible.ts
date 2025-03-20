@@ -12,6 +12,6 @@ export function useIsPaginationVisible() {
 
 			return allOrders.length > pageSize
 		},
-		[allOrders, pageSize],
+		[allOrders, pageSize, loadingOrders],
 	)
 }

@@ -12,7 +12,7 @@ export function useFetchOrders() {
 	const orderStatusId = useOrdersStore((s) => s.orderStatusId)
 
 	useEffect(() => {
-		fetchData({
+		fetchOrders({
 			fio: universalSearch || undefined,
 			master: masterId || undefined,
 			brand: deviceBrandId || undefined,
@@ -22,12 +22,12 @@ export function useFetchOrders() {
 	}, [universalSearch, masterId, deviceBrandId, deviceTypeId])
 }
 
-async function fetchData(searchParams: OrdersApiTypes.GetOrdersParams = {}) {
+async function fetchOrders(searchParams: OrdersApiTypes.GetOrdersParams = {}) {
 	// http://192.168.1.10/api/orders/?brand=&deviceType=&master=&orderStatus=&fio=null
 	const { pageSize } = useOrdersStore.getState()
 
 	try {
-		useOrdersStore.setState({ loadingOrders: true, pageOrders: null })
+		useOrdersStore.setState({ loadingOrders: true, pageOrders: null, totalPages: 1 })
 
 		const response = await ordersRequests.getOrders(searchParams)
 		const allOrders = response.data

@@ -4,7 +4,7 @@ import { searchByLabelInSelectInput } from '../../../common/formUtils.ts'
 import { useOrdersStore } from '../ordersStore/ordersStore.ts'
 import { useGetChangeSearchInput, useGetChangeSelectInput } from './fn/changeInput.ts'
 import { useCreateSelectOptionsData } from './fn/createSelectOptions.ts'
-import { useFetchData } from './fn/fetchData.ts'
+import { useFetchInitData } from './fn/fetchData.ts'
 import './OrderFilter.scss'
 
 export type FieldType = {
@@ -16,7 +16,7 @@ export type FieldType = {
 }
 
 function OrderFilter() {
-	useFetchData()
+	useFetchInitData()
 	useCreateSelectOptionsData()
 
 	const mastersOptions = useOrdersStore((s) => s.mastersSelectOptions)
