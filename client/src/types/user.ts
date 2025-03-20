@@ -105,15 +105,15 @@ export type IOrder = {
 	end_user: User
 	master: User
 	meneger: User
-	order_branch: 'Салмышская'
-	order_date: '20.01.2025 15:24:16'
-	order_id: '00НФ-025822'
+	order_branch: string // 'Салмышская'
+	order_date: string // '20.01.2025 15:24:16'
+	order_id: string // '00НФ-025822'
 	order_repair_condition: ''
 	order_status: 'К выдаче'
-	order_type: 'Обслуживание картриджей'
-	oredr_change_date: ''
+	order_type: 'Обслуживание картриджей' | 'Диагностика' | 'Оформление' | 'К выдаче'
+	oredr_change_date: string // ''
 	parts: any[]
-	retail_order_date: ''
+	retail_order_date: string // ''
 	retail_user: User
 	works: any[]
 }

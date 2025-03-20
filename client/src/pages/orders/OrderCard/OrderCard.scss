@@ -54,3 +54,20 @@
     color: rgba(0, 0, 0, 0.5);
 }
 
+.order-card__status {
+    padding: 0 3px;
+    border-radius: 2px;
+}
+.order-card__status--green {
+    background-color: #cbfdda;
+}
+.order-card__status--orange {
+    background-color: #fff0c2;
+}
+.order-card__status--blue {
+    background-color: #c9f3ff;
+}
+.order-card__status--gray {
+    background-color: #cccccc;
+}
+

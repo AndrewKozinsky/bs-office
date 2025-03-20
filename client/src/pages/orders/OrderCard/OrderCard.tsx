@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { pagesRoute } from '../../pagesRoute.ts'
@@ -12,6 +13,12 @@ function OrderCard(props: OrderCardProps) {
 	const { order } = props
 
 	const orderNumber = parseOrderNumber(order.order_id)
+	const statusNameClass: Record<typeof order.order_type, string> = {
+		'Обслуживание картриджей': 'gray',
+		Диагностика: 'orange',
+		Оформление: 'blue',
+		'К выдаче': 'green',
+	}
 
 	return (
 		<Link to={pagesRoute.order(orderNumber).path} className='order-card'>
@@ -28,7 +35,14 @@ function OrderCard(props: OrderCardProps) {
 					</p>
 					<p className='order-card__prop'>
 						<span className='order-card__prop-key'>Статус</span>
-						{order.order_status}
+						<span
+							className={cn(
+								'order-card__status',
+								'order-card__status--' + statusNameClass[order.order_status],
+							)}
+						>
+							{order.order_status}
+						</span>
 					</p>
 				</div>
 			</div>
