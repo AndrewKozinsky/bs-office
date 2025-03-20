@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { authFeatures } from '../../features/authFeatures.ts'
-import { Context } from '../../main.tsx'
 import { GoTriangleDown } from 'react-icons/go'
 import { authRequests } from '../../requests/auth/authRequests.ts'
 import { useUserStore } from '../../stores/userStore.ts'

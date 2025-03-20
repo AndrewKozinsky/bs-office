@@ -14,8 +14,8 @@ export function useCreateSelectOptionsData() {
 
 			const options: OrdersStore['mastersSelectOptions'] = masters.map((master) => {
 				return {
-					label: master.user_name,
-					value: master.user_id,
+					label: master.staff_name,
+					value: master.staff_id,
 				}
 			})
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './pages.css/SeacrOrder.css'
 import { useLocation } from 'react-router-dom'
 import LoadingAnimation from '../../common/components/LoadingAnimation/LoadingAnimation.tsx'
-import Messenger from './unsorted/messenger/Messenger'
+// import Messenger from './unsorted/messenger/Messenger'
 
 function ChangeOrder() {
 	const [number, setNumber] = useState('')
@@ -368,7 +368,7 @@ function ChangeOrder() {
 					<div className='container-results'>{renderData()}</div>
 				</div>
 			</div>
-			<Messenger />
+			{/*<Messenger />*/}
 		</div>
 	)
 }

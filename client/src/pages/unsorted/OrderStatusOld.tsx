@@ -95,8 +95,8 @@ const OrderStatusOld = () => {
 		try {
 			const response = await staffRequests.getStaff()
 			const staffsData = response.data.map((staff) => ({
-				user_id: staff.user_id,
-				user_name: staff.user_name,
+				user_id: staff.staff_id,
+				user_name: staff.staff_name,
 			}))
 			setStaffs(staffsData)
 		} catch (error) {

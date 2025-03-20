@@ -1,3 +1,5 @@
+import summary from '../pages/unsorted/Summary.tsx'
+
 export type CurrentUser = {
 	id: number // 1
 	login: string // 'andreyAdmin'
@@ -5,7 +7,7 @@ export type CurrentUser = {
 }
 
 export enum UserRole {
-	Admin = 'Администратор',
+	Admin = 'admin',
 	Master = 'Мастер',
 	Manager = 'Менеджер',
 	Customer = 'Клиент',
@@ -25,6 +27,20 @@ export type User = {
 	user_role: string // 'Инженер'
 	user_source: string // ''
 	user_type: string // ''
+}
+
+export type Employee = {
+	staff_computer_name: string // "DESKTOP-BPT5871"
+	staff_email: string //	"sabitvrustam@gmail.com"
+	staff_external_phone_nomber: string // "89225372836"
+	staff_id: string // 	"22"
+	staff_id_1c: string // ''
+	staff_id_telegram: string // '1496600599'
+	staff_internal_phone_nomber: string // '901'
+	staff_login: string //  'Sabitov_R_I'
+	staff_name: string //  'Сабитов Рустам Ирекович'
+	staff_password: string // 'twHQ5Fk0yLcPy19JLkrpXEeP5yE='
+	staff_token: string // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDE2MDQzNzYsInVzZXJuYW1lIjoi0KHQsNCx0LjRgtC-0LIg0KDRg9GB0YLQsNC8INCY0YDQtdC60L7QstC40YcifQ.2tFm0Jl5srYgvhre9yD9ATlxXbkiLWA1ySs8orIcAV0'
 }
 
 export type Address = {

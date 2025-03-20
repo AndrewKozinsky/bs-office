@@ -50,7 +50,6 @@ function CallsTable(props: CallsTableProps) {
 	if (!getRecordsRes.data) {
 		return <p>Нет данных для отображения.</p>
 	}
-	console.log(getRecordsRes.data)
 
 	return (
 		<UTable block>
@@ -149,9 +148,13 @@ function OrderCell(props: CellProps) {
 		return <UTableCell>{preparedData.orderNumFull}</UTableCell>
 	}
 
+	let orderNumHref = preparedData.orderNum.toString()
+	orderNumHref = orderNumHref.slice(1)
+	orderNumHref = pagesRoute.order(orderNumHref).path
+
 	return (
 		<UTableCell>
-			<Link to={pagesRoute.order(preparedData.orderNum).path} className='link'>
+			<Link to={orderNumHref} className='link'>
 				<span className='calls-table__order-prefix'>{preparedData.orderPrefix}-</span>
 				{preparedData.orderNum}
 			</Link>

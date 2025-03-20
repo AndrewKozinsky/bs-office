@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PageHead from '../pageHeader/PageHead/PageHead.tsx'
-import Messenger from './unsorted/messenger/Messenger'
+// import Messenger from './unsorted/messenger/Messenger'
 import axios from 'axios'
 
 function Employees() {
@@ -42,7 +42,7 @@ function Employees() {
 				</div>
 				{/*{role === 'Директор' && <Reg onAddUser={handleAddUser} />}*/}
 			</div>
-			<Messenger />
+			{/*<Messenger />*/}
 		</div>
 	)
 }

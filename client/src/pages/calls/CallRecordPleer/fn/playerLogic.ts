@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from 'react'
 import { audioRequests } from '../../../../requests/audio/audioRequests.ts'
-import { callsRequests } from '../../../../requests/calls/callsRequests.ts'
 import { useCallsStore } from '../../callsStore/callsStore.ts'
 
 export function useIsPlayerVisible() {
@@ -21,13 +20,21 @@ export function useGetClosePlayer() {
 }
 
 export function useGetDownloadAudio() {
+	const recordDate = useCallsStore((s) => s.currentRecordDate)
 	const fileName = useCallsStore((s) => s.currentRecordFileName)
 
 	return useCallback(
 		async function () {
-			if (!fileName) return
+			if (!recordDate || !fileName) return
 
-			const blob = await audioRequests.getFile(fileName)
+			const [recordDateYear, recordDateMonth, recordDateDay] = recordDate.split('-')
+			const blob = await audioRequests.getBlobFile({
+				recordDateYear,
+				recordDateMonth,
+				recordDateDay,
+				recordName: fileName,
+			})
+
 			const url = URL.createObjectURL(blob)
 			const a = document.createElement('a')
 			a.href = url
@@ -37,7 +44,7 @@ export function useGetDownloadAudio() {
 			document.body.removeChild(a)
 			URL.revokeObjectURL(url)
 		},
-		[fileName],
+		[recordDate, fileName],
 	)
 }
 
@@ -50,31 +57,26 @@ export function useDownloadAudioAndSetToAudioElem(
 
 	useEffect(
 		function () {
-			if (!isVisible) {
-				return
-			}
+			if (!isVisible) return
 
-			downloadAudio(recordDate, recordFileName).then((audioBlob) => {
-				const $audioPlayer = audioPlayerRef.current
-
-				console.log(audioBlob)
-				// Создание URL для объекта Blob и установка источника
-				// $audioPlayer.src = URL.createObjectURL(audioBlob)
-			})
+			downloadRecordAndSetToPlayer(audioPlayerRef, recordDate, recordFileName)
 		},
 		[recordFileName, recordDate, isVisible],
 	)
 }
 
-async function downloadAudio(recordDate: string, recordName: string) {
-	const splitRecordDate = recordDate.split('-') // ["2025", "02", "24"]
-	const recordYear = splitRecordDate[0]
-	const recordMonth = splitRecordDate[1]
-	const recordDay = splitRecordDate[2]
+async function downloadRecordAndSetToPlayer(
+	audioPlayerRef: React.RefObject<HTMLAudioElement>,
+	recordDate: string,
+	recordFileName: string,
+) {
+	const [recordDateYear, recordDateMonth, recordDateDay] = recordDate.split('-')
+	const blob = await audioRequests.getBlobFile({
+		recordDateYear,
+		recordDateMonth,
+		recordDateDay,
+		recordName: recordFileName,
+	})
 
-	try {
-		return await callsRequests.getRecordedDetailsBlob({ recordYear, recordMonth, recordDay, recordName })
-	} catch (error) {
-		console.error('Error fetching or loading audio:', error)
-	}
+	audioPlayerRef.current.src = URL.createObjectURL(blob)
 }

@@ -1,7 +1,7 @@
 import { CurrentUser, UserRole } from '../../types/user.ts'
 
 namespace AuthApiTypes {
-	export type LoginInputData = { message: string; staff_login: string; staff_name: string; success: boolean }
+	export type LoginInputData = { staff_login: string; staff_password: string }
 
 	export type LoginRes = {
 		id: string //  "53"
