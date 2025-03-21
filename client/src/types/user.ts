@@ -110,7 +110,13 @@ export type IOrder = {
 	order_id: string // '00НФ-025822'
 	order_repair_condition: ''
 	order_status: 'К выдаче'
-	order_type: 'Обслуживание картриджей' | 'Диагностика' | 'Оформление' | 'К выдаче'
+	order_type:
+		| 'Обслуживание картриджей'
+		| 'Диагностика'
+		| 'Оформление'
+		| 'К выдаче'
+		| 'Выдан. Оплачен'
+		| 'Запчасть в пути'
 	oredr_change_date: string // ''
 	parts: any[]
 	retail_order_date: string // ''

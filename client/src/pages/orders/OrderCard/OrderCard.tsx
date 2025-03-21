@@ -18,6 +18,8 @@ function OrderCard(props: OrderCardProps) {
 		Диагностика: 'orange',
 		Оформление: 'blue',
 		'К выдаче': 'green',
+		'Выдан. Оплачен': 'red',
+		'Запчасть в пути': 'yellow',
 	}
 
 	return (
