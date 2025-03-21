@@ -1,4 +1,4 @@
-import { create } from 'zustand'
+/*import { create } from 'zustand'
 
 export type EditEmployeeStore = {
 	currentEmployeeId: null | number
@@ -12,4 +12,4 @@ export const editEmpoloyeeStoreInitial: EditEmployeeStore = {
 
 export const useEditEmployeeStore = create<EditEmployeeStore>()((set) => {
 	return editEmpoloyeeStoreInitial
-})
+})*/

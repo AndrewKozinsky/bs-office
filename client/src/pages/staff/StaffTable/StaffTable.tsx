@@ -10,9 +10,9 @@ import {
 } from '../../../common/components/UTable/UTable.tsx'
 import { staffQuery } from '../../../requests/staff/staffQuery.ts'
 import { Employee } from '../../../types/user.ts'
-import './StaffTable.scss'
-import DeleteUserButton from '../DeleteUserButton/DeleteUserButton.tsx'
+import DeleteEmployeeButton from '../DeleteEmployeeButton/DeleteEmployeeButton.tsx'
 import EditEmployeeButtonAndModal from '../editEmployee/EditEmployeeButtonAndModal/EditEmployeeButtonAndModal.tsx'
+import './StaffTable.scss'
 
 const { Text } = Typography
 
@@ -104,7 +104,7 @@ function ControlButtonsRow(props: ControlButtonsRowProps) {
 	return (
 		<UTableCell className='staff-table__control-buttons-wrapper'>
 			<EditEmployeeButtonAndModal employee={employeeData} />
-			<DeleteUserButton />
+			<DeleteEmployeeButton employee={employeeData} />
 		</UTableCell>
 	)
 }
