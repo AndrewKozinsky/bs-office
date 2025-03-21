@@ -1,5 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
-import { MutationOptions } from '../common.ts'
+import { useQuery } from '@tanstack/react-query'
 import { staffRequests } from './staffRequests.ts'
 
 export const staffQuery = {

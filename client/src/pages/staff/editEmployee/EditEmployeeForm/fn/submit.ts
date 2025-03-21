@@ -7,10 +7,9 @@ import { useEditEmployeeStore } from '../../editEmployeeStore.ts'
 import { FieldType, FormNames } from './form'
 import { Employee } from '../../../../../types/user.ts'
 
-// Create a query client instance (if you don't already have one)
-const queryClient = new QueryClient()
-
 export function useGetOnCreateBoxFormSubmit(employee: Employee) {
+	const { refetch: getStaffReFetch } = staffQuery.getStaff().useQuery()
+
 	return useCallback(async function (values: FieldType) {
 		const updateEmployeeInputData: StaffApiTypes.UpdateEmployeeInput = {
 			staff_id: employee.staff_id,
@@ -25,19 +24,11 @@ export function useGetOnCreateBoxFormSubmit(employee: Employee) {
 		try {
 			await staffRequests.updateEmployee(updateEmployeeInputData)
 
+			// Пометить список сотрудников устаревшим
+			getStaffReFetch()
+
 			// Закрыть модальное окно
 			useEditEmployeeStore.setState({ currentEmployeeId: null })
-
-			// Заново запросить обновлённый список сотрудников
-			queryClient.fetchQuery({
-				queryKey: ['myData'],
-				queryFn: async () => {
-					const response = await fetch('/api/data')
-					if (!response.ok) throw new Error('Network response was not ok')
-					return response.json()
-				},
-			})
-			staffQuery.getStaff().useQuery()
 		} catch (error: unknown) {
 			console.log(error)
 		}
