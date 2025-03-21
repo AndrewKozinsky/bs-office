@@ -1,8 +1,6 @@
 import cn from 'classnames'
 import React from 'react'
 import { Typography } from 'antd'
-import { useLocation } from 'react-router'
-import { useNavigate } from 'react-router-dom'
 import LoadingAnimation from '../../../common/components/LoadingAnimation/LoadingAnimation.tsx'
 import {
 	UTable,
@@ -12,10 +10,9 @@ import {
 	UTableRow,
 } from '../../../common/components/UTable/UTable.tsx'
 import { IOrder } from '../../../types/user.ts'
-import { pagesRoute } from '../../pagesRoute.ts'
 import { useOrdersStore } from '../ordersStore/ordersStore.ts'
-import './OrdersTable.scss'
 import { useGetRedirectToOrderPage } from './fn/textTransform.ts'
+import './OrdersTable.scss'
 
 const { Text } = Typography
 

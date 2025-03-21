@@ -43,6 +43,14 @@ export type Employee = {
 	staff_token: string // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDE2MDQzNzYsInVzZXJuYW1lIjoi0KHQsNCx0LjRgtC-0LIg0KDRg9GB0YLQsNC8INCY0YDQtdC60L7QstC40YcifQ.2tFm0Jl5srYgvhre9yD9ATlxXbkiLWA1ySs8orIcAV0'
 }
 
+export type Printer = {
+	printer_id: string // "1"
+	printer_location: string // "Салмышская"
+	printer_name: string // "Argox"
+	printer_type: string // "Принтер этикеток"
+	printer_url: string // "http://192.168.1.220:631/printers/ARGOX_OS-2140_PPLA_203d
+}
+
 export type Address = {
 	city_type: string // "г"
 	city: string // Оренбург"

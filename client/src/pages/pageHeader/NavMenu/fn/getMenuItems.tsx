@@ -65,6 +65,14 @@ export function useGetMenuItems() {
 							),
 							key: pagesRoute.adminka.staff.path,
 						},
+						{
+							label: (
+								<NavLink to={pagesRoute.adminka.printers.path}>
+									{pagesRoute.adminka.printers.name}
+								</NavLink>
+							),
+							key: pagesRoute.adminka.printers.path,
+						},
 					],
 				})
 			}

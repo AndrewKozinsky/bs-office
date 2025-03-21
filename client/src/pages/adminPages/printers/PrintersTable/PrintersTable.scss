@@ -1,0 +1,7 @@
+@use '../../../../components/App/css/variables' as *;
+@use "sass:color";
+
+.printers-table__control-buttons-wrapper {
+    display: flex;
+    gap: 1rem;
+}

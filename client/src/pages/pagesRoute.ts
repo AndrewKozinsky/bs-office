@@ -56,6 +56,10 @@ export const pagesRoute = {
 			path: '/adminka/staff',
 			name: 'Сотрудники',
 		},
+		printers: {
+			path: '/adminka/printers',
+			name: 'Принтеры',
+		},
 	},
 	acceptance: {
 		path: '/Acceptance',
