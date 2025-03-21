@@ -14,4 +14,7 @@ export const staffRequests = {
 	async updateEmployee(inputData: StaffApiTypes.UpdateEmployeeInput) {
 		return $api.put<unknown>('/staff', inputData)
 	},
+	async addEmployee(inputData: StaffApiTypes.AddEmployeeInput) {
+		return $api.post<unknown>('/staff', inputData)
+	},
 }

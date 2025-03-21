@@ -4,8 +4,7 @@ import { Employee } from '../../../../types/user.ts'
 import { formFieldRulers, FormStatus } from '../../../../utils/form.ts'
 import { useEditEmployeeStore } from '../editEmployeeStore.ts'
 import { FieldType, FormNames, useGetEditEmployeeForm } from './fn/form'
-import { useGetOnCreateBoxFormSubmit } from './fn/submit.ts'
-import './CreateParcelBoxForm.scss'
+import { useGetOnEditEmployeeFormSubmit } from './fn/submit.ts'
 
 type CreateParcelBoxFormProps = {
 	employee: Employee
@@ -19,7 +18,7 @@ function EditEmployeeForm(props: CreateParcelBoxFormProps) {
 	const formStatus = useEditEmployeeStore((s) => s.formStatus)
 
 	const onChangeEditEmployeeDataLoginForm = useGetEditEmployeeForm(form)
-	const onFormSubmit = useGetOnCreateBoxFormSubmit(employee)
+	const onFormSubmit = useGetOnEditEmployeeFormSubmit(employee)
 
 	return (
 		<Form
@@ -37,7 +36,6 @@ function EditEmployeeForm(props: CreateParcelBoxFormProps) {
 			<ComputerNameField employee={employee} />
 			<EmailField employee={employee} />
 			<SubmitFormButton />
-			{/*<FormWasNotSentMessage />*/}
 		</Form>
 	)
 }
@@ -52,7 +50,12 @@ function NameField(props: FieldProps) {
 	const { employee } = props
 
 	return (
-		<Form.Item<FieldType> label='ФИО:' name={FormNames.name} initialValue={employee.staff_name}>
+		<Form.Item<FieldType>
+			label='ФИО:'
+			name={FormNames.name}
+			initialValue={employee.staff_name}
+			rules={[{ required: true, message: 'Напишите ФИО сотрудника' }]}
+		>
 			<Input />
 		</Form.Item>
 	)
@@ -145,20 +148,3 @@ function SubmitFormButton() {
 		</Button>
 	)
 }
-
-/*function FormWasNotSentMessage() {
-	const formStatus = useEditEmployeeStore((s) => s.formStatus)
-	const formError = useEditEmployeeStore((s) => s.formError)
-
-	if (formStatus !== FormStatus.failure) {
-		return null
-	}
-
-	return (
-		<Alert
-			message={formError}
-			type='error'
-			style={{ marginTop: '2rem' }}
-		/>
-	)
-}*/
