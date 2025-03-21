@@ -34,12 +34,17 @@ export function UTableHeadRow(props: UTableHeadRowProps) {
 type UTableRowProps = {
 	children: ReactNode[]
 	isRowSelected?: boolean
+	onClick?: () => void
 }
 
 export function UTableRow(props: UTableRowProps) {
-	const { children, isRowSelected } = props
+	const { children, isRowSelected, onClick } = props
 
-	return <tr className={cn('u-table-row', isRowSelected && 'u-table-row--selected')}>{children}</tr>
+	return (
+		<tr className={cn('u-table-row', isRowSelected && 'u-table-row--selected')} onClick={onClick}>
+			{children}
+		</tr>
+	)
 }
 
 type UTableHeadCellProps = {

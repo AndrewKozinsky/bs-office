@@ -3,14 +3,12 @@ import { useSetPageTitle } from '../../pageContainer/PageContainerContext/fn/con
 import PageContainer from '../../pageContainer/PageContainer/PageContainer.tsx'
 import { pagesRoute } from '../../pagesRoute.ts'
 import OrdersFilter from '../OrderFilter/OrderFilter.tsx'
-import OrdersList from '../OrdersList/OrdersList.tsx'
+import OrdersTable from '../OrdersTable/OrdersTable.tsx'
 import { useFetchOrders } from './fn/fetchOrders.ts'
-import { useOrdersPagination } from './fn/pagination.ts'
 import './AllOrdersPage.scss'
 
 function AllOrdersPage() {
 	useFetchOrders()
-	useOrdersPagination()
 	useSetPageTitle(pagesRoute.orders.name)
 
 	return (
@@ -20,7 +18,8 @@ function AllOrdersPage() {
 					<OrdersFilter />
 				</div>
 				<div className='orders-box__right'>
-					<OrdersList />
+					{/*<OrdersList />*/}
+					<OrdersTable />
 				</div>
 			</div>
 		</PageContainer>

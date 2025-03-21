@@ -7,11 +7,8 @@ import { IOrder } from '../../../types/user.ts'
 
 export type OrdersStore = {
 	loadingOrders: boolean
+	errorOrders: boolean
 	allOrders: null | IOrder[]
-	pageOrders: null | IOrder[]
-	currentPage: number
-	totalPages: number
-	pageSize: number
 
 	// Искомый номер заказа
 	universalSearchQuery: null | string
@@ -38,11 +35,8 @@ export type OrdersStore = {
 export const useOrdersStore = create<OrdersStore>()((set) => {
 	return {
 		loadingOrders: true,
+		errorOrders: true,
 		allOrders: null,
-		pageOrders: null,
-		currentPage: 1,
-		totalPages: 1,
-		pageSize: 10,
 
 		universalSearchQuery: null,
 
