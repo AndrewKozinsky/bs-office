@@ -17,13 +17,13 @@ import { useUserStore } from '../../stores/userStore.ts'
 import { UserRole } from '../../types/user.ts'
 // import Acceptance from './components/pages/Acceptance.jsx';
 // import PhoneBook from './components/pages/PhoneBook.jsx';
-import Maxvi from '../unsorted/Maxvi.tsx'
 // import Adminka from './components/pages/Adminka.jsx'
 // import Shipment from './components/pages/Shipment.jsx';
 import ruRU from 'antd/es/locale/ru_RU' // Uses Monday as the first day
 import 'dayjs/locale/ru'
 import AllOrdersPage from '../orders/OrdersPage/AllOrdersPage.tsx'
 import PageContainerContext from '../pageContainer/PageContainerContext/PageContainerContext.tsx'
+import StaffPage from '../staff/StaffPage/StaffPage.tsx'
 
 function PagesContainer() {
 	const user = useUserStore((s) => s.user)
@@ -82,6 +82,16 @@ function PagesContainer() {
 								) : (
 									<Navigate to={pagesRoute.personalAccount.path} />
 								)
+						}
+					/>
+					<Route
+						path={pagesRoute.adminka.staff.path}
+						element={
+							userRole === UserRole.Admin ? (
+								<StaffPage />
+							) : (
+								<Navigate to={pagesRoute.personalAccount.path} />
+							)
 						}
 					/>
 					{/*<Route

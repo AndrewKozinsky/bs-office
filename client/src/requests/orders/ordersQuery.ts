@@ -1,9 +1,4 @@
-// import groupRequests from './groupsRequest'
-// import GroupsApiTypes from './groupsApiTypes'
-// import { MutationOptions, QueryOptions } from '../common'
-
-import { QueryOptions, useQuery } from '@tanstack/react-query'
-import $api from '../../components/http'
+import { useQuery } from '@tanstack/react-query'
 import OrdersApiTypes from './ordersApiTypes.ts'
 import { ordersRequests } from './ordersRequests.ts'
 

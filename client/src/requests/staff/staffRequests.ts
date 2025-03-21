@@ -1,5 +1,4 @@
 import $api from '../../components/http'
-import { User } from '../../types/user.ts'
 import StaffApiTypes from './staffApiTypes.ts'
 
 export const staffRequests = {
@@ -12,7 +11,7 @@ export const staffRequests = {
 	async deleteEmployee(id: string) {
 		return $api.delete<unknown>('/staff/' + id)
 	},
-	async updateEmployee() {
-		return $api.put<unknown>('/staff/')
+	async updateEmployee(inputData: StaffApiTypes.UpdateEmployeeInput) {
+		return $api.put<unknown>('/staff', inputData)
 	},
 }

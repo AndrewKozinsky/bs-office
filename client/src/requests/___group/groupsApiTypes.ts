@@ -1,6 +1,6 @@
-import EntityTypes from '../../types/EntityTypes'
+// import EntityTypes from '../../types/EntityTypes'
 
-namespace GroupsApiTypes {
+/*namespace GroupsApiTypes {
 	export type CreateOrEditTariffs = EntityTypes.Tariff[]
 
 	export type GetTariffs = EntityTypes.Tariff[]
@@ -9,6 +9,6 @@ namespace GroupsApiTypes {
 		groupId: number
 		userId: number
 	}
-}
+}*/
 
-export default GroupsApiTypes
+// export default GroupsApiTypes

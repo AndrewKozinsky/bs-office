@@ -43,11 +43,11 @@ export function UTableRow(props: UTableRowProps) {
 }
 
 type UTableHeadCellProps = {
-	children: ReactNode
+	children?: ReactNode
 }
 
 export function UTableHeadCell(props: UTableHeadCellProps) {
-	const { children } = props
+	const { children = null } = props
 
 	return <td className='u-table-head-cell'>{children}</td>
 }
@@ -55,10 +55,11 @@ export function UTableHeadCell(props: UTableHeadCellProps) {
 type UTableCellProps = {
 	align?: 'left' | 'center' | 'right'
 	children?: ReactNode
+	className?: string
 }
 
 export function UTableCell(props: UTableCellProps) {
-	const { align = 'left', children = null } = props
+	const { align = 'left', children = null, className = '' } = props
 
-	return <td className={cn('u-table-cell', 'u-table-cell--' + align)}>{children}</td>
+	return <td className={cn('u-table-cell', 'u-table-cell--' + align, className)}>{children}</td>
 }

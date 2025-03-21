@@ -52,6 +52,10 @@ export const pagesRoute = {
 	adminka: {
 		path: '/adminka',
 		name: 'Администрация',
+		staff: {
+			path: '/adminka/staff',
+			name: 'Сотрудники',
+		},
 	},
 	acceptance: {
 		path: '/Acceptance',

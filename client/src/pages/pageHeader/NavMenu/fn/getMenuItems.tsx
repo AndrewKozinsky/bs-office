@@ -58,6 +58,14 @@ export function useGetMenuItems() {
 				items.push({
 					label: <NavLink to={pagesRoute.adminka.path}>{pagesRoute.adminka.name}</NavLink>,
 					key: pagesRoute.adminka.path,
+					children: [
+						{
+							label: (
+								<NavLink to={pagesRoute.adminka.staff.path}>{pagesRoute.adminka.staff.name}</NavLink>
+							),
+							key: pagesRoute.adminka.staff.path,
+						},
+					],
 				})
 			}
 

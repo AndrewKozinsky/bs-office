@@ -1,9 +1,9 @@
-import { useMutation, useQuery } from 'react-query'
-import groupRequests from './groupsRequest'
-import GroupsApiTypes from './groupsApiTypes'
+// import { useMutation, useQuery } from 'react-query'
+// import groupRequests from './groupsRequest'
+// import GroupsApiTypes from './groupsApiTypes'
 import { MutationOptions, QueryOptions } from '../common'
 
-export const groupQuery = {
+/*export const groupQuery = {
 	getTariffs(groupId: number | string) {
 		return {
 			key: 'getTariffs-' + groupId,
@@ -22,4 +22,4 @@ export const groupQuery = {
 			return useMutation(groupRequests.createOrEditTariffs, options)
 		},
 	},
-}
+}*/
