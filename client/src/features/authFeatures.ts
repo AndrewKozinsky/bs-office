@@ -29,7 +29,6 @@ export const authFeatures = {
 	async logout() {
 		try {
 			await authRequests.logout()
-			localStorage.removeItem('token')
 			useUserStore.setState({ user: null })
 		} catch (e) {
 			console.log(e.response?.data?.message)

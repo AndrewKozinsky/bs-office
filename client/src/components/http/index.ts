@@ -1,7 +1,8 @@
 import axios from 'axios'
 // Связь с сервером для авторизации и роутинга
-export const API_URL = 'http://localhost/api'
-// export const API_URL = 'https://192.168.1.10/api'
+// export const API_URL = '/api'
+// export const API_URL = 'http://localhost/api'
+export const API_URL = 'http://192.168.1.13/api'
 // export const API_URL = 'https://bs-backend-test.bts/api'
 // export const API_URL = 'https://server-rustam.bts/api'
 

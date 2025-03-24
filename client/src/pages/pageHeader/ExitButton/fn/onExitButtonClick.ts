@@ -6,8 +6,8 @@ export function useGetOnExitButtonClick() {
 	const navigate = useNavigate()
 
 	return useCallback(
-		function () {
-			authFeatures.logout()
+		async function () {
+			await authFeatures.logout()
 
 			navigate('/')
 		},

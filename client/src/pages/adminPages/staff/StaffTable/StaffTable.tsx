@@ -1,6 +1,7 @@
 import React from 'react'
 import { Typography } from 'antd'
 import Loading from '../../../../common/components/Loading/Loading.tsx'
+import LoadingInCenter from '../../../../common/components/LoadingInCenter/LoadingInCenter.tsx'
 import {
 	UTable,
 	UTableCell,
@@ -20,7 +21,7 @@ function StaffTable() {
 	const getStaffRes = staffQuery.getStaff().useQuery()
 
 	if (getStaffRes.isLoading) {
-		return <Loading />
+		return <LoadingInCenter />
 	}
 
 	if (getStaffRes.error) {

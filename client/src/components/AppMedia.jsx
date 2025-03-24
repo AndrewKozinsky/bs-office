@@ -1,8 +1,9 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom';
-import './components.css';
+// import React from 'react'
+// import { NavLink } from 'react-router-dom';
+// import './components.css';
 
-function AppMedia() {
+// DELETE !!!
+/*function AppMedia() {
     return (
         <div className="container">
             <div className="block-top">
@@ -18,6 +19,6 @@ function AppMedia() {
             </div>
         </div>
     )
-}
+}*/
 
-export default AppMedia
+// export default AppMedia
