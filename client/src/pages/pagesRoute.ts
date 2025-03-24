@@ -7,10 +7,6 @@ export const pagesRoute = {
 		path: '/new-order',
 		name: 'Новый заказ',
 	},
-	maxvi: {
-		path: '/maxvi',
-		name: 'Maxvi',
-	},
 	warrantyRepair: {
 		path: '/warrantyRepair',
 		name: 'Гарантийный ремонт',

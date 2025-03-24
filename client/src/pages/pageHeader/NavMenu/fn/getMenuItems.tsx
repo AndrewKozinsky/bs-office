@@ -31,10 +31,6 @@ export function useGetMenuItems() {
 							),
 							key: pagesRoute.warrantyRepair.path,
 						},
-						{
-							label: <NavLink to={pagesRoute.maxvi.path}>{pagesRoute.maxvi.name}</NavLink>,
-							key: pagesRoute.maxvi.path,
-						},
 					],
 				},
 			]
