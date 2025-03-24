@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import PrintersApiTypes from '../../../../../../requests/printers/printersApiTypes.ts'
 import { printersQuery } from '../../../../../../requests/printers/printersQuery.ts'
 import { printersRequests } from '../../../../../../requests/printers/printersRequests.ts'
-import { useEditPrinterStore } from '../../editEmployeeStore.ts'
+import { useEditPrinterStore } from '../../editPrinterStore.ts'
 import { FieldType, FormNames } from './form.ts'
 import { Printer } from '../../../../../../types/user.ts'
 

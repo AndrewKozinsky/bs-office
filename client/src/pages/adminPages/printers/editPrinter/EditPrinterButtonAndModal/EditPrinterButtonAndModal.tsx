@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Modal } from 'antd'
 import { EditOutlined } from '@ant-design/icons'
 import { Employee, Printer } from '../../../../../types/user.ts'
-import { useEditPrinterStore } from '../editEmployeeStore.ts'
+import { useEditPrinterStore } from '../editPrinterStore.ts'
 import EditPrinterForm from '../EditPrinterForm/EditPrinterForm.tsx'
 import { useGetChangeModalVisibility } from './fn/modal.ts'
 

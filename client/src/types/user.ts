@@ -150,8 +150,10 @@ export type ClientTypes = ['Физ. лицо', 'Юр. лицо', 'ИП', 'Гос
 export type MessageTemplate = {
 	template_id: string // "39"
 	template_text: string // 'Здравствуйте ваше устройство готово к выдаче'
-	template_type: 'SMS' | 'TG' | 'Звонок'
+	template_type: MessageTemplateType
 }
+
+export type MessageTemplateType = 'SMS' | 'TG' | 'Звонок'
 
 export type EmployeePhone = {
 	user_address: ''

@@ -5,7 +5,7 @@ import { ordersRequests } from './ordersRequests.ts'
 export const ordersQuery = {
 	getOrders(params: OrdersApiTypes.GetOrdersParams) {
 		return {
-			key: 'getOrders',
+			key: `getOrders?fio=${params.fio}&master=${params.master}&deviceType=${params.deviceType}&brand=${params.brand}&orderStatus=${params.orderStatus}`,
 			useQuery() {
 				return useQuery({
 					queryKey: [this.key],

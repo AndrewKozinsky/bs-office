@@ -1,20 +1,20 @@
 import { create } from 'zustand'
 import { FormStatus } from '../../../../utils/form.ts'
 
-export type EditEmployeeStore = {
+export type EditPrinterStore = {
 	currentPrinterId: null | string
 	isFormValid: boolean
 	formStatus: FormStatus
 	formError: null | string
 }
 
-export const editEmployeeStoreInitial: EditEmployeeStore = {
+export const editEmployeeStoreInitial: EditPrinterStore = {
 	currentPrinterId: null,
 	isFormValid: true,
 	formStatus: FormStatus.default,
 	formError: null,
 }
 
-export const useEditPrinterStore = create<EditEmployeeStore>()((set) => {
+export const useEditPrinterStore = create<EditPrinterStore>()((set) => {
 	return editEmployeeStoreInitial
 })

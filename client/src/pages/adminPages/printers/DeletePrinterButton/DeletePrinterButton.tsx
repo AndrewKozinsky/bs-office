@@ -1,10 +1,10 @@
 import React from 'react'
 import { Button, Modal, Typography } from 'antd'
+import { DeleteOutlined } from '@ant-design/icons'
 import { Printer } from '../../../../types/user.ts'
 import { useDeletePrintersStore } from './deletePrinterStore.ts'
 import { useGetDeletePrinter } from './fn/deletePrinter.ts'
 import { useGetChangeModalVisibility } from './fn/changeModalVisibility.ts'
-import { DeleteOutlined } from '@ant-design/icons'
 
 const { Text } = Typography
 

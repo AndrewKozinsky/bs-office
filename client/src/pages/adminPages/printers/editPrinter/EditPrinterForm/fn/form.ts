@@ -1,6 +1,6 @@
 import { FormInstance } from 'antd'
 import { FormStatus } from '../../../../../../utils/form.ts'
-import { useEditPrinterStore } from '../../editEmployeeStore.ts'
+import { useEditPrinterStore } from '../../editPrinterStore.ts'
 
 export type FieldType = {
 	[FormNames.location]: string

@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Form, Input } from 'antd'
 import { Printer } from '../../../../../types/user.ts'
 import { FormStatus } from '../../../../../utils/form.ts'
-import { useEditPrinterStore } from '../editEmployeeStore.ts'
+import { useEditPrinterStore } from '../editPrinterStore.ts'
 import { FieldType, FormNames, useGetEditPrinterForm } from './fn/form.ts'
 import { useGetOnEditPrinterFormSubmit } from './fn/submit.ts'
 

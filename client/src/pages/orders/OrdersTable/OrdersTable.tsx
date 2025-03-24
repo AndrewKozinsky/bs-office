@@ -1,6 +1,6 @@
-import cn from 'classnames'
 import React from 'react'
 import { Typography } from 'antd'
+import cn from 'classnames'
 import LoadingAnimation from '../../../common/components/LoadingAnimation/LoadingAnimation.tsx'
 import {
 	UTable,

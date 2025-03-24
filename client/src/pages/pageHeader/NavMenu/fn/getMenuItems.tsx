@@ -73,6 +73,14 @@ export function useGetMenuItems() {
 							),
 							key: pagesRoute.adminka.printers.path,
 						},
+						{
+							label: (
+								<NavLink to={pagesRoute.adminka.messageTemplates.path}>
+									{pagesRoute.adminka.messageTemplates.name}
+								</NavLink>
+							),
+							key: pagesRoute.adminka.messageTemplates.path,
+						},
 					],
 				})
 			}

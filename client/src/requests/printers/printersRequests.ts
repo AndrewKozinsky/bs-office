@@ -5,9 +5,6 @@ export const printersRequests = {
 	async getPrinters() {
 		return $api.get<PrintersApiTypes.GetPrintersRes>('/printers')
 	},
-	async createPrinter() {
-		return $api.post<unknown>('/printers')
-	},
 	async deletePrinter(id: string) {
 		return $api.delete<unknown>('/printers/' + id)
 	},

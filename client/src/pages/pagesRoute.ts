@@ -60,6 +60,10 @@ export const pagesRoute = {
 			path: '/adminka/printers',
 			name: 'Принтеры',
 		},
+		messageTemplates: {
+			path: '/adminka/messageTemplates',
+			name: 'Шаблоны сообщений',
+		},
 	},
 	acceptance: {
 		path: '/Acceptance',
