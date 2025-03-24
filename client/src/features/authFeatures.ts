@@ -39,6 +39,7 @@ export const authFeatures = {
 	async checkAuth() {
 		try {
 			const response = await authRequests.me()
+			if (!response.data) return
 
 			useUserStore.setState({
 				user: { id: parseInt(response.data.id), role: response.data.role, login: response.data.login },

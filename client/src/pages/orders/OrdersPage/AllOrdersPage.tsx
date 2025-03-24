@@ -18,7 +18,6 @@ function AllOrdersPage() {
 					<OrdersFilter />
 				</div>
 				<div className='orders-box__right'>
-					{/*<OrdersList />*/}
 					<OrdersTable />
 				</div>
 			</div>

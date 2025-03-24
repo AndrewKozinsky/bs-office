@@ -59,12 +59,17 @@ export function UTableHeadCell(props: UTableHeadCellProps) {
 
 type UTableCellProps = {
 	align?: 'left' | 'center' | 'right'
+	noWrap?: boolean
 	children?: ReactNode
 	className?: string
 }
 
 export function UTableCell(props: UTableCellProps) {
-	const { align = 'left', children = null, className = '' } = props
+	const { align = 'left', noWrap, children = null, className = '' } = props
 
-	return <td className={cn('u-table-cell', 'u-table-cell--' + align, className)}>{children}</td>
+	return (
+		<td className={cn('u-table-cell', 'u-table-cell--' + align, className, noWrap && 'u-table-cell--no-wrap')}>
+			{children}
+		</td>
+	)
 }
