@@ -1,4 +1,4 @@
-import $api from '../../components/http'
+import $api from '../http'
 import CallsApiTypes from './callsApiTypes.ts'
 
 export const callsRequests = {

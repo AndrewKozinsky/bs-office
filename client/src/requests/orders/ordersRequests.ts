@@ -1,4 +1,4 @@
-import $api from '../../components/http'
+import $api from '../http'
 import OrdersApiTypes from './ordersApiTypes.ts'
 
 let getOrdersController: null | AbortController = null

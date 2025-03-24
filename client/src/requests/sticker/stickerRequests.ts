@@ -1,4 +1,4 @@
-import $api from '../../components/http'
+import $api from '../http'
 import StickerApiTypes from './stickerApiTypes.ts'
 import CallsApiTypes from './stickerApiTypes.ts'
 

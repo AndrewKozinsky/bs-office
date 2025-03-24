@@ -1,5 +1,0 @@
-class LoginService{
-
-}
-
-export {LoginService}

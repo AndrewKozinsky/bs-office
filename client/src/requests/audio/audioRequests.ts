@@ -1,4 +1,4 @@
-import $api from '../../components/http'
+import $api from '../http'
 import StaffApiTypes from '../staff/staffApiTypes.ts'
 
 export const audioRequests = {

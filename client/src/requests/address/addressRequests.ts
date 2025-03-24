@@ -1,4 +1,4 @@
-import $api from '../../components/http'
+import $api from '../http'
 import AddressApiTypes from './addressApiTypes.ts'
 
 export const addressRequests = {

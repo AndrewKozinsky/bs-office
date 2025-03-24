@@ -1,4 +1,4 @@
-import $api from '../../components/http'
+import $api from '../http'
 import MessageTemplateApiTypes from './messageTemplateTypes.ts'
 
 export const messageTemplateRequests = {

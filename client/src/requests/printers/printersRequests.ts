@@ -1,4 +1,4 @@
-import $api from '../../components/http'
+import $api from '../http'
 import PrintersApiTypes from './printersApiTypes.ts'
 
 export const printersRequests = {

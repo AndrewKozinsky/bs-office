@@ -1,4 +1,4 @@
-import $api from '../../components/http'
+import $api from '../http'
 import { MessageTemplate } from '../../types/user.ts'
 import SmsApiTypes from './smsApiTypes.ts'
 

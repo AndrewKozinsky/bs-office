@@ -1,4 +1,4 @@
-import $api from '../../components/http'
+import $api from '../http'
 import WarrantyApiTypes from './warrantyApiTypes.ts'
 
 export const warrantyRequests = {

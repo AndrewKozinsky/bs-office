@@ -1,4 +1,4 @@
-import $api from '../../components/http'
+import $api from '../http'
 import { CurrentUser } from '../../types/user.ts'
 import AuthApiTypes from './authApiTypes.ts'
 
