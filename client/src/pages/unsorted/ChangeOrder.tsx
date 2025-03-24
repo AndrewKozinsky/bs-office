@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './pages.css/SeacrOrder.css'
 import { useLocation } from 'react-router-dom'
-import LoadingAnimation from '../../common/components/LoadingAnimation/LoadingAnimation.tsx'
+import Loading from '../../common/components/Loading/Loading.tsx'
 
 function ChangeOrder() {
 	const [number, setNumber] = useState('')
@@ -208,11 +208,13 @@ function ChangeOrder() {
 
 	const renderData = () => {
 		if (isLoading) {
-			return <LoadingAnimation />
+			return <Loading />
 		}
+
 		if (!records || !records.parts || !records.works) {
 			return <p>Ничего не найдено</p>
 		}
+
 		return (
 			<div className=''>
 				<div className='container-block-main'>

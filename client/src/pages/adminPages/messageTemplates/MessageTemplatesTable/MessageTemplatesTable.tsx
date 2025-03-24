@@ -1,6 +1,6 @@
 import React from 'react'
 import { Typography } from 'antd'
-import LoadingAnimation from '../../../../common/components/LoadingAnimation/LoadingAnimation.tsx'
+import Loading from '../../../../common/components/Loading/Loading.tsx'
 import {
 	UTable,
 	UTableCell,
@@ -20,7 +20,7 @@ function MessageTemplatesTable() {
 	const getMessageTemplatesRes = messageTemplateQuery.getMessageTemplates().useQuery()
 
 	if (getMessageTemplatesRes.isLoading) {
-		return <LoadingAnimation />
+		return <Loading />
 	}
 
 	if (getMessageTemplatesRes.error) {

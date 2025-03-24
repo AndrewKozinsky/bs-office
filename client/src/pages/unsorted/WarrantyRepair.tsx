@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import LoadingAnimation from '../../common/components/LoadingAnimation/LoadingAnimation.tsx'
+import Loading from '../../common/components/Loading/Loading.tsx'
 import { repairRequests } from '../../requests/repair/repairRequests.ts'
 import { TbExclamationMark } from 'react-icons/tb'
 
@@ -450,7 +450,7 @@ function WarrantyRepair() {
 
 	const WarrantyOrder = () => {
 		if (isLoading) {
-			return <LoadingAnimation />
+			return <Loading />
 		}
 
 		return (
@@ -534,7 +534,6 @@ function WarrantyRepair() {
 				</div>
 				{WarrantyOrder()}
 			</div>
-			{/*<Messenger />*/}
 		</div>
 	)
 }

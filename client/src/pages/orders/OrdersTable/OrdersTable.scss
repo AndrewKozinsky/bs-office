@@ -1,11 +1,6 @@
 @use '../../../components/App/css/variables' as *;
 @use "sass:color";
 
-.order-table__loading-wrapper {
-    display: flex;
-    justify-content: center;
-}
-
 .order-table__status {
     padding: 0 3px;
     border-radius: 2px;

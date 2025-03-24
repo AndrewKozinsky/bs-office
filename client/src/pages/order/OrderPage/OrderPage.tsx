@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import LoadingAnimation from '../../../common/components/LoadingAnimation/LoadingAnimation.tsx'
+import Loading from '../../../common/components/Loading/Loading.tsx'
 import { ordersQuery } from '../../../requests/orders/ordersQuery.ts'
 import PageContainer from '../../pageContainer/PageContainer/PageContainer.tsx'
 import { useSetPageTitle } from '../../pageContainer/PageContainerContext/fn/context.ts'
@@ -21,7 +21,7 @@ function OrderPage() {
 	const clientPhone = useGetClientPhoneFromOrderData(orderId)
 
 	if (getOrderRes.isLoading) {
-		return <LoadingAnimation />
+		return <Loading />
 	}
 
 	if (getOrderRes.error) {

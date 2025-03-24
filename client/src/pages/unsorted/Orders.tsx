@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import LoadingAnimation from '../../common/components/LoadingAnimation/LoadingAnimation.tsx'
+import Loading from '../../common/components/Loading/Loading.tsx'
 import QRcodeScaner from './QRcodeScaner'
 
 function Orders() {
@@ -39,7 +39,7 @@ function Orders() {
 						{/*<button onClick={handleSearch}> Найти</button>*/}
 					</div>
 					<QRcodeScaner />
-					<div className='box-main'>{loading && <LoadingAnimation />}</div>
+					<div className='box-main'>{loading && <Loading />}</div>
 				</div>
 			</div>
 		</div>

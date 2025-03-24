@@ -2,7 +2,8 @@ import React from 'react'
 import { Button } from 'antd'
 import cn from 'classnames'
 import { Link } from 'react-router-dom'
-import LoadingAnimation from '../../../common/components/LoadingAnimation/LoadingAnimation.tsx'
+import Loading from '../../../common/components/Loading/Loading.tsx'
+import LoadingInCenter from '../../../common/components/LoadingInCenter/LoadingInCenter.tsx'
 import {
 	UTable,
 	UTableCell,
@@ -40,7 +41,7 @@ function CallsTable(props: CallsTableProps) {
 	const getRecordsRes = callsQuery.getRecords({ startDate, endDate, searchValue }).useQuery()
 
 	if (getRecordsRes.isLoading) {
-		return <LoadingAnimation />
+		return <LoadingInCenter />
 	}
 
 	if (getRecordsRes.error) {

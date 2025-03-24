@@ -1,7 +1,8 @@
 import React from 'react'
 import { Typography } from 'antd'
 import cn from 'classnames'
-import LoadingAnimation from '../../../common/components/LoadingAnimation/LoadingAnimation.tsx'
+import Loading from '../../../common/components/Loading/Loading.tsx'
+import LoadingInCenter from '../../../common/components/LoadingInCenter/LoadingInCenter.tsx'
 import {
 	UTable,
 	UTableCell,
@@ -22,11 +23,7 @@ function OrdersTable() {
 	const allOrders = useOrdersStore((s) => s.allOrders)
 
 	if (loadingOrders) {
-		return (
-			<div className='order-table__loading-wrapper'>
-				<LoadingAnimation />
-			</div>
-		)
+		return <LoadingInCenter />
 	}
 
 	if (errorOrders) {

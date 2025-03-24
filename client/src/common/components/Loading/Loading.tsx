@@ -1,8 +1,8 @@
 import { Spin } from 'antd'
 import React from 'react'
-import './LoadingAnimation.scss'
+import './Loading.scss'
 
-function LoadingAnimation() {
+function Loading() {
 	/*return (
 		<div className='loading-animation'>
 			{' '}
@@ -12,4 +12,4 @@ function LoadingAnimation() {
 	return <Spin />
 }
 
-export default LoadingAnimation
+export default Loading

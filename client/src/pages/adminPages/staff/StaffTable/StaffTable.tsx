@@ -1,6 +1,6 @@
 import React from 'react'
 import { Typography } from 'antd'
-import LoadingAnimation from '../../../../common/components/LoadingAnimation/LoadingAnimation.tsx'
+import Loading from '../../../../common/components/Loading/Loading.tsx'
 import {
 	UTable,
 	UTableCell,
@@ -20,7 +20,7 @@ function StaffTable() {
 	const getStaffRes = staffQuery.getStaff().useQuery()
 
 	if (getStaffRes.isLoading) {
-		return <LoadingAnimation />
+		return <Loading />
 	}
 
 	if (getStaffRes.error) {
