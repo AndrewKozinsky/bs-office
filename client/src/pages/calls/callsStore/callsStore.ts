@@ -10,7 +10,7 @@ export type ICallsStore = {
 	currentRecordDate: null | string
 }
 
-export const newCallsStoreInitial: ICallsStore = {
+const newCallsStoreInitial: ICallsStore = {
 	startDate: null,
 	endDate: null,
 	searchValue: '',

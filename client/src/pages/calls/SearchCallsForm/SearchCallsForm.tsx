@@ -1,6 +1,12 @@
 import { DatePicker, Form, FormProps, Input } from 'antd'
 import React, { useEffect } from 'react'
-import { FieldType, FormNames, useGetOnSearchInputChange, useSetValueToInput } from './fn/onInputChange.ts'
+import {
+	FieldType,
+	FormNames,
+	useGetOnClearInputChange,
+	useGetOnSearchInputChange,
+	useSetValueToInput,
+} from './fn/onInputChange.ts'
 
 type SearchCallsFormProps = {
 	value: string
@@ -12,7 +18,8 @@ function SearchCallsForm(props: SearchCallsFormProps) {
 	const [form] = Form.useForm()
 
 	useSetValueToInput(form, value)
-	const onSearchInputChange = useGetOnSearchInputChange(form)
+	const onSearchInputChange = useGetOnSearchInputChange()
+	const onSearchInputClear = useGetOnClearInputChange()
 
 	return (
 		<Form form={form}>
@@ -21,7 +28,7 @@ function SearchCallsForm(props: SearchCallsFormProps) {
 				label='Поиск по заказу, телефону или фамилии'
 				layout='vertical'
 			>
-				<Input onInput={onSearchInputChange} />
+				<Input onInput={onSearchInputChange} allowClear onClear={onSearchInputClear} />
 			</Form.Item>
 		</Form>
 	)

@@ -9,7 +9,7 @@ export enum FormNames {
 	search = 'search',
 }
 
-export function useGetOnSearchInputChange(form: FormInstance) {
+export function useGetOnSearchInputChange() {
 	return useCallback(
 		debounce((e: React.FormEvent<HTMLInputElement>) => {
 			// @ts-ignore
@@ -17,6 +17,15 @@ export function useGetOnSearchInputChange(form: FormInstance) {
 
 			useCallsStore.setState({ searchValue: value })
 		}, 1000),
+		[],
+	)
+}
+
+export function useGetOnClearInputChange() {
+	return useCallback(
+		debounce(() => {
+			useCallsStore.setState({ searchValue: '' })
+		}, 100),
 		[],
 	)
 }

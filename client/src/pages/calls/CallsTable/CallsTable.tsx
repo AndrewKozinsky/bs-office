@@ -15,6 +15,7 @@ import CallsApiTypes from '../../../requests/calls/callsApiTypes.ts'
 import { callsQuery } from '../../../requests/calls/callsQuery.ts'
 import { pagesRoute } from '../../pagesRoute.ts'
 import { useIsRowSelected } from './fn/isRowSelected.ts'
+import { useGetOnClientNameClick } from './fn/onClientNameClick.ts'
 import { PhoneRecordPreparedData, prepareCellRecordData } from './fn/textTransform.ts'
 import { IncomingAnsweredIcon } from './icons/IncomingAnsweredIcon.tsx'
 import { IncomingFailedIcon } from './icons/IncomingFailedIcon.tsx'
@@ -129,15 +130,17 @@ function DateCell(props: CellProps) {
 function ClientNameCell(props: CellProps) {
 	const { clientName } = props.preparedData
 
+	const onClientNameClick = useGetOnClientNameClick(clientName)
+
 	if (!clientName) {
 		return <UTableCell />
 	}
 
 	return (
 		<UTableCell>
-			<Link to={pagesRoute.orders.path({ clientName: clientName })} className='link'>
+			<span onClick={onClientNameClick} className='link'>
 				{clientName}
-			</Link>
+			</span>
 		</UTableCell>
 	)
 }
