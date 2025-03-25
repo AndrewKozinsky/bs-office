@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { authFeatures } from 'src/features/authFeatures.js'
-import { Context } from '../../main';
 import { observer } from 'mobx-react-lite';
 import './login.css';
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import OrderContentContainer from '../OrderContentContainer/OrderContentContainer.tsx'
 import { getOrderListData } from './fn/prepareOrderListData.ts'
 import { ordersQuery } from '../../../requests/orders/ordersQuery.ts'
 import './CustomerProfile.scss'
@@ -18,25 +19,29 @@ function CustomerProfile(props: CustomerProfileProps) {
 	}
 
 	return (
-		<div className='customer-profile'>
-			{getOrderListData(order).map((rowData) => {
-				if (rowData.value && rowData.value !== '-') {
+		<OrderContentContainer header='Сводка'>
+			<div className='customer-profile'>
+				{getOrderListData(order).map((rowData) => {
+					if (rowData.value && rowData.value !== '-') {
+						return (
+							<React.Fragment key={rowData.key}>
+								<span className='customer-profile__row-key'>{rowData.key}:</span>
+								{rowData.value}
+							</React.Fragment>
+						)
+					}
+
 					return (
 						<React.Fragment key={rowData.key}>
-							<span className='customer-profile__row-key'>{rowData.key}:</span>
-							{rowData.value}
+							<span className='customer-profile__row-key customer-profile__row-key--gray'>
+								{rowData.key}
+							</span>
+							<span />
 						</React.Fragment>
 					)
-				}
-
-				return (
-					<React.Fragment key={rowData.key}>
-						<span className='customer-profile__row-key customer-profile__row-key--gray'>{rowData.key}</span>
-						<span />
-					</React.Fragment>
-				)
-			})}
-		</div>
+				})}
+			</div>
+		</OrderContentContainer>
 	)
 }
 

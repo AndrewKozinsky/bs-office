@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import './pages.css/SeacrOrder.css'
 import { useLocation } from 'react-router-dom'
 import Loading from '../../common/components/Loading/Loading.tsx'
+import './pages.css/SeacrOrder.css'
 
 function ChangeOrder() {
 	const [number, setNumber] = useState('')

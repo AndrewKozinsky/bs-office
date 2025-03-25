@@ -10,8 +10,7 @@ import {
 	useGetOnAddressSearchChange,
 } from './fn/selectOptions.ts'
 import { useGetCallToClient } from './fn/submit.ts'
-
-const { Title } = Typography
+import OrderContentContainer from '../OrderContentContainer/OrderContentContainer.tsx'
 
 type CallToClientFormProps = {
 	clientPhone: string
@@ -37,10 +36,8 @@ function CallToClientForm(props: CallToClientFormProps) {
 	if (getStaffPhonesRes.error) {
 		return <p>Во время загрузки произошла ошибка.</p>
 	}
-
 	return (
-		<div>
-			<Title level={3}>Звонок клиенту</Title>
+		<OrderContentContainer header='Звонок клиенту'>
 			<Form layout='vertical' form={form} onFinish={callToClient} onChange={() => checkCallToClientForm(form)}>
 				<Form.Item<FieldType> label='Номер сотрудника' name={FieldNames.phone} rules={[{ required: true }]}>
 					<Select
@@ -57,7 +54,7 @@ function CallToClientForm(props: CallToClientFormProps) {
 					</Button>
 				</Form.Item>
 			</Form>
-		</div>
+		</OrderContentContainer>
 	)
 }
 

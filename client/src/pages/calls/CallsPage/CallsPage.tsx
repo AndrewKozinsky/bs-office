@@ -1,43 +1,39 @@
 import React from 'react'
+import CallsRoot from '../../../features/calls/CallsRoot/CallsRoot.tsx'
 import PageContainer from '../../pageContainer/PageContainer/PageContainer.tsx'
-import CallRecordPlayer from '../CallRecordPleer/CallRecordPlayer.tsx'
-import CallsDaysPicker from '../CallsDaysPicker/CallsDaysPicker.tsx'
-import { useCallsStore } from '../callsStore/callsStore.ts'
-import CallsTable from '../CallsTable/CallsTable.tsx'
-import SearchCallsForm from '../SearchCallsForm/SearchCallsForm.tsx'
+import { useCallsPageStore } from '../callsPageStore/callsPageStore.ts'
 import { useSetCallsPageTitle } from './fn/callsPageTitle.ts'
 import { useSetPageAddressBarQuery, useSetPageAddressBarQueryToStore } from './fn/setPageAddressBarQuery.ts'
-import { useGetSetRecordDataToStore } from './fn/setRecordDataToStore.ts'
-import './CallsPage.scss'
 
 function CallsPage() {
-	const startDate = useCallsStore((s) => s.startDate)
-	const endDate = useCallsStore((s) => s.endDate)
-	const searchValue = useCallsStore((s) => s.searchValue)
+	const searchValue = useCallsPageStore((s) => s.searchValue)
+	const startDate = useCallsPageStore((s) => s.startDate)
+	const endDate = useCallsPageStore((s) => s.endDate)
+
+	const setSearchValue = (searchValue: string) => {
+		useCallsPageStore.setState({ searchValue })
+	}
+	const setStartDate = (startDate: string) => {
+		useCallsPageStore.setState({ startDate })
+	}
+	const setEndDate = (endDate: string) => {
+		useCallsPageStore.setState({ endDate })
+	}
 
 	useSetCallsPageTitle()
 	useSetPageAddressBarQueryToStore()
 	useSetPageAddressBarQuery()
 
-	const setRecordDataToStore = useGetSetRecordDataToStore()
-
 	return (
 		<PageContainer>
-			<div className='calls-page'>
-				<div className='calls-page__top'>
-					<SearchCallsForm value={searchValue} />
-					<CallsDaysPicker startDate={startDate} endDate={endDate} />
-				</div>
-				<div className='calls-page__table'>
-					<CallsTable
-						startDate={startDate}
-						endDate={endDate}
-						searchValue={searchValue}
-						passRecordData={setRecordDataToStore}
-					/>
-					<CallRecordPlayer />
-				</div>
-			</div>
+			<CallsRoot
+				parentSearchValue={searchValue}
+				parentStartDate={startDate}
+				parentEndDate={endDate}
+				setSearchValue={setSearchValue}
+				setStartDate={setStartDate}
+				setEndDate={setEndDate}
+			/>
 		</PageContainer>
 	)
 }

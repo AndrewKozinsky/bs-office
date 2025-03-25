@@ -1,13 +1,18 @@
 .order-page {
+    display: grid;
+    gap: 4rem;
+}
+
+.order-page__top {
     display: flex;
     gap: 4rem;
 }
 
-.order-page__left {
+.order-page__top-left {
     max-width: 70rem;
 }
 
-.order-page__right {
+.order-page__top-right {
     flex-grow: 1;
     max-width: 40rem;
 }

@@ -1,27 +1,27 @@
 import { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { useCallsStore } from '../../callsStore/callsStore.ts'
-import { СallsPageQueryParams } from '../../types.ts'
+import { useCallsPageStore } from '../../callsPageStore/callsPageStore.ts'
+import { CallsPageQueryParams } from '../../types.ts'
 
 export function useSetPageAddressBarQuery() {
 	const [_, setSearchParams] = useSearchParams()
 
-	const startDate = useCallsStore((s) => s.startDate)
-	const endDate = useCallsStore((s) => s.endDate)
-	const searchValue = useCallsStore((s) => s.searchValue)
+	const startDate = useCallsPageStore((s) => s.startDate)
+	const endDate = useCallsPageStore((s) => s.endDate)
+	const searchValue = useCallsPageStore((s) => s.searchValue)
 
 	useEffect(
 		function () {
-			const queryObj: { [СallsPageQueryParams.startDate]?: string; [СallsPageQueryParams.endDate]?: string } = {}
+			const queryObj: { [CallsPageQueryParams.startDate]?: string; [CallsPageQueryParams.endDate]?: string } = {}
 
 			if (startDate) {
-				queryObj[СallsPageQueryParams.startDate] = startDate
+				queryObj[CallsPageQueryParams.startDate] = startDate
 			}
 			if (endDate) {
-				queryObj[СallsPageQueryParams.endDate] = endDate
+				queryObj[CallsPageQueryParams.endDate] = endDate
 			}
 			if (searchValue) {
-				queryObj[СallsPageQueryParams.searchValue] = searchValue
+				queryObj[CallsPageQueryParams.searchValue] = searchValue
 			}
 
 			setSearchParams(queryObj)
@@ -34,10 +34,10 @@ export function useSetPageAddressBarQueryToStore() {
 	const [searchParams] = useSearchParams()
 
 	useEffect(function () {
-		useCallsStore.setState({
-			startDate: searchParams.get(СallsPageQueryParams.startDate),
-			endDate: searchParams.get(СallsPageQueryParams.endDate),
-			searchValue: searchParams.get(СallsPageQueryParams.searchValue),
+		useCallsPageStore.setState({
+			startDate: searchParams.get(CallsPageQueryParams.startDate),
+			endDate: searchParams.get(CallsPageQueryParams.endDate),
+			searchValue: searchParams.get(CallsPageQueryParams.searchValue),
 		})
 	}, [])
 }

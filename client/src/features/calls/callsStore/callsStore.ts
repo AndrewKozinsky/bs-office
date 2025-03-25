@@ -10,7 +10,7 @@ export type ICallsStore = {
 	currentRecordDate: null | string
 }
 
-const newCallsStoreInitial: ICallsStore = {
+const callsStoreInitial: ICallsStore = {
 	startDate: null,
 	endDate: null,
 	searchValue: '',
@@ -19,5 +19,5 @@ const newCallsStoreInitial: ICallsStore = {
 }
 
 export const useCallsStore = create<ICallsStore>()((set) => {
-	return newCallsStoreInitial
+	return callsStoreInitial
 })

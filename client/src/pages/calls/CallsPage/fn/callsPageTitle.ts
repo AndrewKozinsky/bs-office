@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
 import { useSetPageTitle } from '../../../pageContainer/PageContainerContext/fn/context.ts'
 import { pagesRoute } from '../../../pagesRoute.ts'
-import { useCallsStore } from '../../callsStore/callsStore.ts'
+import { useCallsPageStore } from '../../callsPageStore/callsPageStore.ts'
 
 export function useSetCallsPageTitle() {
 	const dateFormat = 'YYYY-MM-DD'
@@ -10,8 +10,8 @@ export function useSetCallsPageTitle() {
 	const yesterdayPageHeader = pagesRoute.calls.name + ' вчерашнего дня'
 	const thisWeekPageHeader = pagesRoute.calls.name + ' этой недели'
 
-	const startDate = useCallsStore((s) => s.startDate)
-	const endDate = useCallsStore((s) => s.endDate)
+	const startDate = useCallsPageStore((s) => s.startDate)
+	const endDate = useCallsPageStore((s) => s.endDate)
 
 	const [pageTitle, setPageTitle] = useState(todayPageHeader)
 	useSetPageTitle(pageTitle)

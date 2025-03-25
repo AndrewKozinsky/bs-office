@@ -1,6 +1,7 @@
 import React from 'react'
 import { Alert, Button, Form, Input, Select, Typography } from 'antd'
 import { messageTemplateQuery } from '../../../requests/messageTemplate/messageTemplateQuery.ts'
+import OrderContentContainer from '../OrderContentContainer/OrderContentContainer.tsx'
 import { checkNotificationForm, FieldNames, FieldType } from './fn/form.ts'
 import {
 	useCreateSelectOptionsData,
@@ -10,7 +11,6 @@ import {
 import { useGetSendSMS } from './fn/submit.ts'
 import { useSMSNotificationStore } from './SMSNotificationStore.ts'
 
-const { Title } = Typography
 const { TextArea } = Input
 
 type SMSNotificationProps = {
@@ -44,8 +44,7 @@ function SMSNotification(props: SMSNotificationProps) {
 	}
 
 	return (
-		<div>
-			<Title level={3}>Оповещение по СМС</Title>
+		<OrderContentContainer header='Оповещение по СМС'>
 			<Form layout='vertical' form={form} onFinish={sendSMS} onChange={() => checkNotificationForm(form)}>
 				<Form.Item<FieldType> label='Шаблон сообщения' name={FieldNames.messageTemplates}>
 					<Select options={smsTemplatesSelectOptions} onChange={changeTemplatesSelectChange} />
@@ -64,7 +63,7 @@ function SMSNotification(props: SMSNotificationProps) {
 					</Button>
 				</Form.Item>
 			</Form>
-		</div>
+		</OrderContentContainer>
 	)
 }
 

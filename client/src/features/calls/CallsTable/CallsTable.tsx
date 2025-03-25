@@ -2,7 +2,6 @@ import React from 'react'
 import { Button } from 'antd'
 import cn from 'classnames'
 import { Link } from 'react-router-dom'
-import Loading from '../../../common/components/Loading/Loading.tsx'
 import LoadingInCenter from '../../../common/components/LoadingInCenter/LoadingInCenter.tsx'
 import {
 	UTable,
@@ -11,9 +10,9 @@ import {
 	UTableHeadRow,
 	UTableRow,
 } from '../../../common/components/UTable/UTable.tsx'
+import { pagesRoute } from '../../../pages/pagesRoute.ts'
 import CallsApiTypes from '../../../requests/calls/callsApiTypes.ts'
 import { callsQuery } from '../../../requests/calls/callsQuery.ts'
-import { pagesRoute } from '../../pagesRoute.ts'
 import { useIsRowSelected } from './fn/isRowSelected.ts'
 import { useGetOnClientNameClick } from './fn/onClientNameClick.ts'
 import { PhoneRecordPreparedData, prepareCellRecordData } from './fn/textTransform.ts'
