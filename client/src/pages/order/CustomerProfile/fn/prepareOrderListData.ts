@@ -23,8 +23,16 @@ export function getOrderListData(order: IOrder) {
 			value: order.order_date,
 		},
 		{
-			key: 'Модель устройства',
+			key: 'Марка',
 			value: order.device.device_brand,
+		},
+		{
+			key: 'Модель',
+			value: order.device.device_model,
+		},
+		{
+			key: 'Серийный номер модели',
+			value: order.device.device_sn,
 		},
 		{
 			key: 'Внешний вид',
@@ -34,14 +42,7 @@ export function getOrderListData(order: IOrder) {
 			key: 'Комплектация',
 			value: order.device.device_equipment,
 		},
-		{
-			key: 'Номер модели',
-			value: order.device.device_model,
-		},
-		{
-			key: 'Серийный номер модели',
-			value: order.device.device_id,
-		},
+
 		{
 			key: 'IMEI',
 			value: order.device.device_imei,

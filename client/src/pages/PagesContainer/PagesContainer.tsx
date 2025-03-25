@@ -1,17 +1,18 @@
 import React from 'react'
 import { ConfigProvider } from 'antd'
 import { Routes, Route, Navigate } from 'react-router-dom'
+import 'dayjs/locale/ru'
+import ruRU from 'antd/es/locale/ru_RU' // Uses Monday as the first day
 import MessageTemplatesPage from '../adminPages/messageTemplates/MessageTemplatesPage/MessageTemplatesPage.tsx'
 import PrintersPage from '../adminPages/printers/PrintersPage/PrintersPage.tsx'
 import CallsPage from '../calls/CallsPage/CallsPage.tsx'
 import NewOrderPage from '../newOrder/containers/NewOrderPage/NewOrderPage.tsx'
+import SparePartPage from '../nomenclature/spareParts/SparePartsPage/SparePartPage.tsx'
 import OrderPage from '../order/OrderPage/OrderPage.tsx'
 import PageHead from '../pageHeader/PageHead/PageHead.tsx'
 import { pagesRoute } from '../pagesRoute.ts'
 import { useUserStore } from '../../stores/userStore.ts'
 import { UserRole } from '../../types/user.ts'
-import ruRU from 'antd/es/locale/ru_RU' // Uses Monday as the first day
-import 'dayjs/locale/ru'
 import AllOrdersPage from '../orders/OrdersPage/AllOrdersPage.tsx'
 import PageContainerContext from '../pageContainer/PageContainerContext/PageContainerContext.tsx'
 import StaffPage from '../adminPages/staff/StaffPage/StaffPage.tsx'
@@ -103,6 +104,7 @@ function PagesContainer() {
 							)
 						}
 					/>
+					<Route path={pagesRoute.nomenclature.spareParts.path} element={<SparePartPage />} />
 				</Routes>
 			</PageContainerContext>
 		</ConfigProvider>

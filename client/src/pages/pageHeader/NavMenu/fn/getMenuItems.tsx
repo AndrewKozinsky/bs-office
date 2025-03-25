@@ -81,11 +81,6 @@ export function useGetMenuItems() {
 				})
 			}
 
-			items.push({
-				label: <NavLink to={pagesRoute.phoneBook.path}>{pagesRoute.phoneBook.name}</NavLink>,
-				key: pagesRoute.phoneBook.path,
-			})
-
 			if (
 				role === UserRole.Acceptance ||
 				role === UserRole.Sending ||
@@ -98,17 +93,20 @@ export function useGetMenuItems() {
 				})
 			}
 
-			if (
-				role === UserRole.Issuance ||
-				role === UserRole.Acceptance ||
-				role === UserRole.Sending ||
-				role === UserRole.Admin
-			) {
-				items.push({
-					label: <NavLink to={pagesRoute.shipment.path}>{pagesRoute.shipment.name}</NavLink>,
-					key: pagesRoute.shipment.path,
-				})
-			}
+			items.push({
+				label: <NavLink to={pagesRoute.nomenclature.path}>{pagesRoute.nomenclature.name}</NavLink>,
+				key: pagesRoute.nomenclature.path,
+				children: [
+					{
+						label: (
+							<NavLink to={pagesRoute.nomenclature.spareParts.path}>
+								{pagesRoute.nomenclature.spareParts.name}
+							</NavLink>
+						),
+						key: pagesRoute.nomenclature.spareParts.path,
+					},
+				],
+			})
 
 			return items
 		},

@@ -35,10 +35,6 @@ export const pagesRoute = {
 		path: '/Calls',
 		name: 'Звонки',
 	},
-	phoneBook: {
-		path: '/phoneBook',
-		name: 'Телефонная книга',
-	},
 	order(orderId: string | number) {
 		return {
 			path: '/order/' + orderId,
@@ -65,8 +61,12 @@ export const pagesRoute = {
 		path: '/Acceptance',
 		name: 'Выдача',
 	},
-	shipment: {
-		path: '/Shipment',
-		name: 'Отгрузка',
+	nomenclature: {
+		path: '/nomenclature',
+		name: 'Номенклатура',
+		spareParts: {
+			path: '/nomenclature/spare-parts',
+			name: 'Запасные части',
+		},
 	},
 }

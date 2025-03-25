@@ -12,7 +12,7 @@ function PrintersPage() {
 	return (
 		<PageContainer>
 			<PrintersTable />
-			<div className='printers-page__add-employee-button-wrapper'>
+			<div className='printers-page__add-printer-button-wrapper'>
 				<AddPrinterButtonAndModal />
 			</div>
 		</PageContainer>

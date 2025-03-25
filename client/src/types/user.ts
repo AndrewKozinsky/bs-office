@@ -1,5 +1,3 @@
-import summary from '../pages/unsorted/Summary.tsx'
-
 export type CurrentUser = {
 	id: number // 1
 	login: string // 'andreyAdmin'
@@ -49,6 +47,11 @@ export type Printer = {
 	printer_name: string // "Argox"
 	printer_type: string // "Принтер этикеток"
 	printer_url: string // "http://192.168.1.220:631/printers/ARGOX_OS-2140_PPLA_203d
+}
+
+export type SparePart = {
+	id_parts: string // "НФ-00000368"
+	name_parts: string // "УСЗУ Китай \"Лягушка\"c LCD дисплеем и USB выходом (цвета в ассортименте/коробка)"
 }
 
 export type Address = {
