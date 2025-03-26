@@ -20,7 +20,7 @@ export const callsQuery = {
 	},
 	getRecords(params: CallsApiTypes.GetCallRecordsArgs) {
 		return {
-			key: 'getRecords' + params.startDate + params.endDate + params.searchValue,
+			key: `getRecords/${params.startDate}/${params.endDate}/${params.searchValue}`,
 			useQuery() {
 				return useQuery({
 					queryKey: [this.key],

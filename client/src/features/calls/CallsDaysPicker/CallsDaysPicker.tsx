@@ -1,8 +1,8 @@
 import React from 'react'
+import dayjs from 'dayjs'
 import { Button, DatePicker, Form, Space } from 'antd'
 import {
 	disabledDate,
-	getCurrentValuesProp,
 	onCallsDaysPickerChange,
 	useGetSetPreviousDay,
 	useGetSetThisWeek,
@@ -13,14 +13,13 @@ import {
 const { RangePicker } = DatePicker
 
 type CallsDaysPickerProps = {
-	startDate: null | string
-	endDate: null | string
+	startDate: null | dayjs.Dayjs
+	endDate: null | dayjs.Dayjs
 }
 
 function CallsDaysPicker(props: CallsDaysPickerProps) {
 	const { startDate, endDate } = props
 
-	const currentValues = getCurrentValuesProp(startDate, endDate)
 	const setPreviousDay = useGetSetPreviousDay()
 	const setThisWeek = useGetSetThisWeek()
 
@@ -34,7 +33,7 @@ function CallsDaysPicker(props: CallsDaysPickerProps) {
 					<RangePicker
 						disabledDate={disabledDate}
 						onChange={onCallsDaysPickerChange as any}
-						value={currentValues}
+						value={[startDate, endDate]}
 					/>
 					<Button onClick={setPreviousDay} disabled={isChooseYesterday}>
 						Вчера

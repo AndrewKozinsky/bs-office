@@ -1,8 +1,9 @@
+import dayjs from 'dayjs'
 import { create } from 'zustand'
 
 export type ICallsPageStore = {
-	startDate: null | string
-	endDate: null | string
+	startDate: null | dayjs.Dayjs
+	endDate: null | dayjs.Dayjs
 	searchValue: string
 }
 

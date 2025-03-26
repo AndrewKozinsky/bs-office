@@ -1,19 +1,20 @@
+import dayjs from 'dayjs'
 import CallRecordPlayer from '../CallRecordPleer/CallRecordPlayer.tsx'
 import CallsDaysPicker from '../CallsDaysPicker/CallsDaysPicker.tsx'
 import { useCallsStore } from '../callsStore/callsStore.ts'
 import CallsTable from '../CallsTable/CallsTable.tsx'
 import SearchCallsForm from '../SearchCallsForm/SearchCallsForm.tsx'
 import { useGetSetRecordDataToStore } from './fn/setRecordDataToStore.ts'
-import { useSetParentValuesToStore } from './fn/setInitialValuesToStore.ts'
+import { usePassValuesToParent, useSetParentValuesToStore } from './fn/setInitialValuesToStore.ts'
 import './CallsRoot.scss'
 
 type CallsRootProps = {
 	parentSearchValue?: string
-	parentStartDate?: string
-	parentEndDate?: string
-	setSearchValue?: (value: string) => void
-	setStartDate?: (value: string) => void
-	setEndDate?: (value: string) => void
+	parentStartDate?: null | dayjs.Dayjs
+	parentEndDate?: null | dayjs.Dayjs
+	setParentSearchValue?: (value: null | string) => void
+	setParentStartDate?: (value: null | dayjs.Dayjs) => void
+	setParentEndDate?: (value: null | dayjs.Dayjs) => void
 }
 
 function CallsRoot(props: CallsRootProps) {
@@ -21,12 +22,13 @@ function CallsRoot(props: CallsRootProps) {
 		parentSearchValue = '',
 		parentStartDate = null,
 		parentEndDate = null,
-		setSearchValue,
-		setStartDate,
-		setEndDate,
+		setParentSearchValue,
+		setParentStartDate,
+		setParentEndDate,
 	} = props
 
 	useSetParentValuesToStore(parentSearchValue, parentStartDate, parentEndDate)
+	usePassValuesToParent(setParentSearchValue, setParentStartDate, setParentEndDate)
 
 	const startDate = useCallsStore((s) => s.startDate)
 	const endDate = useCallsStore((s) => s.endDate)

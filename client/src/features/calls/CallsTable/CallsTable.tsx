@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import React from 'react'
 import { Button } from 'antd'
 import cn from 'classnames'
@@ -13,6 +14,7 @@ import {
 import { pagesRoute } from '../../../pages/pagesRoute.ts'
 import CallsApiTypes from '../../../requests/calls/callsApiTypes.ts'
 import { callsQuery } from '../../../requests/calls/callsQuery.ts'
+import { convertDayJsToString } from '../common.ts'
 import { useIsRowSelected } from './fn/isRowSelected.ts'
 import { useGetOnClientNameClick } from './fn/onClientNameClick.ts'
 import { PhoneRecordPreparedData, prepareCellRecordData } from './fn/textTransform.ts'
@@ -29,8 +31,8 @@ import './CallsTable.scss'
 type IPassRecordData = (data: { recordName: string; date: string }) => void
 
 type CallsTableProps = {
-	startDate: null | string
-	endDate: null | string
+	startDate: null | dayjs.Dayjs
+	endDate: null | dayjs.Dayjs
 	searchValue: string
 	passRecordData: IPassRecordData
 }
@@ -38,7 +40,9 @@ type CallsTableProps = {
 function CallsTable(props: CallsTableProps) {
 	const { startDate, endDate, searchValue, passRecordData } = props
 
-	const getRecordsRes = callsQuery.getRecords({ startDate, endDate, searchValue }).useQuery()
+	const getRecordsRes = callsQuery
+		.getRecords({ startDate: convertDayJsToString(startDate), endDate: convertDayJsToString(endDate), searchValue })
+		.useQuery()
 
 	if (getRecordsRes.isLoading) {
 		return <LoadingInCenter />

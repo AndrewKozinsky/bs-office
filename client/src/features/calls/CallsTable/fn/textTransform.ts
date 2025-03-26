@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import CallsApiTypes from '../../../../requests/calls/callsApiTypes.ts'
+import { convertDayJsToString } from '../../common.ts'
 
 export type PhoneRecordPreparedData = {
 	office: string
@@ -90,9 +91,9 @@ function getDateFromDateAndTime(dateAndTime: string) {
 	} else if (date.isSame(yesterday, 'day')) {
 		return 'вчера'
 	} else if (currentYear === dateYear) {
-		return date.format('DD MMM')
+		return convertDayJsToString(date)
 	} else {
-		return date.format('DD MMM YYYY')
+		return convertDayJsToString(date)
 	}
 }
 

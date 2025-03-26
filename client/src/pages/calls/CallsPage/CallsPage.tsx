@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import React from 'react'
 import CallsRoot from '../../../features/calls/CallsRoot/CallsRoot.tsx'
 import PageContainer from '../../pageContainer/PageContainer/PageContainer.tsx'
@@ -13,10 +14,10 @@ function CallsPage() {
 	const setSearchValue = (searchValue: string) => {
 		useCallsPageStore.setState({ searchValue })
 	}
-	const setStartDate = (startDate: string) => {
+	const setStartDate = (startDate: dayjs.Dayjs) => {
 		useCallsPageStore.setState({ startDate })
 	}
-	const setEndDate = (endDate: string) => {
+	const setEndDate = (endDate: dayjs.Dayjs) => {
 		useCallsPageStore.setState({ endDate })
 	}
 
@@ -30,9 +31,9 @@ function CallsPage() {
 				parentSearchValue={searchValue}
 				parentStartDate={startDate}
 				parentEndDate={endDate}
-				setSearchValue={setSearchValue}
-				setStartDate={setStartDate}
-				setEndDate={setEndDate}
+				setParentSearchValue={setSearchValue}
+				setParentStartDate={setStartDate}
+				setParentEndDate={setEndDate}
 			/>
 		</PageContainer>
 	)
